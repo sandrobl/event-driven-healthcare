@@ -1,0 +1,372 @@
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 522, "iaq_index": 163, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.56}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 178, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 521, "illuminance": 25.85}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 515, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 521, "distance": 6.3}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 517, "weight": -2}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 520, "x": 0.4821, "y": 0.4451, "z": -0.7477, "pitch": 29.0, "roll": 27.0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 517, "distance": 150.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 520, "x": 0.8363, "y": 0.0051, "z": -0.5094, "pitch": 59.0, "roll": 0.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 523, "illuminance": 21.34}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 523, "iaq_index": 163, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.56}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 522, "illuminance": 25.79}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 516, "distance": 4.4}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 177, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 522, "distance": 6.3}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 518, "weight": -2}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 521, "x": 0.4821, "y": 0.4489, "z": -0.7526, "pitch": 29.0, "roll": 27.0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 518, "distance": 150.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 521, "x": 0.8402, "y": -0.0005, "z": -0.5138, "pitch": 59.0, "roll": -0.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 524, "illuminance": 22.06}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 524, "iaq_index": 163, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.56}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 180, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 523, "illuminance": 25.94}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 517, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 523, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 522, "x": 0.4826, "y": 0.4428, "z": -0.7459, "pitch": 29.0, "roll": 26.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 519, "weight": -2}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 522, "x": 0.8413, "y": 0.002, "z": -0.5153, "pitch": 59.0, "roll": 0.0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 519, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 525, "illuminance": 22.06}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 525, "iaq_index": 165, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.57}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 179, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 524, "illuminance": 26.09}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 518, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 524, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 523, "x": 0.4829, "y": 0.4476, "z": -0.7472, "pitch": 29.0, "roll": 27.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 520, "weight": -2}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 523, "x": 0.8391, "y": -0.0023, "z": -0.5181, "pitch": 58.0, "roll": -0.0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 520, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 526, "illuminance": 22.41}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 526, "iaq_index": 165, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.57}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 525, "illuminance": 26.09}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 519, "distance": 4.4}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 178, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 525, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 524, "x": 0.4827, "y": 0.4462, "z": -0.7455, "pitch": 29.0, "roll": 27.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 521, "weight": -2}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 524, "x": 0.8413, "y": 0.001, "z": -0.5178, "pitch": 58.0, "roll": 0.0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 521, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 527, "illuminance": 22.06}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 527, "iaq_index": 165, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.57}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 181, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 526, "illuminance": 25.79}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 520, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 526, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 525, "x": 0.4833, "y": 0.4469, "z": -0.7504, "pitch": 29.0, "roll": 27.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 522, "weight": -2}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 525, "x": 0.8375, "y": -0.0007, "z": -0.5188, "pitch": 58.0, "roll": -0.0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 522, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 528, "illuminance": 21.34}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 528, "iaq_index": 166, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.59}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 180, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 527, "illuminance": 26.09}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 521, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 527, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 526, "x": 0.4811, "y": 0.4458, "z": -0.7464, "pitch": 29.0, "roll": 27.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 523, "weight": -2}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 526, "x": 0.8372, "y": -0.0018, "z": -0.5156, "pitch": 58.0, "roll": -0.0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 523, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 529, "illuminance": 22.41}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 529, "iaq_index": 166, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.59}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 528, "illuminance": 26.27}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 522, "distance": 4.4}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 179, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 528, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 527, "x": 0.4837, "y": 0.4444, "z": -0.745, "pitch": 29.0, "roll": 27.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 524, "weight": -2}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 527, "x": 0.8422, "y": -0.0014, "z": -0.5201, "pitch": 58.0, "roll": -0.0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 524, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 530, "illuminance": 21.89}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 530, "iaq_index": 166, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.59}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 182, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 529, "illuminance": 26.66}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 523, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 529, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 528, "x": 0.4839, "y": 0.4445, "z": -0.7526, "pitch": 29.0, "roll": 26.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 525, "weight": -2}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 528, "x": 0.835, "y": 0.0009, "z": -0.5109, "pitch": 59.0, "roll": 0.0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 525, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 531, "illuminance": 21.18}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 531, "iaq_index": 166, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.58}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 181, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 530, "illuminance": 26.18}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 524, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 530, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 529, "x": 0.484, "y": 0.4511, "z": -0.7485, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 529, "x": 0.8408, "y": 0.0051, "z": -0.5171, "pitch": 58.0, "roll": 0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 526, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 526, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 532, "illuminance": 21.51}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 532, "iaq_index": 166, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.58}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 531, "illuminance": 25.61}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 525, "distance": 4.4}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 180, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 531, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 530, "x": 0.4813, "y": 0.4415, "z": -0.748, "pitch": 29.0, "roll": 26.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 530, "x": 0.836, "y": -0.0037, "z": -0.514, "pitch": 58.0, "roll": -0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 527, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 527, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 533, "illuminance": 21.12}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 533, "iaq_index": 166, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.58}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 183, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 532, "illuminance": 25.94}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 526, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 532, "distance": 6.3}
+{"type": "motion_detector", "UID": "Sj7", "location": "LEFT_DONATION", "messageID": 17, "detection": "Motion Started", "motion_detection": 1}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 531, "x": 0.4827, "y": 0.4434, "z": -0.7515, "pitch": 29.0, "roll": 26.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 531, "x": 0.8408, "y": -0.0012, "z": -0.5153, "pitch": 58.0, "roll": -0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 528, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 528, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 534, "illuminance": 20.9}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 534, "iaq_index": 165, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.05, "air_pressure": 940.57}
+{"type": "dual_button", "UID": "VMM", "location": "LEFT_DONATION", "messageID": 5, "left_button": "Pressed", "left_button_pressed": 1, "right_button": "Released", "right_button_pressed": 0}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 182, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 533, "illuminance": 26.14}
+{"type": "dual_button", "UID": "VMM", "location": "LEFT_DONATION", "messageID": 6, "left_button": "Pressed", "left_button_pressed": 1, "right_button": "Released", "right_button_pressed": 0}
+{"type": "motion_detector", "UID": "SjH", "location": "RIGHT_DONATION", "messageID": 13, "detection": "Motion Started", "motion_detection": 1}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 527, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 533, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 532, "x": 0.4835, "y": 0.4502, "z": -0.7439, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 532, "x": 0.8409, "y": -0.0036, "z": -0.5181, "pitch": 58.0, "roll": -0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 529, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 529, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 535, "illuminance": 20.9}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 535, "iaq_index": 165, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.05, "air_pressure": 940.57}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 534, "illuminance": 25.46}
+{"type": "dual_button", "UID": "VMM", "location": "LEFT_DONATION", "messageID": 7, "left_button": "Released", "left_button_pressed": 0, "right_button": "Released", "right_button_pressed": 0}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 528, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 534, "distance": 6.3}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 181, "readingID": 0}
+{"type": "dual_button", "UID": "VMM", "location": "LEFT_DONATION", "messageID": 8, "left_button": "Released", "left_button_pressed": 0, "right_button": "Released", "right_button_pressed": 0}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 533, "x": 0.4841, "y": 0.4508, "z": -0.7578, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 533, "x": 0.845, "y": 0.0003, "z": -0.5119, "pitch": 59.0, "roll": 0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 530, "weight": -1}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 530, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 536, "illuminance": 20.54}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 536, "iaq_index": 165, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.05, "air_pressure": 940.57}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 184, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 535, "illuminance": 25.57}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 529, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 535, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 534, "x": 0.4834, "y": 0.4414, "z": -0.7547, "pitch": 29.0, "roll": 26.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 534, "x": 0.8382, "y": 0.0016, "z": -0.5101, "pitch": 59.0, "roll": 0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 531, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 531, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 537, "illuminance": 21.25}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 537, "iaq_index": 166, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.08, "humidity": 30.03, "air_pressure": 940.57}
+{"type": "rgb_button", "UID": "23V3", "location": "LEFT_DONATION", "messageID": 3, "state": "PRESSED!", "state_pressed": 1, "color": "wait for release", "color_red": 0}
+{"type": "motion_detector", "UID": "SjH", "location": "RIGHT_DONATION", "messageID": 14, "detection": "Motion Ended", "motion_detection": 0}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 183, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 536, "illuminance": 25.28}
+{"type": "rgb_button", "UID": "23V3", "location": "LEFT_DONATION", "messageID": 4, "state": "RELEASED!", "state_pressed": 0, "color": "green", "color_red": 0}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 530, "distance": 4.4}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 536, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 535, "x": 0.4827, "y": 0.4478, "z": -0.757, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 535, "x": 0.8381, "y": -0.0003, "z": -0.5159, "pitch": 58.0, "roll": -0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 532, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 532, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 538, "illuminance": 20.9}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 538, "iaq_index": 166, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.08, "humidity": 30.03, "air_pressure": 940.57}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 537, "illuminance": 25.9}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 182, "ID": "ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80", "readingID": 1}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 539, "iaq_index": 166, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.08, "humidity": 30.03, "air_pressure": 940.57}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 183, "readingID": 0}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 184, "ID": "ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80", "readingID": 1}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 540, "iaq_index": 168, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.05, "air_pressure": 940.57}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 185, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 537, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 531, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 536, "x": 0.483, "y": 0.4483, "z": -0.7505, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 536, "x": 0.838, "y": -0.0006, "z": -0.5172, "pitch": 58.0, "roll": -0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 533, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 533, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 539, "illuminance": 20.54}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 185, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 538, "illuminance": 24.98}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 538, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 532, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 537, "x": 0.4828, "y": 0.4462, "z": -0.7521, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 537, "x": 0.8344, "y": -0.0006, "z": -0.514, "pitch": 58.0, "roll": -0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 534, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 534, "distance": 76.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 540, "illuminance": 20.54}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 184, "readingID": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 539, "illuminance": 25.4}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 186, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 539, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 533, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 538, "x": 0.481, "y": 0.4437, "z": -0.7486, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 538, "x": 0.8351, "y": 0.0012, "z": -0.5206, "pitch": 58.0, "roll": 0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 535, "weight": -2}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 187, "ID": "ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80", "readingID": 1}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 541, "iaq_index": 168, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.05, "air_pressure": 940.57}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 188, "readingID": 0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 535, "distance": 21.4}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 189, "ID": "ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80", "readingID": 1}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 542, "iaq_index": 168, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.05, "air_pressure": 940.57}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 543, "iaq_index": 165, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.57}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 190, "readingID": 0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 541, "illuminance": 20.87}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 540, "illuminance": 25.85}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 186, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 540, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 534, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 539, "x": 0.4834, "y": 0.4464, "z": -0.7489, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 539, "x": 0.8359, "y": -0.0002, "z": -0.5173, "pitch": 58.0, "roll": -0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 536, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 536, "distance": 20.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 542, "illuminance": 21.22}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 541, "illuminance": 25.85}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 541, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 535, "distance": 4.4}
+{"type": "motion_detector", "UID": "Sj7", "location": "LEFT_DONATION", "messageID": 18, "detection": "Motion Ended", "motion_detection": 0}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 540, "x": 0.484, "y": 0.4473, "z": -0.7492, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 540, "x": 0.8378, "y": 0.0016, "z": -0.5143, "pitch": 58.0, "roll": 0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 537, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 537, "distance": 20.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 543, "illuminance": 20.87}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 542, "illuminance": 25.7}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 185, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 542, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 536, "distance": 4.4}
+{"type": "motion_detector", "UID": "SjH", "location": "RIGHT_DONATION", "messageID": 15, "detection": "Motion Started", "motion_detection": 1}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 541, "x": 0.4824, "y": 0.4465, "z": -0.7403, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 541, "x": 0.8361, "y": -0.0018, "z": -0.5161, "pitch": 58.0, "roll": -0.0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 538, "weight": -2}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 544, "iaq_index": 165, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.57}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 191, "readingID": 0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 538, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 544, "illuminance": 19.79}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 543, "illuminance": 26.14}
+{"type": "dual_button", "UID": "VMK", "location": "RIGHT_DONATION", "messageID": 5, "left_button": "Released", "left_button_pressed": 0, "right_button": "Pressed", "right_button_pressed": 1}
+{"type": "dual_button", "UID": "VMK", "location": "RIGHT_DONATION", "messageID": 6, "left_button": "Released", "left_button_pressed": 0, "right_button": "Pressed", "right_button_pressed": 1}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 543, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 537, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 542, "x": 0.4827, "y": 0.4461, "z": -0.7441, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 542, "x": 0.8359, "y": -0.0005, "z": -0.5161, "pitch": 58.0, "roll": -0.0}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 545, "iaq_index": 165, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.57}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 539, "weight": -2}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 545, "illuminance": 19.7}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 539, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 544, "illuminance": 25.7}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 544, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 538, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 543, "x": 0.4834, "y": 0.4479, "z": -0.7455, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 543, "x": 0.836, "y": -0.0007, "z": -0.5136, "pitch": 58.0, "roll": -0.0}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 546, "iaq_index": 163, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.05, "air_pressure": 940.57}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 540, "weight": -2}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 546, "illuminance": 19.73}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 187, "readingID": 0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 540, "distance": 20.0}
+{"type": "rgb_button", "UID": "23V6", "location": "RIGHT_DONATION", "messageID": 3, "state": "PRESSED!", "state_pressed": 1, "color": "wait for release", "color_red": 0}
+{"type": "rgb_button", "UID": "23V6", "location": "RIGHT_DONATION", "messageID": 4, "state": "RELEASED!", "state_pressed": 0, "color": "green", "color_red": 0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 545, "illuminance": 25.9}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 186, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 545, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 539, "distance": 4.4}
+{"type": "motion_detector", "UID": "Sj7", "location": "LEFT_DONATION", "messageID": 19, "detection": "Motion Started", "motion_detection": 1}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 544, "x": 0.4826, "y": 0.4465, "z": -0.7554, "pitch": 29.0, "roll": 26.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 544, "x": 0.84, "y": 0.0017, "z": -0.5181, "pitch": 58.0, "roll": 0.0}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 547, "iaq_index": 163, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.05, "air_pressure": 940.57}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 192, "readingID": 0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 547, "illuminance": 20.83}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 541, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 541, "distance": 37.6}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 546, "illuminance": 25.66}
+{"type": "rgb_button", "UID": "23UU", "location": "HYGIENE_STATION", "messageID": 3, "state": "PRESSED!", "state_pressed": 1, "color": "wait for release", "color_red": 0}
+{"type": "motion_detector", "UID": "SjH", "location": "RIGHT_DONATION", "messageID": 16, "detection": "Motion Ended", "motion_detection": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 546, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 540, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 545, "x": 0.4832, "y": 0.4391, "z": -0.757, "pitch": 29.0, "roll": 26.0}
+{"type": "rgb_button", "UID": "23UU", "location": "HYGIENE_STATION", "messageID": 4, "state": "RELEASED!", "state_pressed": 0, "color": "green", "color_red": 0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 545, "x": 0.8543, "y": 0.0017, "z": -0.518, "pitch": 59.0, "roll": 0.0}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 548, "iaq_index": 163, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.05, "air_pressure": 940.57}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 548, "illuminance": 20.83}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 542, "weight": -2}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 542, "distance": 34.2}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 547, "illuminance": 25.61}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 547, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 541, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 546, "x": 0.4822, "y": 0.4475, "z": -0.7473, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 546, "x": 0.8381, "y": -0.002, "z": -0.5141, "pitch": 58.0, "roll": -0.0}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 549, "iaq_index": 164, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.56}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 549, "illuminance": 20.48}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 543, "weight": 305}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 188, "readingID": 0}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 543, "distance": 49.1}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 548, "illuminance": 25.61}
+{"type": "motion_detector", "UID": "Sj7", "location": "LEFT_DONATION", "messageID": 20, "detection": "Motion Ended", "motion_detection": 0}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 187, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 548, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 542, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 547, "x": 0.4821, "y": 0.4555, "z": -0.7522, "pitch": 29.0, "roll": 27.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 547, "x": 0.8308, "y": 0.0029, "z": -0.512, "pitch": 58.0, "roll": 0.0}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 550, "iaq_index": 164, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.56}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 193, "readingID": 0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 550, "illuminance": 20.8}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 544, "weight": -3}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 544, "distance": 150.0}
+{"type": "motion_detector", "UID": "SjH", "location": "RIGHT_DONATION", "messageID": 17, "detection": "Motion Started", "motion_detection": 1}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 549, "illuminance": 25.66}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 549, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 543, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 548, "x": 0.4815, "y": 0.444, "z": -0.7506, "pitch": 29.0, "roll": 26.0}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 548, "x": 0.8363, "y": 0.0169, "z": -0.5323, "pitch": 58.0, "roll": 1.0}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 551, "iaq_index": 164, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.04, "air_pressure": 940.56}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 551, "illuminance": 19.79}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 545, "weight": -3}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 545, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 550, "illuminance": 25.9}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 550, "distance": 6.3}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 544, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 549, "x": 0.3713, "y": 0.3018, "z": -1.7799, "pitch": 12.0, "roll": 9.0}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 552, "iaq_index": 163, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.07, "air_pressure": 940.56}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 549, "x": 0.8296, "y": -0.0037, "z": -0.5238, "pitch": 58.0, "roll": -0.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 552, "illuminance": 20.67}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 189, "readingID": 0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 546, "weight": -3}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 546, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 551, "illuminance": 26.05}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 188, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 551, "distance": 6.3}
+{"type": "motion_detector", "UID": "Sj7", "location": "LEFT_DONATION", "messageID": 21, "detection": "Motion Started", "motion_detection": 1}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 545, "distance": 4.4}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 550, "x": 0.4837, "y": 0.4344, "z": -0.752, "pitch": 29.0, "roll": 26.0}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 553, "iaq_index": 163, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.07, "air_pressure": 940.56}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 550, "x": 0.8326, "y": -0.0003, "z": -0.526, "pitch": 58.0, "roll": -0.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 553, "illuminance": 21.42}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 194, "readingID": 0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 547, "weight": -3}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 547, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 552, "illuminance": 24.26}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 552, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 551, "x": 0.4828, "y": 0.4469, "z": -0.7537, "pitch": 29.0, "roll": 27.0}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 546, "distance": 4.4}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 554, "iaq_index": 163, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.07, "air_pressure": 940.56}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 551, "x": 0.8308, "y": -0.0005, "z": -0.5234, "pitch": 58.0, "roll": -0.0}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 554, "illuminance": 21.45}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 548, "weight": -3}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 548, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 553, "illuminance": 24.56}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 553, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 552, "x": 0.4801, "y": 0.4439, "z": -0.7486, "pitch": 29.0, "roll": 27.0}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 547, "distance": 4.4}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 555, "iaq_index": 164, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.03, "air_pressure": 940.57}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 555, "illuminance": 21.45}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 552, "x": 0.8306, "y": 0.0025, "z": -0.5234, "pitch": 58.0, "roll": 0.0}
+{"type": "motion_detector", "UID": "SjH", "location": "RIGHT_DONATION", "messageID": 18, "detection": "Motion Ended", "motion_detection": 0}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 190, "readingID": 0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 549, "weight": -3}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 549, "distance": 150.0}
+{"type": "ambient_light", "UID": "25JW", "location": "LEFT_DONATION", "messageID": 554, "illuminance": 24.7}
+{"type": "nfc", "UID": "22P8", "location": "RIGHT_DONATION", "messageID": 189, "readingID": 0}
+{"type": "distance_IR_short", "UID": "TGJ", "location": "LEFT_DONATION", "messageID": 554, "distance": 6.3}
+{"type": "accelerometer", "UID": "VDY", "location": "LEFT_DONATION", "messageID": 553, "x": 0.4822, "y": 0.4386, "z": -0.7477, "pitch": 29.0, "roll": 26.0}
+{"type": "distance_IR_short", "UID": "TFf", "location": "RIGHT_DONATION", "messageID": 548, "distance": 4.4}
+{"type": "air_quality", "UID": "X2n", "location": "HYGIENE_STATION", "messageID": 556, "iaq_index": 164, "iaq_index_accuracy_unreliable": 0, "iaq_index_accuracy_low": 0, "iaq_index_accuracy_medium": 0, "iaq_index_accuracy_high": 1, "iaq_index_accuracy": "High", "temperature": 24.07, "humidity": 30.03, "air_pressure": 940.57}
+{"type": "ambient_light", "UID": "25JU", "location": "RIGHT_DONATION", "messageID": 556, "illuminance": 21.45}
+{"type": "accelerometer", "UID": "MEH", "location": "RIGHT_DONATION", "messageID": 553, "x": 0.8303, "y": -0.0001, "z": -0.5225, "pitch": 58.0, "roll": -0.0}
+{"type": "nfc", "UID": "22Pa", "location": "HYGIENE_STATION", "messageID": 195, "readingID": 0}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 550, "weight": -3}
+{"type": "distance_IR_long", "UID": "SeG", "location": "HYGIENE_STATION", "messageID": 550, "distance": 150.0}
