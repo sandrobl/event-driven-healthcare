@@ -1,0 +1,20 @@
+server:
+  port: 8080  # Tomcat default port
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    controllers: DEBUG
+
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+
+    producer:
+      bootstrap-servers: localhost:9092
+
+    patientEvents-topic: patientEvent-topic
