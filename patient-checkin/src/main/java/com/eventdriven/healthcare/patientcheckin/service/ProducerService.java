@@ -2,11 +2,15 @@ package com.eventdriven.healthcare.patientcheckin.service;
 
 import com.eventdriven.healthcare.patientcheckin.model.Click;
 import com.eventdriven.healthcare.patientcheckin.model.Gaze;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,11 +25,14 @@ public class ProducerService<T> {
     @Value("${spring.kafka.clickEvents-topic}")
     private String clickEventsTopic;
 
-    @Autowired
-    private KafkaTemplate<String, Gaze> kafkaTemplateGaze;
+//    @Autowired
+//    private KafkaTemplate<String, Gaze> kafkaTemplateGaze;
+//
+//    @Autowired
+//    private KafkaTemplate<String, Click> kafkaTemplateClick;
 
     @Autowired
-    private KafkaTemplate<String, Click> kafkaTemplateClick;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
 
     public void startEyeTracker() {
@@ -45,9 +52,15 @@ public class ProducerService<T> {
             // generate a random gaze event using constructor  Gaze(int eventID, long timestamp, int xPosition, int yPosition, int pupilSize)
             Gaze gazeEvent = new Gaze(counter, System.nanoTime(), getRandomNumber(0, 1920), getRandomNumber(0, 1080), getRandomNumber(3, 4));
             //log
+            Message<Gaze> message = MessageBuilder
+                    .withPayload(gazeEvent)
+                    .setHeader(KafkaHeaders.TOPIC, gazeEventsTopic)
+                    .setHeader("type", "test") // Add custom header
+                    .build();
+
             logger.info("#### -> Publishing gaze event :: {}", gazeEvent);
             // send gaze event
-            kafkaTemplateGaze.send(gazeEventsTopic, gazeEvent);
+            kafkaTemplate.send(message);
 
             counter++;
         }
@@ -74,7 +87,7 @@ public class ProducerService<T> {
             Click clickEvent = new Click(counter,System.nanoTime(), getRandomNumber(0, 1920), getRandomNumber(0, 1080), "EL"+getRandomNumber(1, 20));
 
             // send gaze event
-            kafkaTemplateClick.send(clickEventsTopic, clickEvent);
+            kafkaTemplate.send(clickEventsTopic, clickEvent);
 
             logger.info("#### -> Publishing click event :: {}",clickEvent);
 

@@ -24,7 +24,7 @@ public class KafkaProducerConfig {
     // Json Producer
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Bean
-    public <T> ProducerFactory<String, T> producerFactory() {
+    public <T> ProducerFactory<String, Object> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
 
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -37,7 +37,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public <T> KafkaTemplate<String, T> kafkaTemplate() {
+    public <T> KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 
