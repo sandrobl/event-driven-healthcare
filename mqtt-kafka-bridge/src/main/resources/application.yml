@@ -1,0 +1,14 @@
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+
+mqtt:
+  broker-url: tcp://ftsim.weber.ics.unisg.ch:1883
+  client-id: mqtt-kafka-bridge-client
+  username: ftsim
+  password: unisg
+  topic: smart-healthcare/#
+
+kafka:
+  topic: smart-healthcare-data
