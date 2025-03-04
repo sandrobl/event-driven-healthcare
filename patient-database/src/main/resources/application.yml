@@ -1,5 +1,5 @@
 server:
-  port: 8080  # Tomcat default port
+  port: 8081  # Tomcat default port
 
 logging:
   level:
@@ -17,4 +17,4 @@ spring:
     producer:
       bootstrap-servers: localhost:9092
 
-    patientEvents-topic: patientEvent-topic
+    patientEvents-topic: patientEvents-topic
