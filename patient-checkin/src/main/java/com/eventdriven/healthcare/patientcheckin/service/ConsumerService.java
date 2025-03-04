@@ -52,11 +52,12 @@ public class ConsumerService {
                 String messageID = rootNode.get("messageID").asText();
                 int readingId =
                         Integer.parseInt(rootNode.get("readingID").asText());
-                String nfcID = rootNode.get("ID").asText();
 
                 if(readingId == 0){
                     return;
                 }
+                String nfcID = rootNode.get("ID").asText();
+
                 logger.info("**** -> NFC Tag scanned with ID :: {}",
                         nfcID);
 
