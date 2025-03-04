@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.event-driven.healthcare</groupId>
-    <artifactId>patient-checkin</artifactId>
+    <artifactId>patient-database</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>patient-checkin</name>
-    <description>patient-checkin</description>
+    <name>patient-database</name>
+    <description>patient-database</description>
     <url/>
     <licenses>
         <license/>

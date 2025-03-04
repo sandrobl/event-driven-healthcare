@@ -11,6 +11,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class ProducerService<T> {
 
@@ -22,19 +23,17 @@ public class ProducerService<T> {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
 
-    public void sendPatientInformationRequest(int patientId){
-        logger.info("#### -> Sending patient information request event :: " +
-                "{}",patientId);
-        Patient patientEvent = new Patient(patientId);
+    public void sendPatientInformationRequest(Patient patient){
         Message<Patient> message = MessageBuilder
-                .withPayload(patientEvent)
+                .withPayload(patient)
                 .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
                 .setHeader("type", "patientDataRequest")
                 .build();
 
         logger.info("#### -> Publishing patient information request event :: " +
-                "{}",patientEvent);
+                "{}",patient);
 
         kafkaTemplate.send(message);
     }
+
 }
