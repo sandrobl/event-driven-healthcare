@@ -1,48 +1,34 @@
 package com.eventdriven.healthcare.patientcheckin.controllers;
 
 import com.eventdriven.healthcare.patientcheckin.model.Patient;
+import com.eventdriven.healthcare.patientcheckin.service.PatientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.eventdriven.healthcare.patientcheckin.service.ProducerService;
 
+import java.util.List;
+
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping(value = "/kafka")
 public class RestController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    Boolean singleEyeTrackingThreadStart = false;
-
     @Autowired
     private ProducerService<Patient> producerService;
 
-    @GetMapping(value = "/patientTracking")
-    public String eyeTrackingCall(@RequestParam("action") String action) {
-        String output = "";
+    @Autowired
+    private final PatientService patientService;
 
-        if(action.equals("start") & !singleEyeTrackingThreadStart) {
-            // starting eye-tracking in a new thread if not already started
-            Thread eyeTrackingThread =  new Thread(() -> {
-                producerService.startPatientsTracker();
-            });
-            eyeTrackingThread.start();
-            singleEyeTrackingThreadStart = true;
-            output = "Eye-tracker successfully started!";
-        }
-        else if(singleEyeTrackingThreadStart) {
-            output = "Eye-tracker already running";
-        }
-        else {
-            output = "Unknown action";
-        }
-
-        return output;
+    public RestController(PatientService patientService) {
+        this.patientService = patientService;
     }
 
-    @GetMapping(value = "/eyeTrackingStop")
-    public String eyeTrackingStop() {
-        logger.info("Stopping eye tracking");
-        return "Eye tracking stopped";
+    @GetMapping(value = "/getAllPatients")
+    public List<Patient> eyeTrackingCall() {
+        logger.info("Getting all patients");
+
+        return patientService.getPatients();
     }
 }

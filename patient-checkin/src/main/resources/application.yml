@@ -17,6 +17,4 @@ spring:
     producer:
       bootstrap-servers: localhost:9092
 
-
-    gazeEvents-topic: gazeEvents-topic
-    clickEvents-topic: clickEvents-topic
+    patientEvents-topic: patientEvents-topic

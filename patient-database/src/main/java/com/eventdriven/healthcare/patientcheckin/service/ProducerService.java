@@ -17,51 +17,23 @@ public class ProducerService<T> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-
-
     @Value("${spring.kafka.patientEvents-topic}")
     private String patientEventsTopic;
 
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
 
+    public void sendPatientInformationRequest(Patient patient){
+        Message<Patient> message = MessageBuilder
+                .withPayload(patient)
+                .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
+                .setHeader("type", "patientDataRequest")
+                .build();
 
+        logger.info("#### -> Publishing patient information request event :: " +
+                "{}",patient);
 
-    public void startPatientsTracker() {
-
-        // Define a counter which will be used as an eventID
-        int counter = 0;
-
-        while(true) {
-
-            // sleep for a random time interval between 500 ms and 5000 ms
-            try {
-                Thread.sleep(getRandomNumber(500, 5000));
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-
-            Patient patientEvent = new Patient(1 + counter,"Fredson", "Fred", 182
-                    ,80,
-                    5.5f);
-
-            Message<Patient> message = MessageBuilder
-                    .withPayload(patientEvent)
-                    .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
-                    .setHeader("type", "patientDataRequest")
-                    .build();
-
-            logger.info("#### -> Publishing patient event :: {}",patientEvent);
-
-            kafkaTemplate.send(message);
-            counter++;
-
-        }
-
-    }
-
-    private  int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
+        kafkaTemplate.send(message);
     }
 
 }

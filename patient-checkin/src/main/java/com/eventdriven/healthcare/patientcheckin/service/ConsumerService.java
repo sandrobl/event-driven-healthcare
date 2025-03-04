@@ -1,16 +1,12 @@
 package com.eventdriven.healthcare.patientcheckin.service;
 
-
-import com.eventdriven.healthcare.patientcheckin.model.Click;
-import com.eventdriven.healthcare.patientcheckin.model.Gaze;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
+import com.eventdriven.healthcare.patientcheckin.model.Patient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class ConsumerService {
@@ -19,33 +15,17 @@ public class ConsumerService {
 
 
     @KafkaListener(
-            topics = {"${spring.kafka.gazeEvents-topic}"},
-            containerFactory = "kafkaListenerGazeFactory",
+            topics = {"${spring.kafka.patientEvents-topic}"},
+            containerFactory = "kafkaListenerPatientFactory",
             groupId = "group_id")
-    public void consumeGazeEvent(@Payload Gaze gazeEvent,
-                                 @Header("type") String messageType) {
-        if ("test".equals(messageType)) {
-            logger.info("**** -> Consumed test gaze event :: {}",
-                    gazeEvent);
-            return;
-        }else{
-            logger.info("**** -> Consumed gaze event :: {}", gazeEvent);
+    public void consumePatientEvent(@Payload Patient patientEvent,
+                                    @Header("type") String messageType) {
+        if ("patientDataRequest".equals(messageType)) {
+            logger.info("**** -> Patient-Checkin Consumed patientDataRequest " +
+                            "event :: {}",
+                    patientEvent.toString());
+
         }
-
-        // consumed gaze events can be processed here ....
-
-    }
-
-    @KafkaListener(
-            topics = {"${spring.kafka.clickEvents-topic}"},
-            containerFactory = "kafkaListenerClickFactory",
-            groupId = "group_id")
-    public void consumeClickEvent(Click clickEvent) {
-
-        logger.info("**** -> Consumed click event :: {}", clickEvent);
-
-        // consumed click events can be processed here ....
-
     }
 
 }
