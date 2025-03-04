@@ -3,6 +3,7 @@ package com.eventdriven.healthcare.patientcheckin.service;
 import com.eventdriven.healthcare.patientcheckin.model.Patient;
 import com.eventdriven.healthcare.patientcheckin.model.PatientDatabase;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service  // Marks this as a service managed by Spring

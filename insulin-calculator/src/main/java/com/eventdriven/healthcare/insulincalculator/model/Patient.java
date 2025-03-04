@@ -1,4 +1,4 @@
-package com.eventdriven.healthcare.patientcheckin.model;
+package com.eventdriven.healthcare.insulincalculator.model;
 
 import lombok.Getter;
 import lombok.Setter;

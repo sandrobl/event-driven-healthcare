@@ -1,6 +1,6 @@
-package com.eventdriven.healthcare.patientcheckin.service;
+package com.eventdriven.healthcare.insulincalculator.service;
 
-import com.eventdriven.healthcare.patientcheckin.model.Patient;
+import com.eventdriven.healthcare.insulincalculator.model.Patient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

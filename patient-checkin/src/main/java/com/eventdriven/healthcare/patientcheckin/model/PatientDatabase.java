@@ -1,6 +1,5 @@
 package com.eventdriven.healthcare.patientcheckin.model;
 
-import lombok.Getter;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
