@@ -33,11 +33,11 @@ public class PatientDatabase {
     }
 
     public PatientDatabase() {
-        patients.add(new Patient(1,"Fredson", "Fred", 155, 84, 5.5f));
-        patients.add(new Patient(2,"Johanson", "Johan", 168, 50, 4.5f));
-        patients.add(new Patient(3,"Hansdotir", "Hans", 182, 76, 6.5f));
-        patients.add(new Patient(4,"Freddotir", "Fredine", 190, 95, 1.5f));
-        patients.add(new Patient(5,"Johandotir", "Johanne", 191, 79, 4.5f));
+        patients.add(new Patient(1,"Fredson", "Fred", 155, 84, 5.5f, 1));
+        patients.add(new Patient(2,"Johanson", "Johan", 168, 50, 4.5f, 2));
+        patients.add(new Patient(3,"Hansdotir", "Hans", 182, 76, 6.5f, 3));
+        patients.add(new Patient(4,"Freddotir", "Fredine", 190, 95, 1.5f, 4));
+        patients.add(new Patient(5,"Johandotir", "Johanne", 191, 79, 4.5f, 5));
     }
 
     public Patient getPatientById(int id) {

@@ -1,6 +1,6 @@
 package com.eventdriven.healthcare.insulincalculator.service;
 
-import com.eventdriven.healthcare.insulincalculator.model.Patient;
+import com.eventdriven.healthcare.insulincalculator.model.InsulinCalculationRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +23,15 @@ public class ProducerService<T> {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
 
-    public void sendPatientInformationRequest(Patient patient){
-        Message<Patient> message = MessageBuilder
-                .withPayload(patient)
+    public void sendInsulinCalculatedRequest(InsulinCalculationRequest icr){
+        Message<InsulinCalculationRequest> message = MessageBuilder
+                .withPayload(icr)
                 .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
-                .setHeader("type", "patientDataRequest")
+                .setHeader("type", "patientInsulinCalculatorRequest")
                 .build();
 
         logger.info("#### -> Publishing patient information request event :: " +
-                "{}",patient);
+                "{}",icr);
 
         kafkaTemplate.send(message);
     }

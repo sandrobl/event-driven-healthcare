@@ -1,6 +1,6 @@
 package com.eventdriven.healthcare.insulincalculator.service;
 
-import com.eventdriven.healthcare.insulincalculator.model.Patient;
+import com.eventdriven.healthcare.insulincalculator.model.InsulinCalculationRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +16,27 @@ public class ConsumerService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private ProducerService<Patient> producerService;
+    private InsulinCalculatorService insulinCalculatorService;
+
+    @Autowired
+    private ProducerService<InsulinCalculationRequest> producerService;
 
     @KafkaListener(
             topics = {"${spring.kafka.patientEvents-topic}"},
-            containerFactory = "kafkaListenerPatientFactory",
+            containerFactory = "kafkaListenerInsulinCalculationRequestFactory",
             groupId = "group_id")
-    public void consumePatientEvent(@Payload Patient patientEvent,
+    public void consumePatientEvent(@Payload InsulinCalculationRequest icrEvent,
                                   @Header("type") String messageType) {
 
+        icrEvent.setInsulinDoses(insulinCalculatorService.calculateBolusInsulinDose(icrEvent));
+
+        producerService.sendInsulinCalculatedRequest(icrEvent);
+
         if ("patientDataRequest".equals(messageType)) {
-            logger.info("**** -> Consumed patientDataRequest event :: {}",patientEvent);
+            logger.info("**** -> Consumed patientDataRequest event :: {}",icrEvent);
 
         }
     }
+
+
 }
