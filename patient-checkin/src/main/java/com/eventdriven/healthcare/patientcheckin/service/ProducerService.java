@@ -1,6 +1,6 @@
 package com.eventdriven.healthcare.patientcheckin.service;
 
-import com.eventdriven.healthcare.patientcheckin.model.Patient;
+import com.eventdriven.healthcare.patientcheckin.model.InsulinCalculationRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +22,37 @@ public class ProducerService<T> {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
 
-    public void sendPatientInformationRequest(int patientId){
-        logger.info("#### -> Sending patient information request event :: " +
+    public void sendInsulinCalculationRequest(int patientId,
+                                              int height,
+                                              int weight,
+                                              int bloodGlucose,
+                                              float nextMealCarbohydrates,
+                                              float insulinToCarbohydrateRatio,
+                                              float insulinSensitivityFactor,
+                                              float targetBloodGlucoseLevel) {
+        logger.info("#### -> Sending insulin calculation request " +
+                "request event :: " +
                 "{}",patientId);
-        Patient patientEvent = new Patient(patientId);
-        Message<Patient> message = MessageBuilder
-                .withPayload(patientEvent)
+
+        InsulinCalculationRequest icr =
+                new InsulinCalculationRequest(
+                        patientId,
+                        height,
+                        weight,
+                        bloodGlucose,
+                        nextMealCarbohydrates,
+                        insulinToCarbohydrateRatio,
+                        insulinSensitivityFactor,
+                        targetBloodGlucoseLevel);
+
+        Message<InsulinCalculationRequest> message = MessageBuilder
+                .withPayload(icr)
                 .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
-                .setHeader("type", "patientDataRequest")
+                .setHeader("type", "patientInsulinCalculatorRequest")
                 .build();
 
-        logger.info("#### -> Publishing patient information request event :: " +
-                "{}",patientEvent);
+        logger.info("#### -> Publishing insulin calculation request " + "{}",
+                icr);
 
         kafkaTemplate.send(message);
     }

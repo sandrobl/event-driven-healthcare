@@ -7,11 +7,9 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/patient-checkin/pom.xml" />
-        <option value="$PROJECT_DIR$/mqtt-kafka-bridge/pom.xml" />
-        <option value="$PROJECT_DIR$/patient-database/pom.xml" />
         <option value="$PROJECT_DIR$/insulin-calculator/pom.xml" />
+        <option value="$PROJECT_DIR$/mqtt-kafka-bridge/pom.xml" />
+        <option value="$PROJECT_DIR$/patient-checkin/pom.xml" />
       </list>
     </option>
   </component>

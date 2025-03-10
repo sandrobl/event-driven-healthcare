@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mqtt-kafka-bridge" />
+        <module name="insulin-calculator" />
         <module name="patient-checkin" />
         <module name="patient-database" />
       </profile>
@@ -18,6 +19,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="insulin-calculator" options="-parameters" />
       <module name="mqtt-kafka-bridge" options="-parameters" />
       <module name="patient-checkin" options="-parameters" />
       <module name="patient-database" options="-parameters" />

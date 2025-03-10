@@ -1,6 +1,6 @@
 package com.eventdriven.healthcare.insulincalculator.config;
 
-import com.eventdriven.healthcare.insulincalculator.model.Patient;
+import com.eventdriven.healthcare.insulincalculator.model.InsulinCalculationRequest;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,10 +26,10 @@ public class KafkaConsumerConfig {
     private String groupId;
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // Consumer Factory for Patient Events
+    // Consumer Factory for InsulinCalculationRequest Events
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Bean
-    public ConsumerFactory<String, Patient> patientConsumerFactory() {
+    public ConsumerFactory<String, InsulinCalculationRequest> icrConsumerFactory() {
         Map<String, Object> config = new HashMap<>();
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         config.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
@@ -37,16 +37,19 @@ public class KafkaConsumerConfig {
         config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
-        JsonDeserializer<Patient> valueDeserializer = new JsonDeserializer<>(Patient.class);
+        JsonDeserializer<InsulinCalculationRequest> valueDeserializer =
+                new JsonDeserializer<>(InsulinCalculationRequest.class);
         valueDeserializer.addTrustedPackages("*");
 
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), valueDeserializer);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Patient> kafkaListenerPatientFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, Patient> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(patientConsumerFactory());
+    public ConcurrentKafkaListenerContainerFactory<String,
+            InsulinCalculationRequest> kafkaListenerInsulinCalculationRequestFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, InsulinCalculationRequest> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(icrConsumerFactory());
         return factory;
     }
 }
