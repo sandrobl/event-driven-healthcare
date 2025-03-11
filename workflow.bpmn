@@ -43,7 +43,7 @@
       <bpmn:outgoing>Flow_0izbipt</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_184ar9y" />
     </bpmn:boundaryEvent>
-    <bpmn:endEvent id="Event_1bswe51">
+    <bpmn:endEvent id="Event_1bswe51" name="Abort Check-In Process">
       <bpmn:incoming>Flow_0izbipt</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_0izbipt" sourceRef="Event_1gjzxes" targetRef="Event_1bswe51" />
@@ -109,7 +109,7 @@
     <bpmn:endEvent id="Event_068lass" name="No Injection Needed">
       <bpmn:incoming>Flow_1mqr7vc</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1mqr7vc" sourceRef="Gateway_057yb4y" targetRef="Event_068lass" />
+    <bpmn:sequenceFlow id="Flow_1mqr7vc" name="No" sourceRef="Gateway_057yb4y" targetRef="Event_068lass" />
   </bpmn:process>
   <bpmn:message id="Message_18p1rea" name="Message_ScaleValue" />
   <bpmn:message id="Message_08cnaah" name="Message_NFCTag" />
@@ -139,18 +139,21 @@
         <dc:Bounds x="400" y="260" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0gkefzz_di" bpmnElement="Activity_0ffnfa7">
-        <dc:Bounds x="400" y="370" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_07d31r2_di" bpmnElement="Event_07d31r2">
         <dc:Bounds x="302" y="392" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="281" y="435" width="79" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gkefzz_di" bpmnElement="Activity_0ffnfa7">
+        <dc:Bounds x="400" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1bswe51_di" bpmnElement="Event_1bswe51">
         <dc:Bounds x="542" y="512" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="523" y="555" width="74" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_038c5o1_di" bpmnElement="Activity_1n0a68s">
         <dc:Bounds x="690" y="140" width="100" height="80" />
@@ -307,6 +310,9 @@
         <di:waypoint x="1020" y="205" />
         <di:waypoint x="1020" y="290" />
         <di:waypoint x="1112" y="290" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1028" y="263" width="15" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
