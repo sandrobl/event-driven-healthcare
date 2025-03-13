@@ -1,7 +1,7 @@
-package com.eventdriven.healthcare.patientcheckin.service;
+package com.eventdriven.healthcare.patientdashboard.service;
 
-import com.eventdriven.healthcare.patientcheckin.model.Patient;
-import com.eventdriven.healthcare.patientcheckin.model.PatientDatabase;
+import com.eventdriven.healthcare.patientdashboard.model.Patient;
+import com.eventdriven.healthcare.patientdashboard.model.PatientDatabase;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

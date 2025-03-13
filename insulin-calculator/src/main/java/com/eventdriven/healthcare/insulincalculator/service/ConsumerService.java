@@ -28,11 +28,13 @@ public class ConsumerService {
     public void consumePatientEvent(@Payload InsulinCalculationRequest icrEvent,
                                   @Header("type") String messageType) {
 
-        icrEvent.setInsulinDoses(insulinCalculatorService.calculateBolusInsulinDose(icrEvent));
 
-        producerService.sendInsulinCalculatedRequest(icrEvent);
 
-        if ("patientDataRequest".equals(messageType)) {
+        if ("insulinCalculationRequest".equals(messageType)) {
+            icrEvent.setInsulinDoses(insulinCalculatorService.calculateBolusInsulinDose(icrEvent));
+
+            producerService.sendInsulinCalculatedRequest(icrEvent);
+
             logger.info("**** -> Consumed patientDataRequest event :: {}",icrEvent);
 
         }

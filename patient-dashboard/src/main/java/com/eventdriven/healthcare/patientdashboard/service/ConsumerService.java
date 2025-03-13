@@ -1,6 +1,6 @@
-package com.eventdriven.healthcare.patientcheckin.service;
+package com.eventdriven.healthcare.patientdashboard.service;
 
-import com.eventdriven.healthcare.patientcheckin.model.Patient;
+import com.eventdriven.healthcare.patientdashboard.model.InsulinCalculationRequest;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -14,23 +14,21 @@ import org.springframework.stereotype.Service;
 public class ConsumerService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    private final PatientService patientService;
-
-    public ConsumerService(PatientService patientService) {
-        this.patientService = patientService;
-    }
 
 
     @KafkaListener(
             topics = {"${spring.kafka.patientEvents-topic}"},
-            containerFactory = "kafkaListenerPatientFactory",
+            containerFactory = "kafkaListenerInsulinCalculationFactory",
             groupId = "group_id")
-    public void consumePatientEvent(@Payload Patient patientEvent,
+    public void consumePatientEvent(@Payload InsulinCalculationRequest patientEvent,
                                     @Header("type") String messageType) {
-        if ("patientDataRequest".equals(messageType)) {
-            logger.info("**** -> Patient-Checkin Consumed patientDataRequest " +
+        if ("insulinCalculationRequest".equals(messageType)) {
+            logger.info("**** -> patient-dashboard Consumed " +
+                            "patientDataRequest insulincalculationrequest" +
                             "event :: {}",
                     patientEvent.toString());
+
+            // So now wait for the scale to display the correct
 
         }
     }
@@ -46,24 +44,23 @@ public class ConsumerService {
             JsonNode rootNode = objectMapper.readTree(healthCareEvent.toString());
             String type = rootNode.get("type").asText();
 
-            if("nfc".equalsIgnoreCase(type)){
+            // {"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 546, "weight": -3}
+            if("load_cell".equalsIgnoreCase(type)){
                 String UID = rootNode.get("UID").asText();
                 String location = rootNode.get("location").asText();
                 String messageID = rootNode.get("messageID").asText();
-                int readingId =
-                        Integer.parseInt(rootNode.get("readingID").asText());
 
-                if(readingId == 0){
+                float weight =
+                        Integer.parseInt(rootNode.get("weight").asText());
+
+                if(weight == 0){
                     return;
                 }
-                String nfcID = rootNode.get("ID").asText();
 
-                logger.info("**** -> NFC Tag scanned with ID :: {}",
-                        nfcID);
+                // Pass this weight measurement to the current patient logged
+                // in. It should match what the patient received from the
+                // insulin calculator
 
-                // TODO: Should use NFC Tag ID to get patient information
-                Patient patient = patientService.getPatientById(1);
-                logger.info("**** -> Found:: {}",patient);
 
             }
         }catch (Exception e){
