@@ -1,4 +1,4 @@
-package com.eventdriven.healthcare.patientdashboard.model;
+package com.eventdriven.healthcare.patientcheckin.model;
 
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.eventdriven.healthcare.patientdashboard;
+package com.eventdriven.healthcare.patientcheckin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

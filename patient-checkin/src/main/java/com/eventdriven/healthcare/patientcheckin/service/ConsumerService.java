@@ -1,6 +1,6 @@
-package com.eventdriven.healthcare.patientdashboard.service;
+package com.eventdriven.healthcare.patientcheckin.service;
 
-import com.eventdriven.healthcare.patientdashboard.model.Patient;
+import com.eventdriven.healthcare.patientcheckin.model.Patient;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

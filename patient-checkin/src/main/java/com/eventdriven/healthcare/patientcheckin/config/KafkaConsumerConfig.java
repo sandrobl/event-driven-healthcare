@@ -1,6 +1,6 @@
-package com.eventdriven.healthcare.patientdashboard.config;
+package com.eventdriven.healthcare.patientcheckin.config;
 
-import com.eventdriven.healthcare.patientdashboard.model.Patient;
+import com.eventdriven.healthcare.patientcheckin.model.Patient;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
