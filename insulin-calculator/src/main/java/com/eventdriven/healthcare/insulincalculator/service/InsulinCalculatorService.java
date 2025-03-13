@@ -20,7 +20,7 @@ public class InsulinCalculatorService {
         // Calculate total bolus dose
         float totalBolusDose = carbohydrateCoverageDose + correctionDose;
 
-        // Return the total bolus dose
-        return totalBolusDose;
+        // Return the total bolus dose in ml and not units
+        return totalBolusDose / 100;
     }
 }

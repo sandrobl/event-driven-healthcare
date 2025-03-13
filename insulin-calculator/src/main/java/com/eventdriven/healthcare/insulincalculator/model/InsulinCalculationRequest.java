@@ -15,7 +15,7 @@ public class InsulinCalculationRequest implements Serializable {
     float bloodGlucose;
     float weight;
     float height;
-    float insulinDoses;
+    float insulinDoses; // Insulin doses in ml
     float nextMealCarbohydrates;
     float insulinToCarbohydrateRatio; // Insulin-to-Carbohydrate Ratio (grams/unit)
     float insulinSensitivityFactor; // Insulin Sensitivity Factor (mg/dL per unit)
