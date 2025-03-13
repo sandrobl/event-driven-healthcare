@@ -32,6 +32,18 @@ The Insulin Calculator Service is a component of the event-driven healthcare sys
    ```sh
    mvn spring-boot:run  
 
+4. **DTO Architecture:**
+   ````java
+    int patientID;
+    float bloodGlucose;
+    float weight;
+    float height;
+    float insulinDoses; // Insulin doses in ml
+    float nextMealCarbohydrates;
+    float insulinToCarbohydrateRatio; // Insulin-to-Carbohydrate Ratio (grams/unit)
+    float insulinSensitivityFactor; // Insulin Sensitivity Factor (mg/dL per unit)
+    float targetBloodGlucoseLevel; // Target blood glucose level (mg/dL)
+
 ## Configuration
 The application can be configured using the application.properties file located in src/main/resources. Key configurations include:  
 - spring.kafka.bootstrap-servers: Kafka server address.
