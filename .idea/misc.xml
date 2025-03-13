@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/insulin-calculator/pom.xml" />
         <option value="$PROJECT_DIR$/mqtt-kafka-bridge/pom.xml" />
         <option value="$PROJECT_DIR$/patient-checkin/pom.xml" />
+        <option value="$PROJECT_DIR$/weight-tracking/pom.xml" />
       </list>
     </option>
   </component>

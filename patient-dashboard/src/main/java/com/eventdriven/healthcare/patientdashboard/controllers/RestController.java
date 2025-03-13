@@ -1,11 +1,11 @@
-package com.eventdriven.healthcare.patientcheckin.controllers;
+package com.eventdriven.healthcare.patientdashboard.controllers;
 
-import com.eventdriven.healthcare.patientcheckin.model.Patient;
+import com.eventdriven.healthcare.patientdashboard.model.Patient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.eventdriven.healthcare.patientcheckin.service.ProducerService;
+import com.eventdriven.healthcare.patientdashboard.service.ProducerService;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping(value = "/kafka")

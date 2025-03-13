@@ -1,13 +1,13 @@
-package com.eventdriven.healthcare.patientcheckin;
+package com.eventdriven.healthcare.patientdashboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PatientCheckinApplication {
+public class PatientDashboardApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PatientCheckinApplication.class, args);
+        SpringApplication.run(PatientDashboardApplication.class, args);
     }
 
 }
