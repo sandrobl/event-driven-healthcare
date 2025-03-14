@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/mqtt-kafka-bridge/pom.xml" />
         <option value="$PROJECT_DIR$/patient-checkin/pom.xml" />
         <option value="$PROJECT_DIR$/weight-tracking/pom.xml" />
+        <option value="$PROJECT_DIR$/camunda-orchestrator/pom.xml" />
+        <option value="$PROJECT_DIR$/patient-dashboard/pom.xml" />
       </list>
     </option>
   </component>

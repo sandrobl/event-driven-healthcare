@@ -7,10 +7,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="patient-dashboard" />
         <module name="mqtt-kafka-bridge" />
         <module name="insulin-calculator" />
         <module name="patient-checkin" />
-        <module name="patient-database" />
+      </profile>
+      <profile name="Annotation profile for camunda-orchestrator" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="camunda-orchestrator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,10 +29,11 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="camunda-orchestrator" options="-parameters" />
       <module name="insulin-calculator" options="-parameters" />
       <module name="mqtt-kafka-bridge" options="-parameters" />
       <module name="patient-checkin" options="-parameters" />
-      <module name="patient-database" options="-parameters" />
+      <module name="patient-dashboard" options="-parameters" />
       <module name="spring-boot-kafka-eyetracking" options="-parameters" />
     </option>
   </component>
