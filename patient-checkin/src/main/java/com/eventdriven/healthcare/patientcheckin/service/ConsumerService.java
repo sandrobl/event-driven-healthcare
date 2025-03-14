@@ -56,19 +56,37 @@ public class ConsumerService {
                 if(readingId == 0){
                     return;
                 }
-                String nfcID = rootNode.get("ID").asText();
+                String rawNfcID = rootNode.get("ID").asText();
 
-                logger.info("**** -> NFC Tag scanned with ID :: {}",
-                        nfcID);
+                // Format NFC ID before database lookup
+                String formattedNfcID = formatNfcId(rawNfcID);
 
-                // TODO: Should use NFC Tag ID to get patient information
-                Patient patient = patientService.getPatientById(1);
-                logger.info("**** -> Found:: {}",patient);
+                logger.info("**** -> NFC Tag scanned with formatted ID :: {}", formattedNfcID);
 
+                // Look up patient by formatted NFC ID
+                Patient patient = patientService.getPatientByNfcId(formattedNfcID);
+
+                if (patient != null) {
+                    logger.info("**** -> Found patient: {}", patient);
+                } else {
+                    logger.warn("**** -> No patient found for NFC ID: {}", formattedNfcID);
+                }
             }
-        }catch (Exception e){
-            logger.error("Error while processing healthCareEvent :: {}",e.getMessage());
+        } catch (Exception e) {
+            logger.error("Error processing NFC event: ", e);
         }
     }
 
+    /**
+     * Converts an NFC ID from event format (e.g., "ID 0x04 0xDA 0xF2 ...")
+     * into a format that matches the database (e.g., "04DAF28AB45780").
+     */
+    private String formatNfcId(String rawNfcId) {
+        if (rawNfcId == null || !rawNfcId.startsWith("ID ")) {
+            return null; // Invalid format
+        }
+        return rawNfcId.replace("ID ", "") // Remove "ID " prefix
+                .replaceAll("0x", "") // Remove "0x" prefixes
+                .replaceAll(" ", ""); // Remove spaces
+    }
 }

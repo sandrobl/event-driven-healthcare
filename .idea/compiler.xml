@@ -2,11 +2,11 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="patient-checkin (1)" />
         <module name="mqtt-kafka-bridge" />
         <module name="insulin-calculator" />
         <module name="patient-checkin" />
@@ -23,7 +23,6 @@
       <module name="insulin-calculator" options="-parameters" />
       <module name="mqtt-kafka-bridge" options="-parameters" />
       <module name="patient-checkin" options="-parameters" />
-      <module name="patient-checkin (1)" options="-parameters" />
       <module name="patient-database" options="-parameters" />
       <module name="spring-boot-kafka-eyetracking" options="-parameters" />
     </option>
