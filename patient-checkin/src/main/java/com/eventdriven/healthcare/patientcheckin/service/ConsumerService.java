@@ -23,23 +23,27 @@ public class ConsumerService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final PatientService patientService;
-    private final KafkaTemplate<String, PatientCheckInEvent> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public ConsumerService(PatientService patientService,
-                           KafkaTemplate<String, PatientCheckInEvent> kafkaTemplate) {
+                           KafkaTemplate<String, Object> kafkaTemplate) {
         this.patientService = patientService;
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    @Value("${spring.kafka.patientEvents-topic}")
+    private String patientEventsTopic;
+
+
     // Listen for patient data request commands on a dedicated commands topic
     @KafkaListener(
-            topics = {"${spring.kafka.patientCommands-topic}"},
-            containerFactory = "kafkaListenerPatientFactory",
-            groupId = "group_id")
+            topics = {"${spring.kafka.patientEvents-topic}"},
+            containerFactory = "kafkaListenerJsonFactory",
+            groupId = "${spring.kafka.consumer.group-id}")
     public void consumePatientDataRequest(@Payload JsonNode payload,
                                           @Header("messageCategory") String messageCategory,
                                           @Header("messageType") String messageType,
-                                          @Header(KafkaHeaders.KEY) String key) {
+                                          @Header(KafkaHeaders.RECEIVED_KEY) String key) {
         if ("COMMAND".equals(messageCategory) && "getPatientData".equals(messageType)) {
             try {
                 CheckInCommand command = new ObjectMapper().treeToValue(payload, CheckInCommand.class);
@@ -59,7 +63,7 @@ public class ConsumerService {
             }
 
             Message<PatientCheckInEvent> message = MessageBuilder.withPayload(event)
-                    .setHeader(KafkaHeaders.TOPIC, "${spring.kafka.patientEvents-topic}")
+                    .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
                     .setHeader("messageCategory", "EVENT")
                     .setHeader("messageType", "patientCheckedIn")
                     .setHeader(KafkaHeaders.KEY, key)
