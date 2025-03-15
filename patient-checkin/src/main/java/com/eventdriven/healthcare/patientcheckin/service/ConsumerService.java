@@ -1,13 +1,21 @@
 package com.eventdriven.healthcare.patientcheckin.service;
 
+import com.eventdriven.healthcare.patientcheckin.model.CheckInCommand;
 import com.eventdriven.healthcare.patientcheckin.model.Patient;
+import com.eventdriven.healthcare.patientcheckin.model.PatientCheckInEvent;
+import com.eventdriven.healthcare.patientcheckin.service.PatientService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,60 +23,58 @@ public class ConsumerService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final PatientService patientService;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    public ConsumerService(PatientService patientService) {
+    public ConsumerService(PatientService patientService,
+                           KafkaTemplate<String, Object> kafkaTemplate) {
         this.patientService = patientService;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
+    @Value("${spring.kafka.patientEvents-topic}")
+    private String patientEventsTopic;
 
+
+    // Listen for patient data request commands on a dedicated commands topic
     @KafkaListener(
             topics = {"${spring.kafka.patientEvents-topic}"},
-            containerFactory = "kafkaListenerPatientFactory",
-            groupId = "group_id")
-    public void consumePatientEvent(@Payload Patient patientEvent,
-                                    @Header("type") String messageType) {
-        if ("patientDataRequest".equals(messageType)) {
-            logger.info("**** -> Patient-Checkin Consumed patientDataRequest " +
-                            "event :: {}",
-                    patientEvent.toString());
+            containerFactory = "kafkaListenerJsonFactory",
+            groupId = "${spring.kafka.consumer.group-id}")
+    public void consumePatientDataRequest(@Payload JsonNode payload,
+                                          @Header("messageCategory") String messageCategory,
+                                          @Header("messageType") String messageType,
+                                          @Header(KafkaHeaders.RECEIVED_KEY) String key) {
+        if ("COMMAND".equals(messageCategory) && "getPatientData".equals(messageType)) {
+            try {
+                CheckInCommand command = new ObjectMapper().treeToValue(payload, CheckInCommand.class);
 
-        }
-    }
+            logger.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, key);
 
-    @KafkaListener(
-            topics = {"${spring.kafka.mqttEvents-topic}"},
-            containerFactory = "kafkaListenerPatientFactory",
-            groupId = "group_id")
-    public void consumeHealthCareDate(@Payload JsonNode healthCareEvent) {
+            // Look up the patient by the NFC ID from the command
+            Patient patient = patientService.getPatientByNfcId(command.getNfcId());
+            boolean found = (patient != null);
 
-        try{
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode rootNode = objectMapper.readTree(healthCareEvent.toString());
-            String type = rootNode.get("type").asText();
-
-            if("nfc".equalsIgnoreCase(type)){
-                String UID = rootNode.get("UID").asText();
-                String location = rootNode.get("location").asText();
-                String messageID = rootNode.get("messageID").asText();
-                int readingId =
-                        Integer.parseInt(rootNode.get("readingID").asText());
-
-                if(readingId == 0){
-                    return;
-                }
-                String nfcID = rootNode.get("ID").asText();
-
-                logger.info("**** -> NFC Tag scanned with ID :: {}",
-                        nfcID);
-
-                // TODO: Should use NFC Tag ID to get patient information
-                Patient patient = patientService.getPatientById(1);
-                logger.info("**** -> Found:: {}",patient);
-
+            // Build a PatientCheckInEvent containing the patient data and found flag
+            PatientCheckInEvent event = new PatientCheckInEvent();
+            event.setNfcId(command.getNfcId());
+            event.setFound(found);
+            if (found) {
+                event.setPatient(patient);
             }
-        }catch (Exception e){
-            logger.error("Error while processing healthCareEvent :: {}",e.getMessage());
+
+            Message<PatientCheckInEvent> message = MessageBuilder.withPayload(event)
+                    .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
+                    .setHeader("messageCategory", "EVENT")
+                    .setHeader("messageType", "patientCheckedIn")
+                    .setHeader(KafkaHeaders.KEY, key)
+                    .build();
+
+            // Publish the event to the patient events topic
+            kafkaTemplate.send(message);
+            logger.info("**** -> Published EVENT patientCheckIn: {}", message);
+            } catch (Exception e) {
+                logger.error("Error processing patient data request command: {}", e.getMessage());
+            }
         }
     }
-
 }

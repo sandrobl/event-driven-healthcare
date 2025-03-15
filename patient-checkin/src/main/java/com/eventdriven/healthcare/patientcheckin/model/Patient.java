@@ -17,11 +17,11 @@ public class Patient implements Serializable {
     float height;
     float weight;
     float bloodGlucose;
-    int nfcID;
+    String nfcID;
 
     public Patient() {}
     public Patient(int patientID, String name, String firstname, float height
-            , float weight, float bloodGlucose, int nfcID) {
+            , float weight, float bloodGlucose, String nfcID) {
         this.patientID = patientID;
         this.name = name;
         this.firstname = firstname;

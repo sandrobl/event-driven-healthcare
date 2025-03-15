@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="InsulinCalculatorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-    <module name="patient-database" />
+    <module name="insulin-calculator" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.eventdriven.healthcare.insulincalculator.InsulinCalculatorApplication" />
     <method v="2">
       <option name="Make" enabled="true" />

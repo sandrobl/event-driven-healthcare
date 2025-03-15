@@ -6,12 +6,25 @@ logging:
     root: INFO
     org.springframework.web: INFO
     controllers: DEBUG
+    org.springframework.boot.sql.init: DEBUG
+    org.springframework.jdbc.datasource.init.ScriptUtils: DEBUG
 
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    defer-datasource-initialization: true
+  datasource:
+    url: jdbc:sqlite:patients.db
+    driver-class-name: org.sqlite.JDBC
+  sql:
+    init:
+      mode: always
+
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
-      group-id: group_id
+      group-id: patient-checkin
       auto-offset-reset: earliest
 
     producer:
