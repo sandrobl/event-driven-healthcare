@@ -1,38 +1,26 @@
 package com.eventdriven.healthcare.patientcheckin.service;
 
-import com.eventdriven.healthcare.patientcheckin.model.CheckInCommand;
+import com.eventdriven.healthcare.patientcheckin.dto.CheckInCommand;
 import com.eventdriven.healthcare.patientcheckin.model.Patient;
-import com.eventdriven.healthcare.patientcheckin.model.PatientCheckInEvent;
-import com.eventdriven.healthcare.patientcheckin.service.PatientService;
+import com.eventdriven.healthcare.patientcheckin.dto.PatientCheckInEvent;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ConsumerService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final PatientService patientService;
-    private final KafkaTemplate<String, Object> kafkaTemplate;
-
-    public ConsumerService(PatientService patientService,
-                           KafkaTemplate<String, Object> kafkaTemplate) {
-        this.patientService = patientService;
-        this.kafkaTemplate = kafkaTemplate;
-    }
-
-    @Value("${spring.kafka.patientEvents-topic}")
-    private String patientEventsTopic;
+    private final ProducerService producerService;
 
 
     // Listen for patient data request commands on a dedicated commands topic
@@ -48,30 +36,19 @@ public class ConsumerService {
             try {
                 CheckInCommand command = new ObjectMapper().treeToValue(payload, CheckInCommand.class);
 
-            logger.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, key);
+                logger.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, key);
 
-            // Look up the patient by the NFC ID from the command
-            Patient patient = patientService.getPatientByNfcId(command.getNfcId());
-            boolean found = (patient != null);
+                Patient patient = patientService.getPatientByNfcId(command.getNfcId());
+                boolean found = (patient != null);
 
-            // Build a PatientCheckInEvent containing the patient data and found flag
-            PatientCheckInEvent event = new PatientCheckInEvent();
-            event.setNfcId(command.getNfcId());
-            event.setFound(found);
-            if (found) {
-                event.setPatient(patient);
-            }
+                PatientCheckInEvent event = new PatientCheckInEvent();
+                event.setNfcId(command.getNfcId());
+                event.setFound(found);
+                if (found) {
+                    event.setPatient(patient);
+                }
 
-            Message<PatientCheckInEvent> message = MessageBuilder.withPayload(event)
-                    .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
-                    .setHeader("messageCategory", "EVENT")
-                    .setHeader("messageType", "patientCheckedIn")
-                    .setHeader(KafkaHeaders.KEY, key)
-                    .build();
-
-            // Publish the event to the patient events topic
-            kafkaTemplate.send(message);
-            logger.info("**** -> Published EVENT patientCheckIn: {}", message);
+                producerService.sendPatientCheckInEvent(key, event);
             } catch (Exception e) {
                 logger.error("Error processing patient data request command: {}", e.getMessage());
             }

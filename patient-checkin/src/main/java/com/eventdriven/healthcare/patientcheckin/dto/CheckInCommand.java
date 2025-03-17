@@ -1,4 +1,4 @@
-package com.eventdriven.healthcare.patientcheckin.model;
+package com.eventdriven.healthcare.patientcheckin.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
