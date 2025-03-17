@@ -1,0 +1,27 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./camunda-h2-database
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: camunda-orchestrator
+      auto-offset-reset: earliest
+
+    producer:
+      bootstrap-servers: localhost:9092
+
+    patientEvents-topic: patientEvents-topic
+    mqttEvents-topic: smart-healthcare-data
+
+camunda.bpm:
+  admin-user:
+    id: demo
+    password: demo
+  filter.create: All Tasks
+  generic-properties:
+    properties:
+      historyTimeToLive: P1D
+  history-level: FULL

@@ -1,4 +1,4 @@
-package com.eventdriven.healthcare.patientdashboard.config;
+package com.eventdriven.healthcare.camundaorchestrator.config;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
