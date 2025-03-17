@@ -1,70 +1,48 @@
 package com.eventdriven.healthcare.patientdashboard.service;
 
-import com.eventdriven.healthcare.patientdashboard.model.InsulinCalculationRequest;
+import com.eventdriven.healthcare.patientdashboard.dto.DisplayPatientCommand;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class ConsumerService {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
 
+    private final DashboardService dashboardService;
 
+    /**
+     * Listen for messages on the patientEventsTopic.
+     * We assume these are “commands” from the orchestrator.
+     */
     @KafkaListener(
             topics = {"${spring.kafka.patientEvents-topic}"},
-            containerFactory = "kafkaListenerInsulinCalculationFactory",
-            groupId = "group_id")
-    public void consumePatientEvent(@Payload InsulinCalculationRequest patientEvent,
-                                    @Header("type") String messageType) {
-        if ("insulinCalculationRequest".equals(messageType)) {
-            logger.info("**** -> patient-dashboard Consumed " +
-                            "patientDataRequest insulincalculationrequest" +
-                            "event :: {}",
-                    patientEvent.toString());
-
-            // So now wait for the scale to display the correct
-
-        }
-    }
-
-    @KafkaListener(
-            topics = {"${spring.kafka.mqttEvents-topic}"},
-            containerFactory = "kafkaListenerPatientFactory",
-            groupId = "group_id")
-    public void consumeHealthCareDate(@Payload JsonNode healthCareEvent) {
-
-        try{
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode rootNode = objectMapper.readTree(healthCareEvent.toString());
-            String type = rootNode.get("type").asText();
-
-            // {"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 546, "weight": -3}
-            if("load_cell".equalsIgnoreCase(type)){
-                String UID = rootNode.get("UID").asText();
-                String location = rootNode.get("location").asText();
-                String messageID = rootNode.get("messageID").asText();
-
-                float weight =
-                        Integer.parseInt(rootNode.get("weight").asText());
-
-                if(weight == 0){
-                    return;
-                }
-
-                // Pass this weight measurement to the current patient logged
-                // in. It should match what the patient received from the
-                // insulin calculator
+            containerFactory = "kafkaListenerJsonFactory",
+            groupId = "${spring.kafka.consumer.group-id}")
+    public void consumeDisplayPatientDataRequest(@Payload JsonNode payload,
+                                          @Header("messageCategory") String messageCategory,
+                                          @Header("messageType") String messageType,
+                                          @Header(KafkaHeaders.RECEIVED_KEY) String correlationId) {
+        if ("COMMAND".equals(messageCategory) && "displayPatientData".equals(messageType)) {
+            try {
+                DisplayPatientCommand command = new ObjectMapper().treeToValue(payload, DisplayPatientCommand.class);
 
 
+                log.info("Received command from Kafka: key={} value={}", correlationId, command);
+
+                dashboardService.handleDisplayPatientCommand(correlationId, command);
+            } catch (Exception e) {
+                log.error("Error processing message", e);
             }
-        }catch (Exception e){
-            logger.error("Error while processing healthCareEvent :: {}",e.getMessage());
         }
     }
 

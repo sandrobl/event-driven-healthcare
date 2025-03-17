@@ -11,7 +11,7 @@ spring:
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
-      group-id: group_id
+      group-id: "patient-dashboard-${random.uuid}"
       auto-offset-reset: earliest
 
     producer:
