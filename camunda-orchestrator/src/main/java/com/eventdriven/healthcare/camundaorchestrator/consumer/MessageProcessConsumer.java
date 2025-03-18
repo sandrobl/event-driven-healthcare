@@ -10,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.RuntimeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
@@ -35,7 +33,7 @@ public class MessageProcessConsumer {
 
     private final static String MESSAGE_NFC = "Message_NFCTag";
     private final static String MESSAGE_PATIENTCHECKEDIN = "Message_PatientCheckedIn";
-    private final static String MESSAGE_iNSULINCALCULATED =
+    private final static String MESSAGE_INSULINCALCULATED =
             "Message_InsulinCalculated";
 
 
@@ -142,7 +140,7 @@ public class MessageProcessConsumer {
                         .correlationId(correlationKey)
                         .vars(vars)
                         .build();
-                messageService.correlateMessage(camundaMsg, MESSAGE_iNSULINCALCULATED);
+                messageService.correlateMessage(camundaMsg, MESSAGE_INSULINCALCULATED);
 
             } catch(Exception e){
                 log.error("Error deserializing payload to PatientCheckInEvent", e);
