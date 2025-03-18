@@ -4,6 +4,7 @@ import com.eventdriven.healthcare.insulincalculator.dto.InsulinCalculatedEvent;
 import com.eventdriven.healthcare.insulincalculator.dto.InsulinCalculationCommand;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,22 +34,27 @@ public class ConsumerService {
                                                  @Header("messageCategory") String messageCategory,
                                                  @Header("messageType") String messageType,
                                                  @Header(KafkaHeaders.RECEIVED_KEY) String key) {
-
-        if ("COMMAND".equals(messageCategory) && "calculateInsulin".equals(messageType)) {
+        logger.info("Consumed {} {} {}: {}", key, messageCategory, messageType,
+                payload);
+        if ("COMMAND".equals(messageCategory) && "insulinFormEntered".equals(messageType)) {
             try {
                 InsulinCalculationCommand command = new ObjectMapper().treeToValue(payload,
                         InsulinCalculationCommand.class);
 
-                logger.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, key);
+//                logger.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, key);
 
                 command.setInsulinDoses(insulinCalculatorService.calculateBolusInsulinDose(command));
 
                 InsulinCalculatedEvent icrEvent = new InsulinCalculatedEvent();
                 icrEvent.setInsulinRequired(command.getInsulinDoses() != 0);
-                icrEvent.setPatient(command.getPatient());
                 icrEvent.setInsulinDoses(command.getInsulinDoses());
 
-                producerService.sendInsulinCalculatedRequest(icrEvent);
+                logger.info("***Sending insulin calculated event: {}, {}",
+                        icrEvent.isInsulinRequired(),
+                        icrEvent.getInsulinDoses()
+                );
+
+                producerService.sendInsulinCalculatedRequest(key ,icrEvent);
 
             } catch (Exception e) {
                 logger.error("Error processing patient data request command: {}", e.getMessage());

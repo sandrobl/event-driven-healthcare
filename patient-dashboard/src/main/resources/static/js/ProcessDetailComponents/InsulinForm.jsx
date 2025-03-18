@@ -1,14 +1,17 @@
-function InsulinForm({ correlationId }) {
+function InsulinForm({ correlationId, patientInsulinSensitivityFactor }) {
     const [nextMealCarbohydrates, setNextMealCarbohydrates] = useState("");
     const [insulinToCarbohydrateRatio, setInsulinToCarbohydrateRatio] = useState("");
     const [targetBloodGlucoseLevel, setTargetBloodGlucoseLevel] = useState("");
+    const [bloodGlucose, setBloodGlucose] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const payload = {
             nextMealCarbohydrates: parseFloat(nextMealCarbohydrates),
             insulinToCarbohydrateRatio: parseFloat(insulinToCarbohydrateRatio),
-            targetBloodGlucoseLevel: parseFloat(targetBloodGlucoseLevel)
+            targetBloodGlucoseLevel: parseFloat(targetBloodGlucoseLevel),
+            bloodGlucose: parseFloat(bloodGlucose),
+            patientInsulinSensitivityFactor: parseFloat(patientInsulinSensitivityFactor)
         };
 
         fetch(`/api/dashboard/processes/${correlationId}/insulinForm/submit`, {
@@ -52,6 +55,17 @@ function InsulinForm({ correlationId }) {
                         className="form-control"
                         value={targetBloodGlucoseLevel}
                         onChange={(e) => setTargetBloodGlucoseLevel(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Current Blood Glucose Level (mg/dL)</label>
+                    <input
+                        type="number"
+                        step="0.1"
+                        className="form-control"
+                        value={bloodGlucose}
+                        onChange={(e) => setBloodGlucose(e.target.value)}
                         required
                     />
                 </div>

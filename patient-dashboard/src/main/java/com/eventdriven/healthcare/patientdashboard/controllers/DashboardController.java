@@ -65,6 +65,8 @@ public class DashboardController {
         event.setInsulinToCarbohydrateRatio(formData.getInsulinToCarbohydrateRatio());
         event.setTargetBloodGlucoseLevel(formData.getTargetBloodGlucoseLevel());
         event.setNextMealCarbohydrates(formData.getNextMealCarbohydrates());
+        event.setBloodGlucose(formData.getBloodGlucose());
+        event.setPatientInsulinSensitivityFactor(formData.getPatientInsulinSensitivityFactor());
 
         producerService.sendInsulinFormEnteredEvent(correlationId, event);
     }

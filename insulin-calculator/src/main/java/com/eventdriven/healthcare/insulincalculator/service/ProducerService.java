@@ -23,16 +23,18 @@ public class ProducerService {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
 
-    public void sendInsulinCalculatedRequest(InsulinCalculatedEvent ice){
+    public void sendInsulinCalculatedRequest(String key,
+                                             InsulinCalculatedEvent ice){
         Message<InsulinCalculatedEvent> message = MessageBuilder
                 .withPayload(ice)
                 .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
                 .setHeader("messageCategory", "EVENT")
                 .setHeader("messageType", "insulinCalculated")
+                .setHeader(KafkaHeaders.KEY, key)
                 .build();
 
         logger.info("#### -> Publishing insulin calculated event :: " +
-                "{}",ice);
+                "{} {}",ice, key);
 
         kafkaTemplate.send(message);
     }
