@@ -1,7 +1,7 @@
 package com.eventdriven.healthcare.patientdashboard.service;
 
-import com.eventdriven.healthcare.patientdashboard.model.InsulinCalculationRequest;
-import com.eventdriven.healthcare.patientdashboard.model.WeightMeasurement;
+import com.eventdriven.healthcare.patientdashboard.dto.InsulinFormEnteredEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,24 +13,27 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProducerService<T> {
+@Slf4j
+public class ProducerService {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
     @Value("${spring.kafka.patientEvents-topic}")
     private String patientEventsTopic;
 
-    @Autowired
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    public ProducerService(KafkaTemplate<String, Object> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
-    public void sendInsulinCalculatorRequest(InsulinCalculationRequest icr){
-        logger.info("#### -> Sending insulin calculation event :: " +
-                "{}",icr);
-        Message<InsulinCalculationRequest> message = MessageBuilder
-                .withPayload(icr)
+    public void sendInsulinFormEnteredEvent(String key, InsulinFormEnteredEvent event) {
+        Message<InsulinFormEnteredEvent> message = MessageBuilder.withPayload(event)
                 .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
-                .setHeader("type", "insulinCalculationRequest")
+                .setHeader("messageCategory", "EVENT")
+                .setHeader("messageType", "insulinFormEntered")
+                .setHeader(KafkaHeaders.KEY, key)
                 .build();
+
         kafkaTemplate.send(message);
+        log.info("**** -> Published EVENT patientCheckIn: {}", message);
     }
 }

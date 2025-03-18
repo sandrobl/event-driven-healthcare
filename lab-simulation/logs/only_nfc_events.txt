@@ -1,0 +1,7 @@
+{"type": "nfc", "UID": "22Pa", "location": "LEFT_DONATION", "messageID": 184, "readingID": 0}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 182, "ID": "ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80", "readingID": 1}
+{"type": "nfc", "UID": "22P4", "location": "LEFT_DONATION", "messageID": 182, "ID": "ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80", "readingID": 1}
+
+{"type": "nfc", "UID": "22Pa", "location": "RIGHT_DONATION", "messageID": 194, "readingID": 0}
+{"type": "nfc", "UID": "22P4", "location": "RIGHT_DONATION", "messageID": 192, "ID": "ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23", "readingID": 1}
+{"type": "nfc", "UID": "22P4", "location": "RIGHT_DONATION", "messageID": 192, "ID": "ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23", "readingID": 1}
