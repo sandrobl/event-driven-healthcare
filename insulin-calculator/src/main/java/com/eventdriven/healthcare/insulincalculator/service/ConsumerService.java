@@ -1,10 +1,15 @@
 package com.eventdriven.healthcare.insulincalculator.service;
 
+import com.eventdriven.healthcare.insulincalculator.dto.InsulinCalculatedEvent;
+import com.eventdriven.healthcare.insulincalculator.dto.InsulinCalculationCommand;
 import com.eventdriven.healthcare.insulincalculator.model.InsulinCalculationRequest;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
@@ -23,22 +28,32 @@ public class ConsumerService {
 
     @KafkaListener(
             topics = {"${spring.kafka.patientEvents-topic}"},
-            containerFactory = "kafkaListenerInsulinCalculationRequestFactory",
-            groupId = "group_id")
-    public void consumePatientEvent(@Payload InsulinCalculationRequest icrEvent,
-                                  @Header("type") String messageType) {
+            containerFactory = "kafkaListenerJsonFactory",
+            groupId = "${spring.kafka.consumer.group-id}")
+    public void consumeInsulinCalculationRequest(@Payload JsonNode payload,
+                                                 @Header("messageCategory") String messageCategory,
+                                                 @Header("messageType") String messageType,
+                                                 @Header(KafkaHeaders.RECEIVED_KEY) String key) {
 
+        if ("COMMAND".equals(messageCategory) && "calculateInsulin".equals(messageType)) {
+            try {
+                InsulinCalculationCommand command = new ObjectMapper().treeToValue(payload,
+                        InsulinCalculationCommand.class);
 
+                logger.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, key);
 
-        if ("insulinCalculationRequest".equals(messageType)) {
-            icrEvent.setInsulinDoses(insulinCalculatorService.calculateBolusInsulinDose(icrEvent));
+                command.setInsulinDoses(insulinCalculatorService.calculateBolusInsulinDose(command));
 
-            producerService.sendInsulinCalculatedRequest(icrEvent);
+                InsulinCalculatedEvent icrEvent = new InsulinCalculatedEvent();
+                icrEvent.setInsulinRequired(command.getInsulinDoses() != 0);
+                icrEvent.setPatient(command.getPatient());
+                icrEvent.setInsulinDoses(command.getInsulinDoses());
 
-            logger.info("**** -> Consumed patientDataRequest event :: {}",icrEvent);
+                producerService.sendInsulinCalculatedRequest(icrEvent);
 
+            } catch (Exception e) {
+                logger.error("Error processing patient data request command: {}", e.getMessage());
+            }
         }
     }
-
-
 }

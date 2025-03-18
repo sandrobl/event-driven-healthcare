@@ -1,20 +1,28 @@
 package com.eventdriven.healthcare.insulincalculator.service;
 
+import com.eventdriven.healthcare.insulincalculator.dto.InsulinCalculationCommand;
 import com.eventdriven.healthcare.insulincalculator.model.InsulinCalculationRequest;
 import org.springframework.stereotype.Service;
 
 @Service
 public class InsulinCalculatorService {
-    public static float calculateBolusInsulinDose(InsulinCalculationRequest icr) {
+    public static float calculateBolusInsulinDose(InsulinCalculationCommand icr) {
+
+        // Check if the patient's blood glucose level is high
+        // https://www.healthline.com/health/how-much-insulin-to-take-chart
+        if(icr.getPatient().getBloodGlucose() < 6.5){
+            return 0.0f;
+        }
+
         // Calculate carbohydrate coverage dose
         float carbohydrateCoverageDose =
                 icr.getNextMealCarbohydrates() / icr.getInsulinToCarbohydrateRatio();
 
         // Calculate correction dose
         float correctionDose = 0.0f;
-        if (icr.getBloodGlucose()  > icr.getTargetBloodGlucoseLevel()) {
+        if (icr.getPatient().getBloodGlucose()  > icr.getTargetBloodGlucoseLevel()) {
             correctionDose =
-                    (icr.getBloodGlucose() - icr.getTargetBloodGlucoseLevel()) / icr.getInsulinSensitivityFactor();
+                    (icr.getPatient().getBloodGlucose() - icr.getTargetBloodGlucoseLevel()) / icr.getPatient().getInsulinSensitivityFactor();
         }
 
         // Calculate total bolus dose

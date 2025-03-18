@@ -61,8 +61,10 @@ public class DashboardController {
         dashboardService.updateProcessStep(correlationId, ProcessStep.FORM_SUBMITTED);
 
         InsulinFormEnteredEvent event = new InsulinFormEnteredEvent();
-        event.setCarbs(formData.getCarbs());
-        event.setInsulinRatio(formData.getInsulinRatio());
+
+        event.setInsulinToCarbohydrateRatio(formData.getInsulinToCarbohydrateRatio());
+        event.setTargetBloodGlucoseLevel(formData.getTargetBloodGlucoseLevel());
+        event.setNextMealCarbohydrates(formData.getNextMealCarbohydrates());
 
         producerService.sendInsulinFormEnteredEvent(correlationId, event);
     }

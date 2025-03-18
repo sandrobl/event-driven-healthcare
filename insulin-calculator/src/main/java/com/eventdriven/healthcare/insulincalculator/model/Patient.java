@@ -1,4 +1,4 @@
-package com.eventdriven.healthcare.camundaorchestrator.dto.domain;
+package com.eventdriven.healthcare.insulincalculator.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

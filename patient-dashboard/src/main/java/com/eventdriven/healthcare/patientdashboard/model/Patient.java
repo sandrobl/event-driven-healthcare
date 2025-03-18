@@ -15,4 +15,5 @@ public class Patient {
     private float weight;
     private float bloodGlucose;
     private String nfcID;
+    private float insulinSensitivityFactor;
 }
