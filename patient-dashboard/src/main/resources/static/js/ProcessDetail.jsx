@@ -1,5 +1,5 @@
 function ProcessDetail({ process, onBack }) {
-    const { correlationId, patient, currentStep } = process;
+    const { correlationId, patient, currentStep, insulinCalculated } = process;
 
     return (
         <div className="card">
@@ -16,7 +16,7 @@ function ProcessDetail({ process, onBack }) {
                         <p><strong>Height:</strong> {patient.height} cm</p>
                         <p><strong>Weight:</strong> {patient.weight} kg</p>
                         <p><strong>NFC ID:</strong> {patient.nfcID}</p>
-                        <p><strong>Insulin sensitivity factor:</strong> {patient.insulinSensitivityFactor} mg/dL/unit</p>
+                        <p><strong>Insulin sensitivity factor:</strong> {patient.insulinSensitivityFactor} mg/dL</p>
                     </div>
                 ) : (
                     <p>No patient data available.</p>
@@ -31,6 +31,9 @@ function ProcessDetail({ process, onBack }) {
                 )}
                 {currentStep === "FORM_SUBMITTED" && (
                     <InsulinFormSubmittedInfo />
+                )}
+                {currentStep === "INSULIN_CALCULATED" && (
+                    <InsulinCalculated insulinDoseInformation={insulinCalculated} />
                 )}
             </div>
         </div>

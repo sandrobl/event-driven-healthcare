@@ -1,5 +1,6 @@
 package com.eventdriven.healthcare.patientdashboard.model;
 
+import com.eventdriven.healthcare.patientdashboard.dto.InsulinCalculatedEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,5 @@ public class DashboardProcessInfo {
     private String correlationId;
     private Patient patient;
     private ProcessStep currentStep;
+    private InsulinCalculatedEvent insulinCalculatedEvent;
 }
