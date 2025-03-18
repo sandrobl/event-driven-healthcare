@@ -26,14 +26,16 @@ public class ProducerService {
     }
 
     public void sendInsulinFormEnteredEvent(String key, InsulinFormEnteredEvent event) {
+
         Message<InsulinFormEnteredEvent> message = MessageBuilder.withPayload(event)
                 .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
-                .setHeader("messageCategory", "EVENT")
+                .setHeader("messageCategory", "COMMAND")
                 .setHeader("messageType", "insulinFormEntered")
                 .setHeader(KafkaHeaders.KEY, key)
+                .setHeader(KafkaHeaders.RECEIVED_KEY, key)
                 .build();
 
         kafkaTemplate.send(message);
-        log.info("**** -> Published EVENT patientCheckIn: {}", message);
+        log.info("**** -> Published EVENT insulinFormEntered: {}", message);
     }
 }

@@ -30,7 +30,8 @@ public class PatientRepository {
                         rs.getFloat("height"),
                         rs.getFloat("weight"),
                         rs.getFloat("bloodGlucose"),
-                        rs.getString("nfcID")
+                        rs.getString("nfcID"),
+                        rs.getFloat("insulinSensitivityFactor")
                 );
                 patients.add(patient);
             }
@@ -51,6 +52,7 @@ public class PatientRepository {
             pstmt.setFloat(5, patient.getWeight());
             pstmt.setFloat(6, patient.getBloodGlucose());
             pstmt.setString(7, patient.getNfcID());
+            pstmt.setFloat(8, patient.getInsulinSensitivityFactor());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,6 +71,7 @@ public class PatientRepository {
             pstmt.setFloat(5, patient.getBloodGlucose());
             pstmt.setString(6, patient.getNfcID());
             pstmt.setInt(7, patient.getPatientID());
+            pstmt.setFloat(8, patient.getInsulinSensitivityFactor());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,7 +93,8 @@ public class PatientRepository {
                         rs.getFloat("height"),
                         rs.getFloat("weight"),
                         rs.getFloat("bloodGlucose"),
-                        rs.getString("nfcID")
+                        rs.getString("nfcID"),
+                        rs.getFloat("insulinSensitivityFactor")
                 );
             }
         } catch (SQLException e) {
@@ -113,7 +117,8 @@ public class PatientRepository {
                         rs.getFloat("height"),
                         rs.getFloat("weight"),
                         rs.getFloat("bloodGlucose"),
-                        rs.getString("nfcID")
+                        rs.getString("nfcID"),
+                        rs.getFloat("insulinSensitivityFactor")
                 );
             }
         } catch (SQLException e) {

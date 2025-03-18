@@ -1,4 +1,4 @@
-package com.eventdriven.healthcare.patientdashboard.dto;
+package com.eventdriven.healthcare.camundaorchestrator.dto.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +10,4 @@ public class InsulinFormEnteredEvent {
     private float insulinToCarbohydrateRatio; // Insulin-to-Carbohydrate Ratio
     // (grams/unit)
     private float targetBloodGlucoseLevel; // Target blood glucose level (mg/dL)
-    private float bloodGlucose; // Current blood glucose level (mg/dL)
-    private float patientInsulinSensitivityFactor;
 }

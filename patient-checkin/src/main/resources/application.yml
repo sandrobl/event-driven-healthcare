@@ -1,6 +1,3 @@
-server:
-  port: 8081  # Tomcat default port
-
 logging:
   level:
     root: INFO
