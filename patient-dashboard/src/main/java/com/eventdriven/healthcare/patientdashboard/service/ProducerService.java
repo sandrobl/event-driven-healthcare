@@ -34,6 +34,6 @@ public class ProducerService {
                 .build();
 
         kafkaTemplate.send(message);
-        log.info("**** -> Published EVENT patientCheckIn: {}", message);
+        log.info("**** -> Published EVENT insulinFormEntered: {}", message);
     }
 }

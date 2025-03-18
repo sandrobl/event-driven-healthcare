@@ -1,6 +1,5 @@
 package com.eventdriven.healthcare.camundaorchestrator.dto.domain;
 
-import com.eventdriven.healthcare.camundaorchestrator.dto.domain.Patient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

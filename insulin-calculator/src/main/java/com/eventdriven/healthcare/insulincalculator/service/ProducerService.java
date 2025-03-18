@@ -1,7 +1,6 @@
 package com.eventdriven.healthcare.insulincalculator.service;
 
 import com.eventdriven.healthcare.insulincalculator.dto.InsulinCalculatedEvent;
-import com.eventdriven.healthcare.insulincalculator.model.InsulinCalculationRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class ProducerService<T> {
+public class ProducerService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

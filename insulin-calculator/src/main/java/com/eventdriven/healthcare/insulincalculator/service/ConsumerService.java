@@ -2,7 +2,6 @@ package com.eventdriven.healthcare.insulincalculator.service;
 
 import com.eventdriven.healthcare.insulincalculator.dto.InsulinCalculatedEvent;
 import com.eventdriven.healthcare.insulincalculator.dto.InsulinCalculationCommand;
-import com.eventdriven.healthcare.insulincalculator.model.InsulinCalculationRequest;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -24,7 +23,7 @@ public class ConsumerService {
     private InsulinCalculatorService insulinCalculatorService;
 
     @Autowired
-    private ProducerService<InsulinCalculationRequest> producerService;
+    private ProducerService producerService;
 
     @KafkaListener(
             topics = {"${spring.kafka.patientEvents-topic}"},

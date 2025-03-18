@@ -1,6 +1,3 @@
-server:
-  port: 8081  # Tomcat default port
-
 logging:
   level:
     root: INFO
@@ -8,6 +5,8 @@ logging:
     controllers: DEBUG
 
 spring:
+  main:
+    web-application-type: none
   kafka:
     consumer:
       bootstrap-servers: localhost:9092

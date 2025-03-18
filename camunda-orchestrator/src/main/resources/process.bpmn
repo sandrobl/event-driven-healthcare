@@ -159,9 +159,9 @@
   <bpmn:message id="Message_18p1rea" name="Message_ScaleValue" />
   <bpmn:message id="Message_08cnaah" name="Message_NFCTag" />
   <bpmn:message id="Message_3c56at0" name="Message_PatientCheckedIn" />
-  <bpmn:message id="Message_2cbppfn" name="Message_InsulinDoseCalculated" />
+  <bpmn:message id="Message_2cbppfn" name="Message_InsulinCalculated" />
   <bpmn:message id="Message_3qaftu9" name="Message_ValidatedDose" />
-  <bpmn:message id="Message_1uj38bu" name="Message_BloodSugarEntered" />
+  <bpmn:message id="Message_1uj38bu" name="Message_InsulinFormEntered" />
   <bpmn:message id="Message_0tjutgm" name="Message_InjectionConfirmed" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_149e5p9">

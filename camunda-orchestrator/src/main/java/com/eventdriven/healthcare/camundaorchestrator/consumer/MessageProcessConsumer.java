@@ -2,6 +2,7 @@ package com.eventdriven.healthcare.camundaorchestrator.consumer;
 
 import com.eventdriven.healthcare.camundaorchestrator.dto.camunda.CamundaMessageDto;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinCalculatedEvent;
+import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinFormEnteredEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.PatientCheckInEvent;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,6 +36,7 @@ public class MessageProcessConsumer {
     private final static String MESSAGE_PATIENTCHECKEDIN = "Message_PatientCheckedIn";
     private final static String MESSAGE_INSULINCALCULATED =
             "Message_InsulinCalculated";
+    private final static String MESSAGE_INSULINFORMENTERED = "Message_InsulinFormEntered";
 
 
     @KafkaListener(
@@ -95,12 +97,12 @@ public class MessageProcessConsumer {
             topics = "${spring.kafka.patientEvents-topic}",
             containerFactory = "kafkaListenerJsonFactory",
             groupId = "${spring.kafka.consumer.group-id}")
-    public void consumePatientCheckInEvent(@Payload JsonNode payload,
-                                           @Header("messageCategory") String messageCategory,
-                                           @Header("messageType") String messageType,
-                                           @Header(KafkaHeaders.RECEIVED_KEY) String correlationKey) {
+    public void consumeEvents(@Payload JsonNode payload,
+                              @Header("messageCategory") String messageCategory,
+                              @Header("messageType") String messageType,
+                              @Header(KafkaHeaders.RECEIVED_KEY) String correlationKey) {
+        log.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, correlationKey);
         if ("EVENT".equals(messageCategory) && "patientCheckedIn".equals(messageType)) {
-            log.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, correlationKey);
 
             try {
                 PatientCheckInEvent event = new ObjectMapper().treeToValue(payload, PatientCheckInEvent.class);
@@ -113,6 +115,7 @@ public class MessageProcessConsumer {
                 vars.put("patient_height", event.getPatient().getHeight());
                 vars.put("patient_weight", event.getPatient().getWeight());
                 vars.put("patient_bloodGlucose", event.getPatient().getBloodGlucose());
+                vars.put("patient_insulinSensitivityFactor", event.getPatient().getInsulinSensitivityFactor());
 
                 // Build a CamundaMessageDto with the correlationKey as the business key
                 CamundaMessageDto camundaMsg = CamundaMessageDto.builder()
@@ -124,14 +127,32 @@ public class MessageProcessConsumer {
             } catch(Exception e){
                 log.error("Error deserializing payload to PatientCheckInEvent", e);
             }
+        } else if ("EVENT".equals(messageCategory) && "insulinFormEntered".equals(messageType)) {
+            try {
+                InsulinFormEnteredEvent event =
+                        new ObjectMapper().treeToValue(payload, InsulinFormEnteredEvent.class);
+
+                Map<String, Object> vars = new HashMap<>();
+                vars.put("patient_nextMealCarbohydrates", event.getNextMealCarbohydrates());
+                vars.put("patient_insulinToCarbohydrateRatio", event.getInsulinToCarbohydrateRatio());
+                vars.put("patient_targetBloodGlucoseLevel", event.getTargetBloodGlucoseLevel());
+
+                // Build a CamundaMessageDto with the correlationKey as the business key
+                CamundaMessageDto camundaMsg = CamundaMessageDto.builder()
+                        .correlationId(correlationKey)
+                        .vars(vars)
+                        .build();
+                messageService.correlateMessage(camundaMsg, MESSAGE_INSULINFORMENTERED);
+
+            } catch(Exception e){
+                log.error("Error deserializing payload to PatientCheckInEvent", e);
+            }
         } else if ("EVENT".equals(messageCategory) && "insulinCalculated".equals(messageType)) {
-            log.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, correlationKey);
             try {
                 InsulinCalculatedEvent event =
                         new ObjectMapper().treeToValue(payload, InsulinCalculatedEvent.class);
 
                 Map<String, Object> vars = new HashMap<>();
-                vars.put("patient_id", event.getPatient().getPatientID());
                 vars.put("insulin_doses", event.getInsulinDoses());
                 vars.put("insulin_required", event.isInsulinRequired());
 
