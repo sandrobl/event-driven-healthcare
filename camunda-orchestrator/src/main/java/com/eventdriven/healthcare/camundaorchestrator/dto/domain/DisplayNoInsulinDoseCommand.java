@@ -6,4 +6,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class DisplayNoInsulinDoseCommand {}
+public class DisplayNoInsulinDoseCommand {
+    private boolean insulinRequired;
+}

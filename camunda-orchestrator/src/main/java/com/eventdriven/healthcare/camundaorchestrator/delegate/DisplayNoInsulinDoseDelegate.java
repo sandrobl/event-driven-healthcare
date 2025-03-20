@@ -26,11 +26,8 @@ public class DisplayNoInsulinDoseDelegate implements JavaDelegate {
         String correlationId = execution.getProcessBusinessKey();
 
         DisplayNoInsulinDoseCommand command = new DisplayNoInsulinDoseCommand();
+        command.setInsulinRequired(false);
 
-        // Build a message with headers:
-        // - messageCategory: "COMMAND" (general)
-        // - messageType: "displayPatientData" (specific type)
-        // - KEY: correlationId
         Message<DisplayNoInsulinDoseCommand> message =
                 MessageBuilder.withPayload(command)
                 .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)

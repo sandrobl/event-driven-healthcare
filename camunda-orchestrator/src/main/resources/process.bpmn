@@ -147,7 +147,7 @@
       <bpmn:incoming>Flow_0ltm7d2</bpmn:incoming>
       <bpmn:outgoing>Flow_1xhp6g9</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_1dgirxr" name="Display &#34;Insulin Dose&#34; Information on Dashboard" camunda:class="com.eventdriven.healthcare.camundaorchestrator.dto.domain.DisplayInsulinDoseCommand">
+    <bpmn:serviceTask id="Activity_1dgirxr" name="Display &#34;Insulin Dose&#34; Information on Dashboard" camunda:class="com.eventdriven.healthcare.camundaorchestrator.delegate.DisplayInsulinDoseDelegate">
       <bpmn:incoming>Flow_13yx8zj</bpmn:incoming>
       <bpmn:outgoing>Flow_1fipov4</bpmn:outgoing>
     </bpmn:serviceTask>

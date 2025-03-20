@@ -60,7 +60,8 @@ public class DashboardService {
         // Update fields based on the command
         processInfo.setInsulinCalculatedEvent(command);
         processInfo.setCurrentStep(ProcessStep.INSULIN_CALCULATED);
-
+        log.info("************************Received command: {}", command);
+        log.info("************************Updated process info: {}", processInfo);
         // Notify SSE subscribers that something changed
         notifySseClients(processInfo);
     }

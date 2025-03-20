@@ -4,6 +4,7 @@ import com.eventdriven.healthcare.camundaorchestrator.dto.domain.DisplayInsulinD
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.DisplayPatientCommand;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.Patient;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +14,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component("displayInsulinDoseDelegate")
 @RequiredArgsConstructor
 public class DisplayInsulinDoseDelegate implements JavaDelegate {
@@ -31,11 +33,6 @@ public class DisplayInsulinDoseDelegate implements JavaDelegate {
         DisplayInsulinDoseCommand displayInsulinDoseCommand = new DisplayInsulinDoseCommand();
         displayInsulinDoseCommand.setInsulinDoses(insulinDose);
 
-
-        // Build a message with headers:
-        // - messageCategory: "COMMAND" (general)
-        // - messageType: "displayPatientData" (specific type)
-        // - KEY: correlationId
         Message<DisplayInsulinDoseCommand> message =
                 MessageBuilder.withPayload(displayInsulinDoseCommand)
                 .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
@@ -43,7 +40,8 @@ public class DisplayInsulinDoseDelegate implements JavaDelegate {
                 .setHeader("messageType", "displayInsulinDose")
                 .setHeader(KafkaHeaders.KEY, correlationId)
                 .build();
-
+        log.info("Sending message to patientEventsTopic - displayInsulinDose " +
+                ": {}", message);
         kafkaTemplate.send(message);
     }
 }

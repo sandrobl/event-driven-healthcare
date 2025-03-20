@@ -1,9 +1,14 @@
 function InsulinCalculated({insulinDoseInformation}) {
-    console.log(insulinDoseInformation);
+
     return (
         <div className="alert alert-info mt-3">
             Insulin calculated.
-            insulin.dose: {insulinDoseInformation}
+            insulin.dose:
+            {insulinDoseInformation ? (
+                <span>{insulinDoseInformation}</span>
+            ):(
+                <span>?</span>
+            )}
         </div>
     );
 }

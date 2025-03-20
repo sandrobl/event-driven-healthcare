@@ -33,7 +33,7 @@ function ProcessDetail({ process, onBack }) {
                     <InsulinFormSubmittedInfo />
                 )}
                 {currentStep === "INSULIN_CALCULATED" && (
-                    <InsulinCalculated insulinDoseInformation={insulinCalculated} />
+                    <InsulinCalculated insulinDoseInformation={insulinCalculated.insulinDoses} />
                 )}
                 {currentStep === "NO_INSULIN_NEEDED" && (
                     <NoInsulinNeeded />

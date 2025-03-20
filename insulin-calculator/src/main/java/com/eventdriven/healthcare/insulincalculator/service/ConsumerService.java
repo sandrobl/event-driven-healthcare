@@ -36,7 +36,7 @@ public class ConsumerService {
                                                  @Header(KafkaHeaders.RECEIVED_KEY) String key) {
         logger.info("Consumed {} {} {}: {}", key, messageCategory, messageType,
                 payload);
-        if ("COMMAND".equals(messageCategory) && "insulinFormEntered".equals(messageType)) {
+        if ("COMMAND".equals(messageCategory) && "calculateInsulin".equals(messageType)) {
             try {
                 InsulinCalculationCommand command = new ObjectMapper().treeToValue(payload,
                         InsulinCalculationCommand.class);
