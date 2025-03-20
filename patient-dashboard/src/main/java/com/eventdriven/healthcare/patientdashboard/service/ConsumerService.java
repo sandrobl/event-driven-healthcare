@@ -59,16 +59,25 @@ public class ConsumerService {
                                                  @Header("messageCategory") String messageCategory,
                                                  @Header("messageType") String messageType,
                                                  @Header(KafkaHeaders.RECEIVED_KEY) String correlationId) {
-        if ("EVENT".equals(messageCategory) && "insulinCalculated".equals(messageType)) {
+        if ("COMMAND".equals(messageCategory) && "displayInsulinDose".equals(messageType)) {
             try {
                 InsulinCalculatedEvent command = new ObjectMapper().treeToValue(payload,
                         InsulinCalculatedEvent.class);
 
-
                 log.info("Received consumeInsulinCalculatedRequest from Kafka: key={} value={}",
                         correlationId, command);
 
-                dashboardService.handleInsulinCalculatedEvent(correlationId, command);
+                dashboardService.handleInsulinDoseCalculatedEvent(correlationId, command);
+            } catch (Exception e) {
+                log.error("Error processing message", e);
+            }
+        } else if ("COMMAND".equals(messageCategory) && "displayNoInsulinDose".equals(messageType)) {
+            try {
+
+                log.info("Received displayNoInsulinDose from Kafka: key={}",
+                        correlationId );
+
+                dashboardService.handleNoInsulinDoseEventCommand(correlationId);
             } catch (Exception e) {
                 log.error("Error processing message", e);
             }

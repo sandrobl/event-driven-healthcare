@@ -46,9 +46,9 @@ public class DashboardService {
     }
 
     /**
-     * Handle a “displayPatientData” command from Kafka.
+     * Handle a “displayInsulinDose” command from Kafka.
      */
-    public void handleInsulinCalculatedEvent(String correlationId,
+    public void handleInsulinDoseCalculatedEvent(String correlationId,
                                 InsulinCalculatedEvent command) {
 
         // Get or create the process info
@@ -65,6 +65,17 @@ public class DashboardService {
         notifySseClients(processInfo);
     }
 
+    /**
+     * Handle a “displayNoInsulinDose” command from Kafka.
+     */
+    public void handleNoInsulinDoseEventCommand(String correlationId){
+        DashboardProcessInfo processInfo = processes.computeIfAbsent(
+                correlationId,
+                key -> new DashboardProcessInfo(correlationId, null, null, null)
+        );
+        processInfo.setCurrentStep(ProcessStep.NO_INSULIN_NEEDED);
+        notifySseClients(processInfo);
+    }
 
 
     /**

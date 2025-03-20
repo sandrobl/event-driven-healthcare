@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 
 public class InsulinCalculatedEvent {
     private float insulinDoses;
-    private boolean insulinRequired;
 }

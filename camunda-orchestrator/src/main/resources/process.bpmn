@@ -112,10 +112,6 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_1wcme2m" messageRef="Message_0tjutgm" />
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="Flow_0x0vfuh" sourceRef="Event_1wv6c59" targetRef="Event_0v4bxk8" />
-    <bpmn:task id="Activity_0qnyhxf" name="Display &#34;No Dose required&#34; Information on Dashboard">
-      <bpmn:incoming>Flow_0capigp</bpmn:incoming>
-      <bpmn:outgoing>Flow_1qyhfv5</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:sequenceFlow id="Flow_0capigp" name="No" sourceRef="Gateway_057yb4y" targetRef="Activity_0qnyhxf">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{insulin_required == false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -128,10 +124,6 @@
       <bpmn:incoming>Flow_1fipov4</bpmn:incoming>
       <bpmn:outgoing>Flow_0bdi67s</bpmn:outgoing>
     </bpmn:manualTask>
-    <bpmn:task id="Activity_1dgirxr" name="Display &#34;Insulin Dose&#34; Information on Dashboard">
-      <bpmn:incoming>Flow_13yx8zj</bpmn:incoming>
-      <bpmn:outgoing>Flow_1fipov4</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:sequenceFlow id="Flow_0lc43al" sourceRef="Activity_1fnrplt" targetRef="Activity_1gv6doj" />
     <bpmn:manualTask id="Activity_1gv6doj" name="Re-Fill Syringe">
       <bpmn:incoming>Flow_0lc43al</bpmn:incoming>
@@ -154,6 +146,14 @@
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0ltm7d2</bpmn:incoming>
       <bpmn:outgoing>Flow_1xhp6g9</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1dgirxr" name="Display &#34;Insulin Dose&#34; Information on Dashboard" camunda:class="com.eventdriven.healthcare.camundaorchestrator.dto.domain.DisplayInsulinDoseCommand">
+      <bpmn:incoming>Flow_13yx8zj</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fipov4</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0qnyhxf" name="Display &#34;No Dose required&#34; Information on Dashboard" camunda:class="com.eventdriven.healthcare.camundaorchestrator.delegate.DisplayNoInsulinDoseDelegate">
+      <bpmn:incoming>Flow_0capigp</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qyhfv5</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:message id="Message_18p1rea" name="Message_ScaleValue" />
@@ -243,10 +243,6 @@
       <bpmndi:BPMNShape id="Event_1kpr7f9_di" bpmnElement="Event_1wv6c59">
         <dc:Bounds x="1952" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0qnyhxf_di" bpmnElement="Activity_0qnyhxf">
-        <dc:Bounds x="1140" y="500" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1xwnfgf_di" bpmnElement="Event_1xwnfgf">
         <dc:Bounds x="1172" y="632" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -255,10 +251,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0mbw25d_di" bpmnElement="Activity_083i35d">
         <dc:Bounds x="1310" y="220" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0h51eqx_di" bpmnElement="Activity_1dgirxr">
-        <dc:Bounds x="1140" y="220" width="100" height="80" />
-        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ey5bzl_di" bpmnElement="Activity_1gv6doj">
         <dc:Bounds x="1520" y="360" width="100" height="80" />
@@ -272,6 +264,12 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0b5wgrj_di" bpmnElement="Activity_09hydkm">
         <dc:Bounds x="930" y="360" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_109scrt_di" bpmnElement="Activity_1dgirxr">
+        <dc:Bounds x="1140" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cejliw_di" bpmnElement="Activity_0qnyhxf">
+        <dc:Bounds x="1140" y="500" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1tw8bcq_di" bpmnElement="Flow_1tw8bcq">
         <di:waypoint x="218" y="400" />

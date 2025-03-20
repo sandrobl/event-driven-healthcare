@@ -35,6 +35,9 @@ function ProcessDetail({ process, onBack }) {
                 {currentStep === "INSULIN_CALCULATED" && (
                     <InsulinCalculated insulinDoseInformation={insulinCalculated} />
                 )}
+                {currentStep === "NO_INSULIN_NEEDED" && (
+                    <NoInsulinNeeded />
+                )}
             </div>
         </div>
     );
