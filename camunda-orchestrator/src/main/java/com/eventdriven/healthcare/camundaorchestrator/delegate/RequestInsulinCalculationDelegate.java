@@ -1,8 +1,6 @@
 package com.eventdriven.healthcare.camundaorchestrator.delegate;
 
-import com.eventdriven.healthcare.camundaorchestrator.dto.domain.CheckInCommand;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinCalculationCommand;
-import com.eventdriven.healthcare.camundaorchestrator.dto.domain.Patient;
 import lombok.RequiredArgsConstructor;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
