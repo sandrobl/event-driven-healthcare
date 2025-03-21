@@ -297,6 +297,12 @@
       <bpmndi:BPMNShape id="Event_0p1w4yg_di" bpmnElement="Event_0p1w4yg">
         <dc:Bounds x="1022" y="342" width="36" height="36" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_109scrt_di" bpmnElement="Activity_1dgirxr">
+        <dc:Bounds x="1140" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cejliw_di" bpmnElement="Activity_0qnyhxf">
+        <dc:Bounds x="1140" y="500" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1tw8bcq_di" bpmnElement="Flow_1tw8bcq">
         <di:waypoint x="218" y="400" />
         <di:waypoint x="240" y="400" />
