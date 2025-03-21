@@ -1,5 +1,5 @@
 function ProcessDetail({ process, onBack }) {
-    const { correlationId, patient, currentStep, insulinCalculated } = process;
+    const { correlationId, patient, currentStep, insulinCalculatedEvent } = process;
 
     return (
         <div className="card">
@@ -32,8 +32,8 @@ function ProcessDetail({ process, onBack }) {
                 {currentStep === "FORM_SUBMITTED" && (
                     <InsulinFormSubmittedInfo />
                 )}
-                {currentStep === "INSULIN_CALCULATED" && (
-                    <InsulinCalculated insulinDoseInformation={insulinCalculated.insulinDoses} />
+                {currentStep === "INSULIN_CALCULATED" && insulinCalculatedEvent && (
+                    <InsulinCalculated insulinDoseInformation={insulinCalculatedEvent.insulinDoses} />
                 )}
                 {currentStep === "NO_INSULIN_NEEDED" && (
                     <NoInsulinNeeded />
