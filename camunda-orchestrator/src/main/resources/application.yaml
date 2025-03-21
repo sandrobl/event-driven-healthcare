@@ -17,7 +17,7 @@ spring:
     mqttEvents-topic: smart-healthcare-data
 
 rest:
-    insulin-calculator-url: http://localhost:8095/insulin-calculator
+    insulin-calculator-url: http://localhost:8095/calculateInsulin
 
 camunda.bpm:
   admin-user:

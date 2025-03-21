@@ -31,6 +31,7 @@ public class InsulinCalculatorRestController {
 
 
         System.out.println("Insulin calculation will take " + waitTimeMillis/1000 + " seconds");
+        System.out.println("Insulin doses: " + response.getInsulinDoses());
         Thread.sleep(waitTimeMillis);
 
         return response;
