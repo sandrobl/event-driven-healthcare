@@ -29,7 +29,7 @@ public class ConsumerService {
             topics = {"${spring.kafka.patientEvents-topic}"},
             containerFactory = "kafkaListenerJsonFactory",
             groupId = "${spring.kafka.consumer.group-id}")
-    public void consumeDisplayPatientDataRequest(@Payload JsonNode payload,
+    public void consumeDashboardCommands(@Payload JsonNode payload,
                                           @Header("messageCategory") String messageCategory,
                                           @Header("messageType") String messageType,
                                           @Header(KafkaHeaders.RECEIVED_KEY) String correlationId) {
@@ -44,22 +44,7 @@ public class ConsumerService {
             } catch (Exception e) {
                 log.error("Error processing message", e);
             }
-        }
-    }
-
-    /**
-     * Listen for messages on the patientEventsTopic.
-     * We assume these are “commands” from the orchestrator.
-     */
-    @KafkaListener(
-            topics = {"${spring.kafka.patientEvents-topic}"},
-            containerFactory = "kafkaListenerJsonFactory",
-            groupId = "${spring.kafka.consumer.group-id}")
-    public void consumeInsulinCalculatedRequest(@Payload JsonNode payload,
-                                                 @Header("messageCategory") String messageCategory,
-                                                 @Header("messageType") String messageType,
-                                                 @Header(KafkaHeaders.RECEIVED_KEY) String correlationId) {
-        if ("COMMAND".equals(messageCategory) && "displayInsulinDose".equals(messageType)) {
+        } else if ("COMMAND".equals(messageCategory) && "displayInsulinDose".equals(messageType)) {
             try {
                 InsulinCalculatedEvent command = new ObjectMapper().treeToValue(payload,
                         InsulinCalculatedEvent.class);
