@@ -54,4 +54,36 @@ public class ConsumerService {
             }
         }
     }
+
+    @KafkaListener(
+            topics = {"${spring.kafka.patientEvents-topic}"},
+            containerFactory = "kafkaListenerJsonFactory",
+            groupId = "${spring.kafka.consumer.group-id}")
+    public void consumeInsulinCalculationRequest(@Payload JsonNode payload,
+                                          @Header("messageCategory") String messageCategory,
+                                          @Header("messageType") String messageType,
+                                          @Header(KafkaHeaders.RECEIVED_KEY) String key) {
+        if ("COMMAND".equals(messageCategory) && "getPatientData".equals(messageType)) {
+            try {
+                CheckInCommand command = new ObjectMapper().treeToValue(payload, CheckInCommand.class);
+
+                logger.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, key);
+
+                Patient patient = patientService.getPatientByNfcId(command.getNfcId());
+                boolean found = (patient != null);
+
+                PatientCheckInEvent event = new PatientCheckInEvent();
+                event.setNfcId(command.getNfcId());
+                event.setFound(found);
+                if (found) {
+                    event.setPatient(patient);
+                }
+
+                producerService.sendPatientCheckInEvent(key, event);
+            } catch (Exception e) {
+                logger.error("Error processing patient data request command: {}", e.getMessage());
+            }
+        }
+    }
+
 }

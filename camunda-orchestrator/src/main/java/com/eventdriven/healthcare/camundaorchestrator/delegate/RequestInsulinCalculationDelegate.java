@@ -1,8 +1,6 @@
 package com.eventdriven.healthcare.camundaorchestrator.delegate;
 
-import com.eventdriven.healthcare.camundaorchestrator.dto.domain.CheckInCommand;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinCalculationCommand;
-import com.eventdriven.healthcare.camundaorchestrator.dto.domain.Patient;
 import lombok.RequiredArgsConstructor;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -31,51 +29,35 @@ public class RequestInsulinCalculationDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-
-        int patientId = (int) execution.getVariable("patient_id");
-        String patientFirstName = (String) execution.getVariable("patient_FirstName");
-        String patientLastName = (String) execution.getVariable("patient_LastName");
-        String patientNfcId = (String) execution.getVariable("patient_nfcId");
-        Float patientHeight = (Float) execution.getVariable("patient_height");
-        Float patientWeight = (Float) execution.getVariable("patient_weight");
-        Float patientBloodGlucose = (Float) execution.getVariable("patient_bloodGlucose");
-        Float insulinSensitivityFactor = (Float) execution.getVariable("patient_insulinSensitivityFactor");
-        Float nextMealCarbohydrates = (Float) execution.getVariable("patient_nextMealCarbohydrates");
-        Float insulinToCarbohydrateRatio = (Float) execution.getVariable("patient_insulinToCarbohydrateRatio");
-        Float targetBloodGlucoseLevel = (Float) execution.getVariable("patient_targetBloodGlucoseLevel");
-        String correlationId = execution.getProcessBusinessKey();
+// NOT NEEDED ANYMORE
 
 
-        Patient patient = new Patient(
-                patientId,
-                patientLastName,
-                patientFirstName,
-                patientHeight,
-                patientWeight,
-                patientBloodGlucose,
-                patientNfcId,
-                insulinSensitivityFactor
-        );
 
-        // Build a JSON payload or command object
-        InsulinCalculationCommand cmd = new InsulinCalculationCommand();
-        cmd.setPatient(patient);
-        cmd.setNextMealCarbohydrates(nextMealCarbohydrates);
-        cmd.setInsulinToCarbohydrateRatio(insulinToCarbohydrateRatio);
-        cmd.setTargetBloodGlucoseLevel(targetBloodGlucoseLevel);
-
-
-        Message<InsulinCalculationCommand> message = MessageBuilder.withPayload(cmd)
-                .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
-                .setHeader("messageCategory", "COMMAND")
-                .setHeader("messageType", "calculateInsulin")
-                .setHeader(KafkaHeaders.KEY, correlationId)
-                .build();
-
-        // Send the message
-        kafkaTemplate.send(message);
-        logger.info("**** -> Published COMMAND calculateInsulin: {}", message);
-
+//        Float patientBloodGlucose = (Float) execution.getVariable("patient_bloodGlucose");
+//        Float insulinSensitivityFactor = (Float) execution.getVariable("patient_insulinSensitivityFactor");
+//        Float nextMealCarbohydrates = (Float) execution.getVariable("patient_nextMealCarbohydrates");
+//        Float insulinToCarbohydrateRatio = (Float) execution.getVariable("patient_insulinToCarbohydrateRatio");
+//        Float targetBloodGlucoseLevel = (Float) execution.getVariable("patient_targetBloodGlucoseLevel");
+//        String correlationId = execution.getProcessBusinessKey();
+//
+//        // Build a JSON payload or command object
+//        InsulinCalculationCommand cmd = new InsulinCalculationCommand();
+//        cmd.setNextMealCarbohydrates(nextMealCarbohydrates);
+//        cmd.setInsulinToCarbohydrateRatio(insulinToCarbohydrateRatio);
+//        cmd.setTargetBloodGlucoseLevel(targetBloodGlucoseLevel);
+//        cmd.setBloodGlucose(patientBloodGlucose);
+//        cmd.setPatientInsulinSensitivityFactor(insulinSensitivityFactor);
+//
+//        Message<InsulinCalculationCommand> message = MessageBuilder.withPayload(cmd)
+//                .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
+//                .setHeader("messageCategory", "COMMAND")
+//                .setHeader("messageType", "calculateInsulin")
+//                .setHeader(KafkaHeaders.KEY, correlationId)
+//                .build();
+//
+//        // Send the message
+//        kafkaTemplate.send(message);
+//        logger.info("**** -> Published COMMAND calculateInsulin: {}", message);
 
         // Optionally store something back into process variables
         //execution.setVariable("commandSent", true);

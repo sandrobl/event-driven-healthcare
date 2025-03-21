@@ -4,6 +4,7 @@ import com.eventdriven.healthcare.camundaorchestrator.dto.domain.DisplayPatientC
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinCalculatedEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinCalculationCommand;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,14 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 
+@Slf4j
 @Component("requestInsulinCalculationRESTDelegate")
 @RequiredArgsConstructor
 public class RequestInsulinCalculationRESTDelegate implements JavaDelegate {
@@ -50,27 +53,34 @@ public class RequestInsulinCalculationRESTDelegate implements JavaDelegate {
         insulinCalculationCommand.setInsulinToCarbohydrateRatio(insulinToCarbohydrateRatio);
         insulinCalculationCommand.setNextMealCarbohydrates(nextMealCarbohydrates);
         insulinCalculationCommand.setTargetBloodGlucoseLevel(targetBloodGlucoseLevel);
+        insulinCalculationCommand.setBloodGlucose(patientBloodGlucose);
+        insulinCalculationCommand.setPatientInsulinSensitivityFactor(insulinSensitivityFactor);
 
         // Call the insulin calculator API via Hystrix
-        InsulinCalculatedEvent response = new HystrixCommand<InsulinCalculatedEvent>(
-                HystrixCommandGroupKey.Factory.asKey("insulinCalculation")) {
-            @Override
-            protected InsulinCalculatedEvent run() throws Exception {
+        try{
+            InsulinCalculatedEvent response = new HystrixCommand<InsulinCalculatedEvent>(
+                    HystrixCommandGroupKey.Factory.asKey("insulinCalculation")) {
+                @Override
+                protected InsulinCalculatedEvent run() throws Exception {
 
-                // Call the API using the insulinCalculatorUrl variable
-                return rest.postForObject(insulinCalculatorUrl, insulinCalculationCommand, InsulinCalculatedEvent.class);
-            }
-        }.execute();
+                    // Call the API using the insulinCalculatorUrl variable
+                    return rest.postForObject(insulinCalculatorUrl, insulinCalculationCommand, InsulinCalculatedEvent.class);
+                }
+            }.execute();
 
-        InsulinCalculatedEvent insulinCalculatedEvent = response;
+            InsulinCalculatedEvent insulinCalculatedEvent = response;
 
-        Message<InsulinCalculatedEvent> message = MessageBuilder.withPayload(insulinCalculatedEvent)
-                .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
-                .setHeader("messageCategory", "EVENT")
-                .setHeader("messageType", "insulinCalculated")
-                .setHeader(KafkaHeaders.KEY, correlationId)
-                .build();
+            Message<InsulinCalculatedEvent> message = MessageBuilder.withPayload(insulinCalculatedEvent)
+                    .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
+                    .setHeader("messageCategory", "EVENT")
+                    .setHeader("messageType", "insulinCalculated")
+                    .setHeader(KafkaHeaders.KEY, correlationId)
+                    .build();
 
-        kafkaTemplate.send(message);
+            kafkaTemplate.send(message);
+
+        }catch(Exception e){
+            log.info("Error in calling insulin calculator API {}",e);
+        }
     }
 }

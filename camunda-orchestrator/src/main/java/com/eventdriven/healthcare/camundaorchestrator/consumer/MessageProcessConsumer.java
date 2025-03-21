@@ -136,6 +136,9 @@ public class MessageProcessConsumer {
                 vars.put("patient_nextMealCarbohydrates", event.getNextMealCarbohydrates());
                 vars.put("patient_insulinToCarbohydrateRatio", event.getInsulinToCarbohydrateRatio());
                 vars.put("patient_targetBloodGlucoseLevel", event.getTargetBloodGlucoseLevel());
+                vars.put("bloodGlucose", event.getBloodGlucose());
+                vars.put("patient_insulinSensitivityFactor",
+                        event.getPatientInsulinSensitivityFactor());
 
                 // Build a CamundaMessageDto with the correlationKey as the business key
                 CamundaMessageDto camundaMsg = CamundaMessageDto.builder()
@@ -151,20 +154,20 @@ public class MessageProcessConsumer {
             try {
                 InsulinCalculatedEvent event =
                         new ObjectMapper().treeToValue(payload, InsulinCalculatedEvent.class);
-
                 Map<String, Object> vars = new HashMap<>();
                 vars.put("insulin_doses", event.getInsulinDoses());
                 vars.put("insulin_required", event.isInsulinRequired());
-
                 // Build a CamundaMessageDto with the correlationKey as the business key
                 CamundaMessageDto camundaMsg = CamundaMessageDto.builder()
                         .correlationId(correlationKey)
                         .vars(vars)
                         .build();
+
                 messageService.correlateMessage(camundaMsg, MESSAGE_INSULINCALCULATED);
 
             } catch(Exception e){
-                log.error("Error deserializing payload to PatientCheckInEvent", e);
+                log.error("Error deserializing payload to " +
+                        "InsulinCalculatedEvent", e);
             }
         }
 
