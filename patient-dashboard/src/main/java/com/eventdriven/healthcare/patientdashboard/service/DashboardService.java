@@ -1,5 +1,6 @@
 package com.eventdriven.healthcare.patientdashboard.service;
 
+import com.eventdriven.healthcare.patientdashboard.dto.InsulinCalculatedEvent;
 import com.eventdriven.healthcare.patientdashboard.model.DashboardProcessInfo;
 import com.eventdriven.healthcare.patientdashboard.dto.DisplayPatientCommand;
 import com.eventdriven.healthcare.patientdashboard.model.Patient;
@@ -32,7 +33,7 @@ public class DashboardService {
         // Get or create the process info
         DashboardProcessInfo processInfo = processes.computeIfAbsent(
                 correlationId,
-                key -> new DashboardProcessInfo(correlationId, null, null)
+                key -> new DashboardProcessInfo(correlationId, null, null, null)
         );
 
         // Update fields based on the command
@@ -43,6 +44,39 @@ public class DashboardService {
         // Notify SSE subscribers that something changed
         notifySseClients(processInfo);
     }
+
+    /**
+     * Handle a “displayInsulinDose” command from Kafka.
+     */
+    public void handleInsulinDoseCalculatedEvent(String correlationId,
+                                InsulinCalculatedEvent command) {
+
+        // Get or create the process info
+        DashboardProcessInfo processInfo = processes.computeIfAbsent(
+                correlationId,
+                key -> new DashboardProcessInfo(correlationId, null, null,null)
+        );
+
+        // Update fields based on the command
+        processInfo.setInsulinCalculatedEvent(command);
+        processInfo.setCurrentStep(ProcessStep.INSULIN_CALCULATED);
+
+        // Notify SSE subscribers that something changed
+        notifySseClients(processInfo);
+    }
+
+    /**
+     * Handle a “displayNoInsulinDose” command from Kafka.
+     */
+    public void handleNoInsulinDoseEventCommand(String correlationId){
+        DashboardProcessInfo processInfo = processes.computeIfAbsent(
+                correlationId,
+                key -> new DashboardProcessInfo(correlationId, null, null, null)
+        );
+        processInfo.setCurrentStep(ProcessStep.NO_INSULIN_NEEDED);
+        notifySseClients(processInfo);
+    }
+
 
     /**
      * Subscribe a new SSE client.

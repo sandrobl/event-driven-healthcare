@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InsulinCalculatedEvent {
+public class DisplayInsulinDoseCommand {
     private float insulinDoses; // Insulin doses in ml
-    private boolean insulinRequired;
 }

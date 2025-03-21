@@ -1,6 +1,7 @@
 package com.eventdriven.healthcare.patientdashboard.service;
 
 import com.eventdriven.healthcare.patientdashboard.dto.DisplayPatientCommand;
+import com.eventdriven.healthcare.patientdashboard.dto.InsulinCalculatedEvent;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class ConsumerService {
             topics = {"${spring.kafka.patientEvents-topic}"},
             containerFactory = "kafkaListenerJsonFactory",
             groupId = "${spring.kafka.consumer.group-id}")
-    public void consumeDisplayPatientDataRequest(@Payload JsonNode payload,
+    public void consumeDashboardCommands(@Payload JsonNode payload,
                                           @Header("messageCategory") String messageCategory,
                                           @Header("messageType") String messageType,
                                           @Header(KafkaHeaders.RECEIVED_KEY) String correlationId) {
@@ -40,6 +41,28 @@ public class ConsumerService {
                 log.info("Received command from Kafka: key={} value={}", correlationId, command);
 
                 dashboardService.handleDisplayPatientCommand(correlationId, command);
+            } catch (Exception e) {
+                log.error("Error processing message", e);
+            }
+        } else if ("COMMAND".equals(messageCategory) && "displayInsulinDose".equals(messageType)) {
+            try {
+                InsulinCalculatedEvent command = new ObjectMapper().treeToValue(payload,
+                        InsulinCalculatedEvent.class);
+
+                log.info("Received consumeInsulinCalculatedRequest from Kafka: key={} value={}",
+                        correlationId, command);
+
+                dashboardService.handleInsulinDoseCalculatedEvent(correlationId, command);
+            } catch (Exception e) {
+                log.error("Error processing message", e);
+            }
+        } else if ("COMMAND".equals(messageCategory) && "displayNoInsulinDose".equals(messageType)) {
+            try {
+
+                log.info("Received displayNoInsulinDose from Kafka: key={}",
+                        correlationId );
+
+                dashboardService.handleNoInsulinDoseEventCommand(correlationId);
             } catch (Exception e) {
                 log.error("Error processing message", e);
             }
