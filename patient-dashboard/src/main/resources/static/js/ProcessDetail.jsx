@@ -1,5 +1,5 @@
 function ProcessDetail({ process, onBack }) {
-    const { correlationId, patient, currentStep, insulinCalculatedEvent, errorMessage } = process;
+    const { correlationId, patient, currentStep, insulinCalculatedEvent, errorMessage, doseDifference, confirmationMessage } = process;
 
     return (
         <div className="card">
@@ -41,6 +41,19 @@ function ProcessDetail({ process, onBack }) {
                 {currentStep === "ERROR" && errorMessage && (
                     <ErrorAlert message={errorMessage}/>
                 )}
+                {currentStep === "SCALE_RESERVED" && (
+                    <ScaleReservedInstructions insulinDoseInformation={insulinCalculatedEvent.insulinDoses}/>
+                )}
+                {currentStep === "INCORRECT_DOSE" && (
+                    <IncorrectDoseInstructions doseDifference={doseDifference} insulinDoseInformation={insulinCalculatedEvent.insulinDoses} />
+                )}
+                {currentStep === "AWAITING_CONFIRMATION" && (
+                    <InjectionConfirmation  correlationId={correlationId} confirmationMessage={confirmationMessage}/>
+                )}
+                {currentStep === "CONFIRMED" && (
+                    <InjectionConfirmed />
+                )}
+
             </div>
         </div>
     );

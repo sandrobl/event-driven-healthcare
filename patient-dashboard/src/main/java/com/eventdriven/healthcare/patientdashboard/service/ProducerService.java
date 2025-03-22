@@ -1,5 +1,6 @@
 package com.eventdriven.healthcare.patientdashboard.service;
 
+import com.eventdriven.healthcare.patientdashboard.dto.InjectionConfirmedEvent;
 import com.eventdriven.healthcare.patientdashboard.dto.InsulinFormEnteredEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -37,5 +38,16 @@ public class ProducerService {
 
         kafkaTemplate.send(message);
         log.info("**** -> Published insulinFormEntered: {}",message);
+    }
+
+    public void sendInjectionConfirmedEvent(String key, InjectionConfirmedEvent event) {
+        Message<InjectionConfirmedEvent> message = MessageBuilder.withPayload(event)
+                .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
+                .setHeader("messageCategory", "EVENT")
+                .setHeader("messageType", "injectionConfirmed")
+                .setHeader(KafkaHeaders.KEY, key)
+                .build();
+        kafkaTemplate.send(message);
+        log.info("Published injectionConfirmed event for key={} with confirmed={}", key, confirmed);
     }
 }

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="insulin-calculator-rest" />
         <module name="patient-dashboard" />
+        <module name="scale" />
         <module name="mqtt-kafka-bridge" />
         <module name="patient-checkin" />
       </profile>
@@ -36,6 +37,7 @@
       <module name="mqtt-kafka-bridge" options="-parameters" />
       <module name="patient-checkin" options="-parameters" />
       <module name="patient-dashboard" options="-parameters" />
+      <module name="scale" options="-parameters" />
       <module name="spring-boot-kafka-eyetracking" options="-parameters" />
     </option>
   </component>
