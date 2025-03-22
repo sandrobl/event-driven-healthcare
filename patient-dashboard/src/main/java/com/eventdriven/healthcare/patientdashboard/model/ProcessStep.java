@@ -9,4 +9,5 @@ public enum ProcessStep {
     SCALE_DISPLAYED,       // Show the insulin dose on the scale
     AWAITING_CONFIRMATION,   // Check if insulin dose was injected
     CONFIRMED,             // End of the process
+    ERROR,                 // Error occurred
 }

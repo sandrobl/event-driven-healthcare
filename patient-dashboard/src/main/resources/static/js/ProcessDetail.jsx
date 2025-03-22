@@ -1,5 +1,5 @@
 function ProcessDetail({ process, onBack }) {
-    const { correlationId, patient, currentStep, insulinCalculatedEvent } = process;
+    const { correlationId, patient, currentStep, insulinCalculatedEvent, errorMessage } = process;
 
     return (
         <div className="card">
@@ -37,6 +37,9 @@ function ProcessDetail({ process, onBack }) {
                 )}
                 {currentStep === "NO_INSULIN_NEEDED" && (
                     <NoInsulinNeeded />
+                )}
+                {currentStep === "ERROR" && errorMessage && (
+                    <ErrorAlert message={errorMessage}/>
                 )}
             </div>
         </div>

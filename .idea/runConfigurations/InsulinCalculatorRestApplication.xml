@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="InsulinCalculatorRestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <module name="insulin-calculator-rest" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.eventdriven.healthcare.insulincalculatorrest.InsulinCalculatorRestApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
