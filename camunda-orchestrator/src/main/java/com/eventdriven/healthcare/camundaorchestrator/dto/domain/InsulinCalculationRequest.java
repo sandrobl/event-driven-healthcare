@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InsulinCalculationCommand {
+public class InsulinCalculationRequest {
     private float nextMealCarbohydrates;
     private float insulinToCarbohydrateRatio; // Insulin-to-Carbohydrate Ratio
     // (grams/unit)

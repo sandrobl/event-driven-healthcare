@@ -1,5 +1,6 @@
 package com.eventdriven.healthcare.patientdashboard.service;
 
+import com.eventdriven.healthcare.patientdashboard.dto.DisplayErrorCommand;
 import com.eventdriven.healthcare.patientdashboard.dto.DisplayPatientCommand;
 import com.eventdriven.healthcare.patientdashboard.dto.InsulinCalculatedEvent;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -66,7 +67,20 @@ public class ConsumerService {
             } catch (Exception e) {
                 log.error("Error processing message", e);
             }
+        } else if ("COMMAND".equals(messageCategory) && "displayError".equals(messageType)) {
+        try {
+            DisplayErrorCommand command = new ObjectMapper().treeToValue(payload,
+                    DisplayErrorCommand.class);
+
+            log.info("Received displayError from Kafka: key={} value={}",
+                    correlationId, command);
+
+            dashboardService.handleDisplayErrorCommand(correlationId, command);
+        } catch (Exception e) {
+            log.error("Error processing message", e);
         }
+    }
+
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.eventdriven.healthcare.camundaorchestrator.consumer;
 
 import com.eventdriven.healthcare.camundaorchestrator.dto.camunda.CamundaMessageDto;
-import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinCalculatedEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinFormEnteredEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.PatientCheckInEvent;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -34,8 +33,6 @@ public class MessageProcessConsumer {
 
     private final static String MESSAGE_NFC = "Message_NFCTag";
     private final static String MESSAGE_PATIENTCHECKEDIN = "Message_PatientCheckedIn";
-    private final static String MESSAGE_INSULINCALCULATED =
-            "Message_InsulinCalculated";
     private final static String MESSAGE_INSULINFORMENTERED = "Message_InsulinFormEntered";
 
 
@@ -150,27 +147,7 @@ public class MessageProcessConsumer {
             } catch(Exception e){
                 log.error("Error deserializing payload to PatientCheckInEvent", e);
             }
-        } else if ("EVENT".equals(messageCategory) && "insulinCalculated".equals(messageType)) {
-            try {
-                InsulinCalculatedEvent event =
-                        new ObjectMapper().treeToValue(payload, InsulinCalculatedEvent.class);
-                Map<String, Object> vars = new HashMap<>();
-                vars.put("insulin_doses", event.getInsulinDoses());
-                vars.put("insulin_required", event.isInsulinRequired());
-                // Build a CamundaMessageDto with the correlationKey as the business key
-                CamundaMessageDto camundaMsg = CamundaMessageDto.builder()
-                        .correlationId(correlationKey)
-                        .vars(vars)
-                        .build();
-
-                messageService.correlateMessage(camundaMsg, MESSAGE_INSULINCALCULATED);
-
-            } catch(Exception e){
-                log.error("Error deserializing payload to " +
-                        "InsulinCalculatedEvent", e);
-            }
         }
-
     }
 
 

@@ -1,5 +1,6 @@
 package com.eventdriven.healthcare.patientdashboard.service;
 
+import com.eventdriven.healthcare.patientdashboard.dto.DisplayErrorCommand;
 import com.eventdriven.healthcare.patientdashboard.dto.InsulinCalculatedEvent;
 import com.eventdriven.healthcare.patientdashboard.model.DashboardProcessInfo;
 import com.eventdriven.healthcare.patientdashboard.dto.DisplayPatientCommand;
@@ -33,7 +34,7 @@ public class DashboardService {
         // Get or create the process info
         DashboardProcessInfo processInfo = processes.computeIfAbsent(
                 correlationId,
-                key -> new DashboardProcessInfo(correlationId, null, null, null)
+                key -> new DashboardProcessInfo(correlationId, null, null, null, null)
         );
 
         // Update fields based on the command
@@ -54,7 +55,7 @@ public class DashboardService {
         // Get or create the process info
         DashboardProcessInfo processInfo = processes.computeIfAbsent(
                 correlationId,
-                key -> new DashboardProcessInfo(correlationId, null, null,null)
+                key -> new DashboardProcessInfo(correlationId, null, null,null, null)
         );
 
         // Update fields based on the command
@@ -71,9 +72,22 @@ public class DashboardService {
     public void handleNoInsulinDoseEventCommand(String correlationId){
         DashboardProcessInfo processInfo = processes.computeIfAbsent(
                 correlationId,
-                key -> new DashboardProcessInfo(correlationId, null, null, null)
+                key -> new DashboardProcessInfo(correlationId, null, null, null, null)
         );
         processInfo.setCurrentStep(ProcessStep.NO_INSULIN_NEEDED);
+        notifySseClients(processInfo);
+    }
+
+    /**
+     * Handle a “displayError” command from Kafka.
+     */
+    public void handleDisplayErrorCommand(String correlationId, DisplayErrorCommand command) {
+        DashboardProcessInfo processInfo = processes.computeIfAbsent(
+                correlationId,
+                key -> new DashboardProcessInfo(correlationId, null, null, null, null)
+        );
+        processInfo.setCurrentStep(ProcessStep.ERROR);
+        processInfo.setErrorMessage(command.getErrorMessage());
         notifySseClients(processInfo);
     }
 

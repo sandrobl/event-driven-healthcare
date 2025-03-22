@@ -10,7 +10,6 @@
         <module name="insulin-calculator-rest" />
         <module name="patient-dashboard" />
         <module name="mqtt-kafka-bridge" />
-        <module name="insulin-calculator" />
         <module name="patient-checkin" />
       </profile>
       <profile name="Annotation profile for camunda-orchestrator" enabled="true">
@@ -24,6 +23,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="insulin-calculator" target="21" />
       <module name="patient-database (1)" target="1.5" />
       <module name="spring-boot-kafka-eyetracking" target="21" />
     </bytecodeTargetLevel>
