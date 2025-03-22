@@ -1,16 +1,13 @@
-package com.eventdriven.healthcare.insulincalculator.dto;
+package com.eventdriven.healthcare.insulincalculatorrest.model;
 
-import com.eventdriven.healthcare.insulincalculator.model.Patient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InsulinCalculationCommand {
+public class InsulinCalculationRequest {
     private float insulinDoses; // Insulin doses in ml
     private float nextMealCarbohydrates;
     private float insulinToCarbohydrateRatio; // Insulin-to-Carbohydrate Ratio
@@ -19,4 +16,3 @@ public class InsulinCalculationCommand {
     private float bloodGlucose; // Current blood glucose level (mg/dL)
     private float patientInsulinSensitivityFactor; // Insulin Sensitivity Factor (mg/dL/unit)
 }
-

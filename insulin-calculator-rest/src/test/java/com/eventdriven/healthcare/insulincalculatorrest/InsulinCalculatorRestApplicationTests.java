@@ -1,10 +1,10 @@
-package com.eventdriven.healthcare.insulincalculator;
+package com.eventdriven.healthcare.insulincalculatorrest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PatientDatabaseApplicationTests {
+class InsulinCalculatorRestApplicationTests {
 
     @Test
     void contextLoads() {

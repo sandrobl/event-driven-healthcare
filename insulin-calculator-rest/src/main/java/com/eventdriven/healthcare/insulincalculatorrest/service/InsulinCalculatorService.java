@@ -1,12 +1,11 @@
-package com.eventdriven.healthcare.insulincalculator.service;
+package com.eventdriven.healthcare.insulincalculatorrest.service;
 
-import com.eventdriven.healthcare.insulincalculator.dto.InsulinCalculationCommand;
-//import com.eventdriven.healthcare.insulincalculator.model.InsulinCalculationRequest;
+import com.eventdriven.healthcare.insulincalculatorrest.model.InsulinCalculationRequest;
 import org.springframework.stereotype.Service;
 
 @Service
 public class InsulinCalculatorService {
-    public static float calculateBolusInsulinDose(InsulinCalculationCommand icr) {
+    public static float calculateBolusInsulinDose(InsulinCalculationRequest icr) {
 
         // Check if the patient's blood glucose level is high
         // https://www.healthline.com/health/how-much-insulin-to-take-chart
