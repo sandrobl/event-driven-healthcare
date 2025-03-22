@@ -139,7 +139,6 @@ public class MessageProcessConsumer {
                 vars.put("patient_LastName", event.getPatient().getName());
                 vars.put("patient_height", event.getPatient().getHeight());
                 vars.put("patient_weight", event.getPatient().getWeight());
-                vars.put("patient_bloodGlucose", event.getPatient().getBloodGlucose());
                 vars.put("patient_insulinSensitivityFactor", event.getPatient().getInsulinSensitivityFactor());
 
                 // Build a CamundaMessageDto with the correlationKey as the business key
@@ -161,7 +160,7 @@ public class MessageProcessConsumer {
                 vars.put("patient_nextMealCarbohydrates", event.getNextMealCarbohydrates());
                 vars.put("patient_insulinToCarbohydrateRatio", event.getInsulinToCarbohydrateRatio());
                 vars.put("patient_targetBloodGlucoseLevel", event.getTargetBloodGlucoseLevel());
-                vars.put("bloodGlucose", event.getBloodGlucose());
+                vars.put("patient_bloodGlucose", event.getBloodGlucose());
                 vars.put("patient_insulinSensitivityFactor",
                         event.getPatientInsulinSensitivityFactor());
 

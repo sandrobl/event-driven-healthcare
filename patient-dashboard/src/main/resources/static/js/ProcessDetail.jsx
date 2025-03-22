@@ -4,7 +4,7 @@ function ProcessDetail({ process, onBack }) {
     return (
         <div className="card">
             <div className="card-header d-flex justify-content-between">
-                <h2>Process Detail</h2>
+                <h2>Process Detail ({correlationId})</h2>
                 <button className="btn btn-secondary" onClick={onBack}>Back</button>
             </div>
             <div className="card-body">

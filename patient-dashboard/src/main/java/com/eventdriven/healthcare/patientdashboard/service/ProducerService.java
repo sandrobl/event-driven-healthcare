@@ -48,6 +48,6 @@ public class ProducerService {
                 .setHeader(KafkaHeaders.KEY, key)
                 .build();
         kafkaTemplate.send(message);
-        log.info("Published injectionConfirmed event for key={} with confirmed={}", key, confirmed);
+        log.info("Published injectionConfirmed event for key={} with confirmed={}", key, event.isConfirmed());
     }
 }

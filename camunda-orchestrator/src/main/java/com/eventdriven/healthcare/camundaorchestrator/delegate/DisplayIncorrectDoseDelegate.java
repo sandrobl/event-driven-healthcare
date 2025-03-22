@@ -24,7 +24,7 @@ public class DisplayIncorrectDoseDelegate implements JavaDelegate {
     public void execute(DelegateExecution execution) {
         String correlationId = execution.getProcessBusinessKey();
         // Assume "doseDifference" is stored as a process variable.
-        Float doseDifference = (Float) execution.getVariable("doseDifference");
+        Float doseDifference = (Float) execution.getVariable("scale_validation_dose_difference");
         if (doseDifference == null) {
             doseDifference = 0f;
         }

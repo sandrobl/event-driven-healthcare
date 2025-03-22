@@ -24,7 +24,7 @@ function InjectionConfirmation({ correlationId, confirmationMessage }) {
     return (
         <div className="alert alert-info mt-4 shadow-sm rounded">
             <h4 className="alert-heading">Confirm Injection</h4>
-            <p>{{confirmationMessage}}</p>
+            <p>{confirmationMessage}</p>
             {error && <div className="alert alert-danger">{error}</div>}
             <button className="btn btn-primary" onClick={confirmInjection} disabled={loading}>
                 {loading ? 'Confirming...' : 'Confirm Injection'}

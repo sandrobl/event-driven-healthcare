@@ -13,7 +13,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
-@Component("reserveScaleDelegate")
+@Component("validateInsulinDoseDelegate")
 @RequiredArgsConstructor
 public class ValidateInsulinDoseDelegate implements JavaDelegate {
 
