@@ -30,7 +30,6 @@ public class DisplayPatientDataDelegate implements JavaDelegate {
         String patientNfcId = (String) execution.getVariable("patient_nfcId");
         Float patientHeight = (Float) execution.getVariable("patient_height");
         Float patientWeight = (Float) execution.getVariable("patient_weight");
-        Float patientBloodGlucose = (Float) execution.getVariable("patient_bloodGlucose");
         Float insulinSensitivityFactor = (Float) execution.getVariable("patient_insulinSensitivityFactor");
         String correlationId = execution.getProcessBusinessKey();
 
@@ -41,7 +40,6 @@ public class DisplayPatientDataDelegate implements JavaDelegate {
                 patientFirstName,
                 patientHeight,
                 patientWeight,
-                patientBloodGlucose,
                 patientNfcId,
                 insulinSensitivityFactor
 

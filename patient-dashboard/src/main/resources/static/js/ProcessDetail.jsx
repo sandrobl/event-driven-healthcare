@@ -1,10 +1,10 @@
 function ProcessDetail({ process, onBack }) {
-    const { correlationId, patient, currentStep, insulinCalculatedEvent, errorMessage } = process;
+    const { correlationId, patient, currentStep, insulinCalculatedEvent, errorMessage, doseDifference, confirmationMessage } = process;
 
     return (
         <div className="card">
             <div className="card-header d-flex justify-content-between">
-                <h2>Process Detail</h2>
+                <h2>Process Detail ({correlationId})</h2>
                 <button className="btn btn-secondary" onClick={onBack}>Back</button>
             </div>
             <div className="card-body">
@@ -41,6 +41,19 @@ function ProcessDetail({ process, onBack }) {
                 {currentStep === "ERROR" && errorMessage && (
                     <ErrorAlert message={errorMessage}/>
                 )}
+                {currentStep === "SCALE_RESERVED" && (
+                    <ScaleReservedInstructions insulinDoseInformation={insulinCalculatedEvent.insulinDoses}/>
+                )}
+                {currentStep === "INCORRECT_DOSE" && (
+                    <IncorrectDoseInstructions doseDifference={doseDifference} insulinDoseInformation={insulinCalculatedEvent.insulinDoses} />
+                )}
+                {currentStep === "AWAITING_CONFIRMATION" && (
+                    <InjectionConfirmation  correlationId={correlationId} confirmationMessage={confirmationMessage}/>
+                )}
+                {currentStep === "CONFIRMED" && (
+                    <InjectionConfirmed />
+                )}
+
             </div>
         </div>
     );

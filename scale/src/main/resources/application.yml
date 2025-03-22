@@ -1,0 +1,21 @@
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    controllers: DEBUG
+
+spring:
+  main:
+    web-application-type: none
+
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: scale-service
+      auto-offset-reset: earliest
+
+    producer:
+      bootstrap-servers: localhost:9092
+
+    patientEvents-topic: patientEvents-topic
+    mqttEvents-topic: smart-healthcare-data

@@ -1,5 +1,6 @@
 package com.eventdriven.healthcare.patientdashboard.controllers;
 
+import com.eventdriven.healthcare.patientdashboard.dto.InjectionConfirmedEvent;
 import com.eventdriven.healthcare.patientdashboard.dto.InsulinFormEnteredEvent;
 import com.eventdriven.healthcare.patientdashboard.model.DashboardProcessInfo;
 import com.eventdriven.healthcare.patientdashboard.model.InsulinFormData;
@@ -70,4 +71,11 @@ public class DashboardController {
 
         producerService.sendInsulinFormEnteredEvent(correlationId, event);
     }
+
+    @PostMapping("/processes/{correlationId}/confirmInjection")
+    public void confirmInjection(@PathVariable String correlationId, @RequestBody InjectionConfirmedEvent event) {
+        dashboardService.updateProcessStep(correlationId, ProcessStep.CONFIRMED);
+        producerService.sendInjectionConfirmedEvent(correlationId, event);
+    }
+
 }

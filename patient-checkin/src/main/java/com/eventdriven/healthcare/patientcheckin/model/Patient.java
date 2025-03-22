@@ -16,19 +16,17 @@ public class Patient implements Serializable {
     String firstname;
     float height;
     float weight;
-    float bloodGlucose;
     String nfcID;
     float insulinSensitivityFactor;
 
     public Patient() {}
     public Patient(int patientID, String name, String firstname, float height
-            , float weight, float bloodGlucose, String nfcID,float insulinSensitivityFactor) {
+            , float weight, String nfcID,float insulinSensitivityFactor) {
         this.patientID = patientID;
         this.name = name;
         this.firstname = firstname;
         this.height = height;
         this.weight = weight;
-        this.bloodGlucose = bloodGlucose;
         this.nfcID = nfcID;
         this.insulinSensitivityFactor = insulinSensitivityFactor;
     }
@@ -45,7 +43,6 @@ public class Patient implements Serializable {
                 ", firstname: " + firstname +
                 ", height: " + height +
                 ", weight: " + weight +
-                ", bloodGlucose: " + bloodGlucose +
                 ", nfcID: " + nfcID +
                 ", insulinSensitivityFactor: " + insulinSensitivityFactor;
     }

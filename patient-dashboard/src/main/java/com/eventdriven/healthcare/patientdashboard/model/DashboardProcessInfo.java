@@ -21,4 +21,6 @@ public class DashboardProcessInfo {
     private ProcessStep currentStep;
     private InsulinCalculatedEvent insulinCalculatedEvent;
     private String errorMessage;
+    private Float doseDifference;
+    private String confirmationMessage;
 }

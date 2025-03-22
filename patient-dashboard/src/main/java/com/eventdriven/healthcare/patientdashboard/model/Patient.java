@@ -13,7 +13,6 @@ public class Patient {
     private String firstname;
     private float height;
     private float weight;
-    private float bloodGlucose;
     private String nfcID;
     private float insulinSensitivityFactor;
 }
