@@ -54,6 +54,41 @@ This feature is useful for testing client-side timeout handling, demonstrating r
 
 The parameters can be found in the **InsulinCalculatedRequest.java** file, to see what the response will be consult **InsulinCalculationResposne.java**. 
 
+### Example 1: Result around 3ml
+
+Let's assume a patient with high blood glucose and some insulin resistance.
+
+* **Blood Glucose:** 32 mmol/L
+* **Target Blood Glucose Level:** 5 mmol/L
+* **Next Meal Carbohydrates:** 100 grams
+* **Insulin To Carbohydrate Ratio:** 3
+* **Patient Insulin Sensitivity Factor:** 0.1
+
+**Calculation:**
+
+1.  **Carbohydrate Coverage Dose:** `100 / 3 = 33.33 units`
+2.  **Correction Dose:** `(32 - 5) / 0.1 = 270 units`
+3.  **Total Bolus Dose:** `33.33 + 270 = 303.33 units`
+4.  **Result in ml:** `303.33 / 100 = 3.03 ml`
+
+### Example 2: Result around 8ml
+
+Let's assume a patient with very high blood glucose and significant insulin resistance.
+
+* **Blood Glucose:** 40 mmol/L
+* **Target Blood Glucose Level:** 5 mmol/L
+* **Next Meal Carbohydrates:** 200 grams
+* **Insulin To Carbohydrate Ratio:** 2
+* **Patient Insulin Sensitivity Factor:** 0.05
+
+**Calculation:**
+
+1.  **Carbohydrate Coverage Dose:** `200 / 2 = 100 units`
+2.  **Correction Dose:** `(40 - 5) / 0.05 = 700 units`
+3.  **Total Bolus Dose:** `100 + 700 = 800 units`
+4.  **Result in ml:** `800 / 100 = 8 ml`
+
+
 ## API Documentation
 
 Detailed API documentation is available at `http://localhost:8080/swagger-ui.html` when the service is running.
