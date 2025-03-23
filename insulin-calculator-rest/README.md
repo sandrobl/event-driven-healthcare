@@ -96,6 +96,14 @@ This example for Patient 2 just crosses the 2ml threshold and represents a highl
 
 **Important Note:** These examples use parameters that are far beyond typical ranges and are meant to illustrate the functionality of the service. 
 
+**Patient 3: No insulin required**
+* **Blood Glucose:** 6 mmol/L (Normal)
+* **Target Blood Glucose Level:** 4 mmol/L
+* **Next Meal Carbohydrates:** 500 grams (Unrealistically high)
+* **Insulin To Carbohydrate Ratio:** 3 (Very low ratio)
+* **Patient Insulin Sensitivity Factor:** 1.5 (1 unit lowers blood glucose by 1.5 mmol/L)
+
+This patient does not require any insulin as the blood glucose level is within the normal range.
 
 ## API Documentation
 
