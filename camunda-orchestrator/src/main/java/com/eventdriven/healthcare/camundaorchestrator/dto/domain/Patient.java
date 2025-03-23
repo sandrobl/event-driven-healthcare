@@ -20,7 +20,6 @@ public class Patient implements Serializable {
     String firstname;
     float height;
     float weight;
-    float bloodGlucose;
     String nfcID;
     float insulinSensitivityFactor; // Insulin Sensitivity Factor (mg/dL
 

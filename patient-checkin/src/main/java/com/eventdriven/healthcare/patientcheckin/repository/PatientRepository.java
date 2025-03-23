@@ -29,7 +29,6 @@ public class PatientRepository {
                         rs.getString("firstname"),
                         rs.getFloat("height"),
                         rs.getFloat("weight"),
-                        rs.getFloat("bloodGlucose"),
                         rs.getString("nfcID"),
                         rs.getFloat("insulinSensitivityFactor")
                 );
@@ -42,7 +41,7 @@ public class PatientRepository {
     }
 
     public Patient addPatient(Patient patient) {
-        String sql = "INSERT INTO patients(patientID, name, firstname, height, weight, bloodGlucose, nfcID) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO patients(patientID, name, firstname, height, weight, nfcID) VALUES(?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, patient.getPatientID());
@@ -50,7 +49,6 @@ public class PatientRepository {
             pstmt.setString(3, patient.getFirstname());
             pstmt.setFloat(4, patient.getHeight());
             pstmt.setFloat(5, patient.getWeight());
-            pstmt.setFloat(6, patient.getBloodGlucose());
             pstmt.setString(7, patient.getNfcID());
             pstmt.setFloat(8, patient.getInsulinSensitivityFactor());
             pstmt.executeUpdate();
@@ -61,14 +59,13 @@ public class PatientRepository {
     }
 
     public Patient updatePatient(Patient patient) {
-        String sql = "UPDATE patients SET name = ?, firstname = ?, height = ?, weight = ?, bloodGlucose = ?, nfcID = ? WHERE patientID = ?";
+        String sql = "UPDATE patients SET name = ?, firstname = ?, height = ?, weight = ?,  nfcID = ? WHERE patientID = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, patient.getName());
             pstmt.setString(2, patient.getFirstname());
             pstmt.setFloat(3, patient.getHeight());
             pstmt.setFloat(4, patient.getWeight());
-            pstmt.setFloat(5, patient.getBloodGlucose());
             pstmt.setString(6, patient.getNfcID());
             pstmt.setInt(7, patient.getPatientID());
             pstmt.setFloat(8, patient.getInsulinSensitivityFactor());
@@ -92,7 +89,6 @@ public class PatientRepository {
                         rs.getString("firstname"),
                         rs.getFloat("height"),
                         rs.getFloat("weight"),
-                        rs.getFloat("bloodGlucose"),
                         rs.getString("nfcID"),
                         rs.getFloat("insulinSensitivityFactor")
                 );
@@ -116,7 +112,6 @@ public class PatientRepository {
                         rs.getString("firstname"),
                         rs.getFloat("height"),
                         rs.getFloat("weight"),
-                        rs.getFloat("bloodGlucose"),
                         rs.getString("nfcID"),
                         rs.getFloat("insulinSensitivityFactor")
                 );

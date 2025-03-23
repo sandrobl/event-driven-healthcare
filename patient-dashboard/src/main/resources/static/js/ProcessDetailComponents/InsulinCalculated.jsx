@@ -9,7 +9,7 @@ function InsulinCalculated({ insulinDoseInformation }) {
             <p className="mb-3">
                 <strong>Dose:</strong>{' '}
                 {insulinDoseInformation ? (
-                    <span className="badge bg-primary fs-5">{insulinDoseInformation} units</span>
+                    <span className="badge bg-primary fs-5">{insulinDoseInformation} ml</span>
                 ) : (
                     <span className="badge bg-secondary fs-5">?</span>
                 )}
