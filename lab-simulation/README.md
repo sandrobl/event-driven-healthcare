@@ -22,6 +22,10 @@ python3 simulate-lab.py \
     --file logs/healthcare_log_20250227-142710.txt
 ```
 
+For adding new patients change the file to **logs/only_nfc_events.txt**.
+
+To feed the system scale data use the file **logs/scale_events.txt** and change the value to the wished values.
+
 ### Parameters
 - `--broker` : MQTT broker address
 - `--port` : MQTT broker port (default: 1883)
