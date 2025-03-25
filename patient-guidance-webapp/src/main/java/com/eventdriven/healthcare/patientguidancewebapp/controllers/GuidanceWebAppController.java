@@ -44,7 +44,7 @@ public class GuidanceWebAppController {
      * 3) Get a single process by correlationId.
      */
     @GetMapping("/processes/{correlationId}")
-    public GuidanceWebAppProcessInfo getProcess(@PathVariable String correlationId) {
+    public GuidanceWebAppProcessInfo getProcess(@PathVariable("correlationId") String correlationId) {
         return guidanceWebAppService.getProcess(correlationId);
     }
 
@@ -56,7 +56,7 @@ public class GuidanceWebAppController {
      */
     @PostMapping("/processes/{correlationId}/insulinForm/submit")
     public void submitForm(
-            @PathVariable String correlationId,
+            @PathVariable("correlationId") String correlationId,
             @RequestBody InsulinFormData formData
     ) {
         guidanceWebAppService.updateProcessStep(correlationId, ProcessStep.FORM_SUBMITTED);
@@ -73,7 +73,8 @@ public class GuidanceWebAppController {
     }
 
     @PostMapping("/processes/{correlationId}/confirmInjection")
-    public void confirmInjection(@PathVariable String correlationId, @RequestBody InjectionConfirmedEvent event) {
+    public void confirmInjection(@PathVariable("correlationId") String correlationId,
+            @RequestBody InjectionConfirmedEvent event) {
         guidanceWebAppService.updateProcessStep(correlationId, ProcessStep.CONFIRMED);
         producerService.sendInjectionConfirmedEvent(correlationId, event);
     }
