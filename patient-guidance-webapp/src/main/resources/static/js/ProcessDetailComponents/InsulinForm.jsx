@@ -48,7 +48,7 @@ function InsulinForm({ correlationId, patientInsulinSensitivityFactor }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Target Blood Glucose Level (mg/dL)</label>
+                    <label className="form-label">Target Blood Glucose Level (mmol/L)</label>
                     <input
                         type="number"
                         step="0.1"
@@ -59,7 +59,7 @@ function InsulinForm({ correlationId, patientInsulinSensitivityFactor }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Current Blood Glucose Level (mg/dL)</label>
+                    <label className="form-label">Current Blood Glucose Level (mmol/L)</label>
                     <input
                         type="number"
                         step="0.1"
