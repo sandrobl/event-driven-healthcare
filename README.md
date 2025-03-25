@@ -14,6 +14,7 @@ There are 7 services that work in tandem to achieve a solution from detection if
 | patient checkin      | [Patient Checkin README](/patient-checkin/README.md)        |
 | patient guidance webapp           | [Patient Guidance WebApp README](/patient-guidance-webapp/README.md)                 |
 
+It is possible to set the Insulin Calculator REST into slow mode, so it will be unreachable. To do that start the service and then enter S into the console so "slow" mode will be activated.
 
 ## Scenarios 
 
