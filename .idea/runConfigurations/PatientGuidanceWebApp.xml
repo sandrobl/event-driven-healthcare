@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="PatientGuidanceWebApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <module name="patient-guidance-webapp" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.eventdriven.healthcare.patientguidancewebapp.PatientGuidanceWebApp" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
