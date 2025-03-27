@@ -86,6 +86,11 @@ public class MessageProcessConsumer {
                 float weight = rootNode.get("weight").floatValue();
                 logger.info("Received load_cell event with weight: {}", weight);
 
+                if (weight < 1f) {
+                    logger.info("Ignoring load_cell event with weight < 1.");
+                    return;
+                }
+
                 // Query Camunda for an execution waiting for the "Message_ScaleReading" event.
                 Execution waitingExecution = runtimeService.createExecutionQuery()
                         .messageEventSubscriptionName(MESSAGE_SCALE_READING)

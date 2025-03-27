@@ -1,4 +1,6 @@
 function ScaleReservedInstructions({ insulinDoseInformation }) {
+    const roundedDose = insulinDoseInformation < 1 ? 1 : Math.round(insulinDoseInformation);
+
     return (
         <div className="alert alert-info mt-4 shadow-sm rounded">
             <h4 className="alert-heading">Scale Reserved</h4>
@@ -10,8 +12,8 @@ function ScaleReservedInstructions({ insulinDoseInformation }) {
             </ol>
             <p className="mb-3">
                 <strong>Dose Required:</strong>{' '}
-                {insulinDoseInformation ? (
-                    <span className="badge bg-primary fs-5">{insulinDoseInformation} ml</span>
+                {roundedDose ? (
+                    <span className="badge bg-primary fs-5">{roundedDose} ml</span>
                 ) : (
                     <span className="badge bg-secondary fs-5">?</span>
                 )}

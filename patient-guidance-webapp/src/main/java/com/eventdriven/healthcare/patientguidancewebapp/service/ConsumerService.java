@@ -6,6 +6,7 @@ import com.eventdriven.healthcare.patientguidancewebapp.dto.InsulinCalculatedEve
 import com.eventdriven.healthcare.patientguidancewebapp.dto.DisplayScaleReservedCommand;
 import com.eventdriven.healthcare.patientguidancewebapp.dto.DisplayIncorrectDoseCommand;
 import com.eventdriven.healthcare.patientguidancewebapp.dto.DisplayConfirmationScreenCommand;
+import com.eventdriven.healthcare.patientguidancewebapp.model.ProcessStep;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -72,6 +73,10 @@ public class ConsumerService {
                     default:
                         log.warn("Unknown messageType: {}", messageType);
                 }
+            } else if ("EVENT".equalsIgnoreCase(messageCategory) && "injectionConfirmed".equalsIgnoreCase(messageType)) {
+                guidanceWebAppService.updateProcessStep(correlationId, ProcessStep.CONFIRMED);
+            } else {
+                log.warn("Unknown messageCategory: {}", messageCategory);
             }
         } catch(Exception e) {
             log.error("Error processing dashboard command", e);

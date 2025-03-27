@@ -1,4 +1,7 @@
 function InsulinCalculated({ insulinDoseInformation }) {
+
+    const roundedDose = insulinDoseInformation < 1 ? 1 : Math.round(insulinDoseInformation);
+
     return (
         <div className="alert alert-info mt-4 shadow-sm rounded">
             <h4 className="alert-heading">Insulin Dose Ready</h4>
@@ -9,7 +12,7 @@ function InsulinCalculated({ insulinDoseInformation }) {
             <p className="mb-3">
                 <strong>Dose:</strong>{' '}
                 {insulinDoseInformation ? (
-                    <span className="badge bg-primary fs-5">{insulinDoseInformation} ml</span>
+                    <span className="badge bg-primary fs-5">{roundedDose} ml</span>
                 ) : (
                     <span className="badge bg-secondary fs-5">?</span>
                 )}

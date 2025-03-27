@@ -78,14 +78,16 @@ public class ScaleService {
         }
         Float requestedDose = cmd.getInsulinDose();
         Float scaleValue = cmd.getScaleValue();
-        float tolerance = 1.0f;
-        boolean doseMatches = (Math.abs(scaleValue - requestedDose) <= tolerance);
+        Float syringeWeight = 4.0f;
 
-        if (doseMatches) {
+        float doseValue = (requestedDose < 1) ? 1 : Math.round(requestedDose);
+        float doseDifference = (scaleValue - syringeWeight) - doseValue;
+
+        if (doseDifference == 0f) {
             producerService.publishInsulinDoseValidated(currentReservation.getCorrelationId(),true, 0.0f);
             logger.info("Insulin dose valid for correlationId={}", currentReservation.getCorrelationId());
         } else {
-            producerService.publishInsulinDoseValidated(currentReservation.getCorrelationId(),false, scaleValue - requestedDose);
+            producerService.publishInsulinDoseValidated(currentReservation.getCorrelationId(),false, doseDifference);
             logger.info("Insulin dose invalid for correlationId={}", currentReservation.getCorrelationId());
         }
 
