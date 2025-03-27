@@ -16,6 +16,12 @@ There are 7 services that work in tandem to achieve a solution from detection if
 
 It is possible to set the Insulin Calculator REST into slow mode, so it will be unreachable. To do that start the service and then enter S into the console so "slow" mode will be activated.
 
+## LAB Demo
+
+https://github.com/user-attachments/assets/2d91a661-d545-40ba-b4ba-7c038b523e57
+
+
+
 ## Scenarios 
 
 ### Required 
@@ -57,7 +63,7 @@ The scale is now reserved for the user.
 
 The patient now has to weigh the correct amount of insulin for her insulin dose. 
 
-In this example it will be 1.4866666 ml if you are in a test environment you can create an mqtt event with that exact number using the lab-simulation service. 
+In this example it will be 1 ml if you are in a test environment you can create an mqtt event with that exact number using the lab-simulation service. Or just create one with too much weight to see the process going through the loop. 
 
 Change the content of the **scale_events.txt** so the weight is exactly the same dose that is required. 
 
@@ -65,14 +71,12 @@ There is one case that you have the wrong dose drawn into the syringe. This will
 
 The mqtt scale event can be mocked using this command.
 
-    ```bash
     python3 simulate-lab.py
         --broker ftsim.weber.ics.unisg.ch \
         --port 1883 \
         --username ftsim \
         --password unisg \
         --file logs/scale_events.txt
-    ```
 
 After this you will be prompted to administer the injection. Click on the button "Confirm injection". This will unreseve the scale and be the end of the workflow. 
 
