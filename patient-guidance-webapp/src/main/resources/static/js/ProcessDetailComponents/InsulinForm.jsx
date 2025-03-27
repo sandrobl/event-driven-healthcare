@@ -36,6 +36,10 @@ function InsulinForm({ correlationId, patientInsulinSensitivityFactor }) {
 
     return (
         <div className="border p-3 rounded">
+            <div className="alert alert-info mt-4 shadow-sm rounded">
+                <h4 className="alert-heading">Successfully Registered</h4>
+                <p>Please remove your NFC card from the reader and provide additional information.</p>
+            </div>
             <h5>Enter Additional Data (Needed for Insulin Calculation)</h5>
             <form onSubmit={handleSubmit} noValidate>
                 <div className="mb-3">
