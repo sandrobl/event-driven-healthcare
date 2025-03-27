@@ -10,6 +10,7 @@
         <module name="insulin-calculator-rest" />
         <module name="scale" />
         <module name="mqtt-kafka-bridge" />
+        <module name="patient-guidance-webapp" />
         <module name="patient-checkin" />
       </profile>
       <profile name="Annotation profile for camunda-orchestrator" enabled="true">
@@ -37,6 +38,7 @@
       <module name="mqtt-kafka-bridge" options="-parameters" />
       <module name="patient-checkin" options="-parameters" />
       <module name="patient-dashboard" options="-parameters" />
+      <module name="patient-guidance-webapp" options="-parameters" />
       <module name="scale" options="-parameters" />
       <module name="spring-boot-kafka-eyetracking" options="-parameters" />
     </option>

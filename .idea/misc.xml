@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/patient-dashboard/pom.xml" />
         <option value="$PROJECT_DIR$/insulin-calculator-rest/pom.xml" />
         <option value="$PROJECT_DIR$/scale/pom.xml" />
+        <option value="$PROJECT_DIR$/patient-guidance-webapp/pom.xml" />
       </list>
     </option>
   </component>
