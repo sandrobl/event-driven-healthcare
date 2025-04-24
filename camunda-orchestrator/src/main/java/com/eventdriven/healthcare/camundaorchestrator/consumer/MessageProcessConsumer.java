@@ -4,6 +4,7 @@ import com.eventdriven.healthcare.camundaorchestrator.dto.camunda.CamundaMessage
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinFormEnteredEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.PatientCheckInEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.ScaleEvent;
+import com.eventdriven.healthcare.avro.NfcEvent;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -40,49 +41,52 @@ public class MessageProcessConsumer {
     private final static String MESSSAGE_INJECTION_CONFIRMED = "Message_InjectionConfirmed";
 
     @KafkaListener(
+            topics           = "${spring.kafka.nfcEvents-topic}",
+            containerFactory = "kafkaListenerArvoNfcFactory",
+            groupId          = "${spring.kafka.consumer.group-id}"
+    )
+    public void startMessageProcess(
+            @Payload NfcEvent event,
+            @Header(KafkaHeaders.RECEIVED_KEY) String correlationKey
+    ) {
+        String nfcId   = event.getNfcID();
+        String location= event.getLocation();
+        int    msgId   = event.getMessageID();
+
+        long existing = runtimeService.createProcessInstanceQuery()
+                .variableValueEquals("patient_nfcId", nfcId)
+                .active()
+                .count();
+
+        if (existing > 0) {
+            log.info("Process already running for NFC {}. Skipping.", nfcId);
+            return;
+        }
+
+        Map<String,Object> vars = new HashMap<>();
+        vars.put("nfc_location",  location);
+        vars.put("nfc_messageID", msgId);
+        vars.put("patient_nfcId",  nfcId);
+
+        CamundaMessageDto dto = CamundaMessageDto.builder()
+                .correlationId(UUID.randomUUID().toString())
+                .vars(vars)
+                .build();
+
+        messageService.correlateMessage(dto, MESSAGE_NFC);
+    }
+
+    @KafkaListener(
             topics = "${spring.kafka.mqttEvents-topic}",
             containerFactory = "kafkaListenerJsonFactory",
             groupId = "${spring.kafka.consumer.group-id}")
-    public void startMessageProcess(@Payload JsonNode healthCareEvent) {
+    public void handleScaleEvent(@Payload JsonNode healthCareEvent) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rootNode = objectMapper.readTree(healthCareEvent.toString());
             String type = rootNode.get("type").asText();
 
-            if ("nfc".equalsIgnoreCase(type)) {
-                String location = rootNode.get("location").asText();
-                String messageID = rootNode.get("messageID").asText();
-                int readingId = Integer.parseInt(rootNode.get("readingID").asText());
-                if (readingId == 0) {
-                    return;
-                }
-                String formattedNfcID = formatNfcId(rootNode.get("ID").asText());
-
-                long existingCount = runtimeService.createProcessInstanceQuery()
-                        .variableValueEquals("patient_nfcId", formattedNfcID)
-                        .active()
-                        .count();
-
-                if (existingCount > 0) {
-                    logger.info("Process already running with NFC ID {}. Skip start process.", formattedNfcID);
-                    return;
-                }
-
-                Map<String, Object> vars = new HashMap<>();
-                vars.put("nfc_location", location);
-                vars.put("nfc_messageID", messageID);
-                vars.put("patient_nfcId", formattedNfcID);
-
-                // Generate a unique correlation ID.
-                String correlationId = UUID.randomUUID().toString();
-
-                CamundaMessageDto camundaMessageDto = CamundaMessageDto.builder()
-                        .correlationId(correlationId)
-                        .vars(vars)
-                        .build();
-
-                messageService.correlateMessage(camundaMessageDto, MESSAGE_NFC);
-            } else if ("load_cell".equalsIgnoreCase(type)) {
+             if ("load_cell".equalsIgnoreCase(type)) {
                 float weight = rootNode.get("weight").floatValue();
                 logger.info("Received load_cell event with weight: {}", weight);
 
@@ -207,20 +211,6 @@ public class MessageProcessConsumer {
                     .build();
             messageService.correlateMessage(camundaMsg, MESSSAGE_INJECTION_CONFIRMED);
         }
-    }
-
-
-    /**
-     * Converts an NFC ID from event format (e.g., "ID 0x04 0xDA 0xF2 ...")
-     * into a format that matches the database (e.g., "04DAF28AB45780").
-     */
-    private String formatNfcId(String rawNfcId) {
-        if (rawNfcId == null || !rawNfcId.startsWith("ID ")) {
-            return null; // Invalid format
-        }
-        return rawNfcId.replace("ID ", "") // Remove "ID " prefix
-                .replaceAll("0x", "") // Remove "0x" prefixes
-                .replaceAll(" ", ""); // Remove spaces
     }
 
 }

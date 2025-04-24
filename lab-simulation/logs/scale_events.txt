@@ -1,1 +1,1 @@
-{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 518, "weight": 3}
+{"type": "load_cell", "UID": "23xq", "location": "HYGIENE_STATION", "messageID": 518, "weight": 5}
