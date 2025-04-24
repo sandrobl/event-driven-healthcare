@@ -105,7 +105,7 @@ public class MessageProcessConsumer {
                     if (correlationId == null) {
                         correlationId = processInstanceId;
                     }
-I
+
                     Map<String, Object> vars = new HashMap<>();
                     vars.put("latest_scale_value", weight);
 
