@@ -1,0 +1,9 @@
+{
+  "namespace": "com.eventdriven.healthcare.avro",
+  "type": "record",
+  "name": "MQTTScaleEvent",
+  "fields": [
+    { "name": "messageID", "type": "int" },
+    { "name": "weight", "type": "int" }
+  ]
+}

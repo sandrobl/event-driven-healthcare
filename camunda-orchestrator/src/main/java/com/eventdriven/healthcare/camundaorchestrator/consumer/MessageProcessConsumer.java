@@ -1,5 +1,6 @@
 package com.eventdriven.healthcare.camundaorchestrator.consumer;
 
+import com.eventdriven.healthcare.avro.MQTTScaleEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.camunda.CamundaMessageDto;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinFormEnteredEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.PatientCheckInEvent;
@@ -77,50 +78,39 @@ public class MessageProcessConsumer {
     }
 
     @KafkaListener(
-            topics = "${spring.kafka.mqttEvents-topic}",
-            containerFactory = "kafkaListenerJsonFactory",
+            topics = "${spring.kafka.scaleEvents-topic}",
+            containerFactory = "kafkaListenerArvoScaleFactory",
             groupId = "${spring.kafka.consumer.group-id}")
-    public void handleScaleEvent(@Payload JsonNode healthCareEvent) {
+    public void handleScaleEvent(@Payload MQTTScaleEvent event) {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode rootNode = objectMapper.readTree(healthCareEvent.toString());
-            String type = rootNode.get("type").asText();
+            int weight = event.getWeight();
+            logger.info("Received load_cell event with weight: {}", weight);
 
-             if ("load_cell".equalsIgnoreCase(type)) {
-                float weight = rootNode.get("weight").floatValue();
-                logger.info("Received load_cell event with weight: {}", weight);
-
-                if (weight < 1f) {
-                    logger.info("Ignoring load_cell event with weight < 1.");
-                    return;
+            // Query Camunda for an execution waiting for the "Message_ScaleReading" event.
+            Execution waitingExecution = runtimeService.createExecutionQuery()
+                    .messageEventSubscriptionName(MESSAGE_SCALE_READING)
+                    .singleResult();
+            if (waitingExecution != null) {
+                // Use the business key if available; otherwise, use the process instance ID.
+                String processInstanceId = waitingExecution.getProcessInstanceId();
+                String correlationId = runtimeService.createProcessInstanceQuery()
+                        .processInstanceId(processInstanceId)
+                        .singleResult()
+                        .getBusinessKey();
+                if (correlationId == null) {
+                    correlationId = processInstanceId;
                 }
 
-                // Query Camunda for an execution waiting for the "Message_ScaleReading" event.
-                Execution waitingExecution = runtimeService.createExecutionQuery()
-                        .messageEventSubscriptionName(MESSAGE_SCALE_READING)
-                        .singleResult();
-                if (waitingExecution != null) {
-                    // Use the business key if available; otherwise, use the process instance ID.
-                    String processInstanceId = waitingExecution.getProcessInstanceId();
-                    String correlationId = runtimeService.createProcessInstanceQuery()
-                            .processInstanceId(processInstanceId)
-                            .singleResult()
-                            .getBusinessKey();
-                    if (correlationId == null) {
-                        correlationId = processInstanceId;
-                    }
+                Map<String, Object> vars = new HashMap<>();
+                vars.put("latest_scale_value", weight);
 
-                    Map<String, Object> vars = new HashMap<>();
-                    vars.put("latest_scale_value", weight);
-
-                    CamundaMessageDto camundaMsg = CamundaMessageDto.builder()
-                            .correlationId(correlationId)
-                            .vars(vars)
-                            .build();
-                    messageService.correlateMessage(camundaMsg, MESSAGE_SCALE_READING);
-                } else {
-                    logger.info("No process waiting for scale reading. Ignoring load_cell event.");
-                }
+                CamundaMessageDto camundaMsg = CamundaMessageDto.builder()
+                        .correlationId(correlationId)
+                        .vars(vars)
+                        .build();
+                messageService.correlateMessage(camundaMsg, MESSAGE_SCALE_READING);
+            } else {
+                logger.info("No process waiting for scale reading. Ignoring load_cell event.");
             }
         } catch (Exception e) {
             logger.error("Error processing NFC/scale hardware event: ", e);

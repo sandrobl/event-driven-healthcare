@@ -1,9 +1,11 @@
 package com.eventdriven.healthcare.streamprocessor.topology;
 
+import com.eventdriven.healthcare.avro.ScaleEvent;
 import com.eventdriven.healthcare.streamprocessor.serialization.avro.AvroSerdes;
 import com.eventdriven.healthcare.streamprocessor.serialization.json.JsonNodeSerde;
 import com.eventdriven.healthcare.avro.NfcEvent;
 import com.eventdriven.healthcare.streamprocessor.util.NfcFormatter;
+import com.eventdriven.healthcare.streamprocessor.util.ScaleFormatter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -66,12 +68,42 @@ public class MqttTopology {
                         AvroSerdes.nfcEvent("http://localhost:9010", false))
         );
 
-
         // Process Scale events
         // -------------------
         KStream<String, JsonNode> scaleStream = branches.get("branch-scale-events");
         scaleStream.print(Printed.<String, JsonNode>toSysOut().withLabel("scale-events"));
-        // TODO: Implement scale event processing
+
+        KStream<String, JsonNode> eventFilteredScaleStream =
+                scaleStream.filter((k, node) -> node.get("weight").asInt() >= 1);
+        eventFilteredScaleStream.print(Printed.<String, JsonNode>toSysOut().withLabel("event-filtered-scale-events"));
+
+        KStream<String, ObjectNode> contentFilteredScaleStream =
+                eventFilteredScaleStream.mapValues(node -> {
+            ObjectNode out = JsonNodeFactory.instance.objectNode();
+            out.put("weight",   node.path("weight").asInt());
+            out.put("messageID", node.path("messageID").asInt());
+            return out;
+        });
+
+        KStream<String, ScaleEvent> eventTranslatedScaleStream =
+                contentFilteredScaleStream.mapValues(node -> {
+                    int rawScaleWeight = node.get("weight").asInt(0);
+                    int formattedScaleWeight = ScaleFormatter.format(rawScaleWeight);
+
+                    ScaleEvent scaleEvent = new ScaleEvent();
+                    scaleEvent.setMessageID(node.get("messageID").asInt());
+                    scaleEvent.setWeight(formattedScaleWeight);
+                    return scaleEvent;
+        });
+        contentFilteredScaleStream.print(Printed.<String, ObjectNode>toSysOut().withLabel("content-filtered-scale-events"));
+
+        eventTranslatedScaleStream.to(
+                "scale-events",
+                Produced.with(
+                        Serdes.String(),
+                        AvroSerdes.scaleEvent("http://localhost:9010",
+                                false))
+        );
 
         return builder.build();
     }
