@@ -76,7 +76,7 @@ public class MqttTopology {
         scaleStream.print(Printed.<String, JsonNode>toSysOut().withLabel("scale-events"));
 
         KStream<String, JsonNode> eventFilteredScaleStream =
-                scaleStream.filter((k, node) -> node.get("weight").asInt() >= 1);
+                scaleStream.filter((k, node) -> node.get("weight").asInt() >= 5);
         eventFilteredScaleStream.print(Printed.<String, JsonNode>toSysOut().withLabel("event-filtered-scale-events"));
 
         KStream<String, ObjectNode> contentFilteredScaleStream =
