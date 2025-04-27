@@ -83,7 +83,7 @@ public class MessageProcessConsumer {
             groupId = "${spring.kafka.consumer.group-id}")
     public void handleScaleEvent(@Payload MQTTScaleEvent event) {
         try {
-            int weight = event.getWeight();
+            float weight = event.getWeight();
             logger.info("Received load_cell event with weight: {}", weight);
 
             // Query Camunda for an execution waiting for the "Message_ScaleReading" event.
@@ -103,7 +103,7 @@ public class MessageProcessConsumer {
 
                 Map<String, Object> vars = new HashMap<>();
                 vars.put("latest_scale_value", weight);
-
+                logger.info("Correlating scale reading {} with process instance ID: {}", weight, correlationId);
                 CamundaMessageDto camundaMsg = CamundaMessageDto.builder()
                         .correlationId(correlationId)
                         .vars(vars)

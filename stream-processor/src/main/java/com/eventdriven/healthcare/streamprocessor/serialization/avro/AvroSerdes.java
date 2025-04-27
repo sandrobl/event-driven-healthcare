@@ -1,7 +1,7 @@
 package com.eventdriven.healthcare.streamprocessor.serialization.avro;
 
+import com.eventdriven.healthcare.avro.MQTTScaleEvent;
 import com.eventdriven.healthcare.avro.NfcEvent;
-import com.eventdriven.healthcare.avro.ScaleEvent;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.avro.specific.SpecificRecord;
@@ -27,7 +27,7 @@ public class AvroSerdes {
     return make(url, isKey);
   }
 
-  public static Serde<ScaleEvent> scaleEvent(String url, boolean isKey) {
+  public static Serde<MQTTScaleEvent> scaleEvent(String url, boolean isKey) {
     return make(url, isKey);
   }
 }

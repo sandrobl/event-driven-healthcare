@@ -4,6 +4,6 @@
   "name": "MQTTScaleEvent",
   "fields": [
     { "name": "messageID", "type": "int" },
-    { "name": "weight", "type": "int" }
+    { "name": "weight", "type": "float" }
   ]
 }

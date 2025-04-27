@@ -1,6 +1,6 @@
 package com.eventdriven.healthcare.streamprocessor.topology;
 
-import com.eventdriven.healthcare.avro.ScaleEvent;
+import com.eventdriven.healthcare.avro.MQTTScaleEvent;
 import com.eventdriven.healthcare.streamprocessor.serialization.avro.AvroSerdes;
 import com.eventdriven.healthcare.streamprocessor.serialization.json.JsonNodeSerde;
 import com.eventdriven.healthcare.avro.NfcEvent;
@@ -29,7 +29,8 @@ public class MqttTopology {
         Map<String, KStream<String, JsonNode>> branches = stream
                 .split(Named.as("branch-"))
                 .branch((key, node) -> "nfc".equalsIgnoreCase(node.get("type").asText()), Branched.as("nfc-events"))
-                .branch((key, node) -> "scale".equalsIgnoreCase(node.get("type").asText()), Branched.as("scale-events"))
+                .branch((key, node) -> "load_cell".equalsIgnoreCase(node.get(
+                        "type").asText()), Branched.as("scale-events"))
                 .noDefaultBranch();
 
         // Process NFC events
@@ -61,6 +62,7 @@ public class MqttTopology {
             return nfcEvent;
         });
 
+
         eventTranslatedNfcStream.to(
                 "nfc-events",
                 Produced.with(
@@ -84,18 +86,21 @@ public class MqttTopology {
             out.put("messageID", node.path("messageID").asInt());
             return out;
         });
+        contentFilteredScaleStream.print(Printed.<String, ObjectNode>toSysOut().withLabel("content-filtered-scale-events"));
 
-        KStream<String, ScaleEvent> eventTranslatedScaleStream =
+        KStream<String, MQTTScaleEvent> eventTranslatedScaleStream =
                 contentFilteredScaleStream.mapValues(node -> {
-                    int rawScaleWeight = node.get("weight").asInt(0);
-                    int formattedScaleWeight = ScaleFormatter.format(rawScaleWeight);
+                    float rawScaleWeight =
+                            (float)node.get("weight").asDouble(0f);
+                    float formattedScaleWeight = ScaleFormatter.format(rawScaleWeight);
 
-                    ScaleEvent scaleEvent = new ScaleEvent();
+                    MQTTScaleEvent scaleEvent = new MQTTScaleEvent();
                     scaleEvent.setMessageID(node.get("messageID").asInt());
                     scaleEvent.setWeight(formattedScaleWeight);
                     return scaleEvent;
         });
-        contentFilteredScaleStream.print(Printed.<String, ObjectNode>toSysOut().withLabel("content-filtered-scale-events"));
+        eventTranslatedScaleStream.print(Printed.<String, MQTTScaleEvent>toSysOut().withLabel("content-transformed-scale-events"));
+
 
         eventTranslatedScaleStream.to(
                 "scale-events",

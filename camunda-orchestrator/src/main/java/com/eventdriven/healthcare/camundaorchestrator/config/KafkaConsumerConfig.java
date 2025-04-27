@@ -82,7 +82,7 @@ public class KafkaConsumerConfig {
         return f;
     }
 
-    // Kafka Consumer for ScaleEvent
+    // Kafka Consumer for MQTTScaleEvent
     @Bean
     public ConsumerFactory<String, MQTTScaleEvent> ArvoScaleConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
