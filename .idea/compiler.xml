@@ -10,10 +10,11 @@
         <module name="insulin-calculator-rest" />
         <module name="scale" />
         <module name="mqtt-kafka-bridge" />
+        <module name="stream-processor" />
         <module name="patient-guidance-webapp" />
         <module name="patient-checkin" />
       </profile>
-      <profile name="Annotation profile for camunda-orchestrator" enabled="true">
+      <profile name="Annotation profile for Camunda Orchestrator" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />

@@ -1,0 +1,10 @@
+{
+  "namespace": "com.eventdriven.healthcare.avro",
+  "type": "record",
+  "name": "NfcEvent",
+  "fields": [
+    { "name": "location",       "type": "string" },
+    { "name": "messageID",  "type": "int" },
+    { "name": "nfcID", "type": "string" }
+  ]
+}
