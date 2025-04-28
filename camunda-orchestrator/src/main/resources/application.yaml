@@ -17,6 +17,7 @@ spring:
     patientEvents-topic: patientEvents-topic
     mqttEvents-topic: smart-healthcare-data
     nfcEvents-topic: nfc-events
+    scaleEvents-topic: scale-events
 
 rest:
     insulin-calculator-url: http://localhost:8095/calculateInsulin

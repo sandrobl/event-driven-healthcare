@@ -78,10 +78,9 @@ public class ScaleService {
         }
         Float requestedDose = cmd.getInsulinDose();
         Float scaleValue = cmd.getScaleValue();
-        Float syringeWeight = 4.0f;
 
         float doseValue = (requestedDose < 1) ? 1 : Math.round(requestedDose);
-        float doseDifference = (scaleValue - syringeWeight) - doseValue;
+        float doseDifference = scaleValue - doseValue;
 
         if (doseDifference == 0f) {
             producerService.publishInsulinDoseValidated(currentReservation.getCorrelationId(),true, 0.0f);
