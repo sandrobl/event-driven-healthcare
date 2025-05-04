@@ -10,8 +10,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.state.KeyValueStore;
 
 import java.util.Map;
 
@@ -32,6 +34,13 @@ public class MqttTopology {
                 .branch((key, node) -> "load_cell".equalsIgnoreCase(node.get(
                         "type").asText()), Branched.as("scale-events"))
                 .noDefaultBranch();
+
+
+        KStream<String, JsonNode> patientStream = builder.stream(
+                "patientEvents-topic",
+                Consumed.with(Serdes.String(), new JsonNodeSerde())
+        );
+        stream.print(Printed.<String, JsonNode>toSysOut().withLabel("Raw Data"));       
 
         // Process NFC events
         // -----------------
@@ -109,6 +118,68 @@ public class MqttTopology {
                         AvroSerdes.scaleEvent("http://localhost:9010",
                                 false))
         );
+
+
+
+        // 1) Build the lookup KTable: correlationId → patientId
+        KTable<String,String> correlationToPatientTable = patientStream
+                .filter((corrId, node) ->
+                        "displayPatientData".equalsIgnoreCase(node.get("messageType").asText()))
+                .mapValues(node -> node.get("patient").get("id").asText())
+                .toTable(
+                        Materialized.<String,String,KeyValueStore<Bytes,byte[]>>as("correlation-patient-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(Serdes.String())
+                );
+
+        // 2) Extract insulin doses as a KStream keyed by correlationId
+        KStream<String,Double> insulinDoseStream = patientStream
+                .filter((corrId, node) ->
+                        "displayInsulinDose".equalsIgnoreCase(node.get("messageType").asText()))
+                .mapValues(node -> {
+                    // adjust if your JSON nests payload.insulinDoses
+                    return node.has("payload")
+                            ? node.get("payload").get("insulinDoses").asDouble()
+                            : node.get("insulinDoses").asDouble();
+                });
+
+        // 3) Join the dose stream to the lookup table to enrich with patientId
+        //    Resulting stream key is still correlationId, value is a Pair(patientId, dose)
+        KStream<String,KeyValue<String,Double>> enriched = insulinDoseStream
+                .join(correlationToPatientTable,
+                        /* valueJoiner */ (dose, patientId) -> KeyValue.pair(patientId, dose),
+                        /* materialize serde */ Joined.with(
+                                Serdes.String(),         // existing key serde (correlationId)
+                                Serdes.Double(),         // insulin dose serde
+                                Serdes.String()          // patientId serde
+                        )
+                );
+
+        // 4) Re-key by patientId and drop the Pair wrapper
+        KStream<String,Double> byPatient = enriched
+                .selectKey((corrId, pair) -> pair.key)
+                .mapValues(pair -> pair.value);
+
+        // 5) Finally, group by patientId and sum
+        KTable<String,Double> totalInsulinPerPatient = byPatient
+                .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
+                .reduce(
+                        Double::sum,
+                        Materialized.<String,Double,KeyValueStore<Bytes,byte[]>>as("total-insulin-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(Serdes.Double())
+                );
+
+        // 1. Convert the table to a stream of updates
+        KStream<String, Double> totalsStream = totalInsulinPerPatient.toStream();
+
+        // 2. Send to a dedicated topic
+        totalsStream.to(
+                "patient-insulin-totals",
+                Produced.with(Serdes.String(), Serdes.Double())
+        );
+
+
 
         return builder.build();
     }
