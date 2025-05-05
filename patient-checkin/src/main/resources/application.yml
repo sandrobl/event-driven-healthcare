@@ -30,4 +30,7 @@ spring:
       bootstrap-servers: localhost:9092
 
     patientEvents-topic: patientEvents-topic
+    patientStatic-topic: patient-static-topic
+    patientMetrics-topic: patient-metrics-topic
     mqttEvents-topic: smart-healthcare-data
+
