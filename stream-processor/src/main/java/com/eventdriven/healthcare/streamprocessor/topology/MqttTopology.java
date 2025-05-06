@@ -47,7 +47,7 @@ public class MqttTopology {
                 "patientEvents-topic",
                 Consumed.with(Serdes.String(), new JsonNodeSerde())
         );
-        stream.print(Printed.<String, JsonNode>toSysOut().withLabel("Raw Data"));       
+        patientStream.print(Printed.<String, JsonNode>toSysOut().withLabel("Raw Data"));       
 
         // Process NFC events
         // -----------------
@@ -136,65 +136,65 @@ public class MqttTopology {
                                 false))
         );
 
+        // Process of Adding all insulin doses per Patient (NFC ID
+        // --------------------------------
 
+        // 1) First build the lookup KTable: correlationId → nfcID
+        KTable<String,String> correlationToNfcTable = patientStream
+        // Filter for any message containing patient info with valid NFC ID
+        .filter((corrId, node) -> 
+                node.has("patient") && 
+                node.get("patient").has("nfcID") && 
+                !node.get("patient").get("nfcID").isNull() &&
+                !node.get("patient").get("nfcID").asText().equals("null"))
+        .peek((key, value) -> System.out.println("FOUND PATIENT NODE: " + key + 
+                ", nfcID: " + value.get("patient").get("nfcID").asText()))
+        .mapValues(node -> node.get("patient").get("nfcID").asText())
+        .toTable(
+                Materialized.<String,String,KeyValueStore<Bytes,byte[]>>as("correlation-nfc-store")
+                        .withKeySerde(Serdes.String())
+                        .withValueSerde(Serdes.String())
+        );
+        correlationToNfcTable.toStream().print(Printed.<String, String>toSysOut().withLabel("DEBUG - correlationToNfcTable"));
 
-        // 1) Build the lookup KTable: correlationId → patientId
-        KTable<String,String> correlationToPatientTable = patientStream
-                .filter((corrId, node) ->
-                        "displayPatientData".equalsIgnoreCase(node.get("messageType").asText()))
-                .mapValues(node -> node.get("patient").get("id").asText())
-                .toTable(
-                        Materialized.<String,String,KeyValueStore<Bytes,byte[]>>as("correlation-patient-store")
-                                .withKeySerde(Serdes.String())
-                                .withValueSerde(Serdes.String())
-                );
-
-        // 2) Extract insulin doses as a KStream keyed by correlationId
+        // 2) Extract insulin doses from messages - this stays the same
         KStream<String,Double> insulinDoseStream = patientStream
-                .filter((corrId, node) ->
-                        "displayInsulinDose".equalsIgnoreCase(node.get("messageType").asText()))
-                .mapValues(node -> {
-                    // adjust if your JSON nests payload.insulinDoses
-                    return node.has("payload")
-                            ? node.get("payload").get("insulinDoses").asDouble()
-                            : node.get("insulinDoses").asDouble();
-                });
+        .filter((corrId, node) -> node.has("insulinDoses"))
+        .peek((key, value) -> System.out.println("FOUND INSULIN DOSE: " + key + 
+                ", dose: " + value.get("insulinDoses").asDouble()))
+        .mapValues(node -> node.get("insulinDoses").asDouble());
+        insulinDoseStream.print(Printed.<String, Double>toSysOut().withLabel("DEBUG - insulinDoseStream"));
 
-        // 3) Join the dose stream to the lookup table to enrich with patientId
-        //    Resulting stream key is still correlationId, value is a Pair(patientId, dose)
-        KStream<String,KeyValue<String,Double>> enriched = insulinDoseStream
-                .join(correlationToPatientTable,
-                        /* valueJoiner */ (dose, patientId) -> KeyValue.pair(patientId, dose),
-                        /* materialize serde */ Joined.with(
-                                Serdes.String(),         // existing key serde (correlationId)
-                                Serdes.Double(),         // insulin dose serde
-                                Serdes.String()          // patientId serde
-                        )
-                );
+        // 3) Join the dose stream to the lookup table to enrich with nfcID
+        KStream<String,KeyValue<String,Double>> patientDoseMapping = insulinDoseStream
+        .join(correlationToNfcTable,
+        (dose, nfcID) -> KeyValue.pair(nfcID, dose),
+        Joined.with(
+                Serdes.String(),  // correlation ID key
+                Serdes.Double(),  // insulin dose value
+                Serdes.String()   // nfcID value from table
+        )
+        );
+        patientDoseMapping.print(Printed.<String, KeyValue<String, Double>>toSysOut().withLabel("DEBUG - patientDoseMapping"));
 
         // 4) Re-key by patientId and drop the Pair wrapper
-        KStream<String,Double> byPatient = enriched
-                .selectKey((corrId, pair) -> pair.key)
-                .mapValues(pair -> pair.value);
+       KStream<String,Double> byPatient = patientDoseMapping
+               .selectKey((corrId, pair) -> pair.key)
+               .mapValues(pair -> pair.value);
 
-        // 5) Finally, group by patientId and sum
-        KTable<String,Double> totalInsulinPerPatient = byPatient
-                .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
-                .reduce(
-                        Double::sum,
-                        Materialized.<String,Double,KeyValueStore<Bytes,byte[]>>as("total-insulin-store")
-                                .withKeySerde(Serdes.String())
-                                .withValueSerde(Serdes.Double())
-                );
+       byPatient.print(Printed.<String, Double>toSysOut().withLabel("DEBUG - byPatient"));
 
-        // 1. Convert the table to a stream of updates
-        KStream<String, Double> totalsStream = totalInsulinPerPatient.toStream();
 
-        // 2. Send to a dedicated topic
-        totalsStream.to(
-                "patient-insulin-totals",
-                Produced.with(Serdes.String(), Serdes.Double())
-        );
+       // 5) Finally, group by patientId and sum
+       KTable<String,Double> totalInsulinPerPatient = byPatient
+               .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
+               .reduce(
+                       Double::sum,
+                       Materialized.<String,Double,KeyValueStore<Bytes,byte[]>>as("total-insulin-store")
+                               .withKeySerde(Serdes.String())
+                               .withValueSerde(Serdes.Double())
+               );
+       totalInsulinPerPatient.toStream().print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient"));
 
 
         // Patient Data kTable enrichments
