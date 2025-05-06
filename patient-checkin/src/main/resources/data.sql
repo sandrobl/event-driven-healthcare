@@ -1,6 +1,9 @@
 INSERT OR IGNORE INTO patients
-    (patientID, name, firstname, height, weight, nfcID, insulinSensitivityFactor)
+(patientID, name, firstname, nfcID, address, city, plz, dateOfBirth)
 VALUES
-    (1, 'Doe', 'John', 180.0, 75.0,  '04DAF28AB45780', 1.5),
-    (2, 'Smith', 'Jane', 165.0, 60.0,  '08DAC28BB44223', 3.0),
-    (3, 'Brown', 'Charlie', 170.0, 68.0,  '06DCE18BA42067', 3.0);
+    (1, 'Müller',  'Anna',    '04DAF28AB45780',
+     'Bahnhofstrasse 1',   'Zürich',      '8001', '1985-03-15'),
+    (2, 'Meier',   'Lukas',   '08DAC28BB44223',
+     'Hauptstrasse 45',    'Bern',        '3001', '1990-11-02'),
+    (3, 'Dubois',  'Sophie',  '06DCE18BA42067',
+     'Rue du Rhône 10',    'Genève',      '1204', '1978-07-28');

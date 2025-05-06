@@ -1,6 +1,6 @@
 package com.eventdriven.healthcare.patientcheckin.service;
 
-import com.eventdriven.healthcare.patientcheckin.dto.PatientCheckInEvent;
+import com.eventdriven.healthcare.patientcheckin.dto.PatientDataEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,11 +23,11 @@ public class ProducerService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendPatientCheckInEvent(String key, PatientCheckInEvent event) {
-        Message<PatientCheckInEvent> message = MessageBuilder.withPayload(event)
+    public void sendPatientDataEvent(String key, PatientDataEvent event) {
+        Message<PatientDataEvent> message = MessageBuilder.withPayload(event)
                 .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
                 .setHeader("messageCategory", "EVENT")
-                .setHeader("messageType", "patientCheckedIn")
+                .setHeader("messageType", "patientData")
                 .setHeader(KafkaHeaders.KEY, key)
                 .build();
 

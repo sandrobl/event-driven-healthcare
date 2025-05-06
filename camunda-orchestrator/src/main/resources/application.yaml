@@ -16,7 +16,7 @@ spring:
 
     patientEvents-topic: patientEvents-topic
     mqttEvents-topic: smart-healthcare-data
-    nfcEvents-topic: nfc-events
+    nfcEvents-topic: nfc-events-enriched
     scaleEvents-topic: scale-events
 
 rest:
