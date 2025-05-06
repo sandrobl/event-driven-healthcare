@@ -1,12 +1,17 @@
 package com.eventdriven.healthcare.streamprocessor.topology;
 
 import com.eventdriven.healthcare.avro.MQTTScaleEvent;
+import com.eventdriven.healthcare.avro.EnrichedCheckInEvent;
 import com.eventdriven.healthcare.streamprocessor.serialization.avro.AvroSerdes;
+import com.eventdriven.healthcare.streamprocessor.serialization.dto.EnrichedPatient;
+import com.eventdriven.healthcare.streamprocessor.serialization.dto.PatientMetricsEvent;
+import com.eventdriven.healthcare.streamprocessor.serialization.dto.PatientStaticEvent;
 import com.eventdriven.healthcare.streamprocessor.serialization.json.JsonNodeSerde;
 import com.eventdriven.healthcare.avro.NfcEvent;
 import com.eventdriven.healthcare.streamprocessor.util.NfcFormatter;
 import com.eventdriven.healthcare.streamprocessor.util.ScaleFormatter;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.kafka.common.serialization.Serdes;
@@ -16,6 +21,7 @@ import org.apache.kafka.streams.kstream.*;
 import java.util.Map;
 
 public class MqttTopology {
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     public static Topology build() {
         StreamsBuilder builder = new StreamsBuilder();
@@ -108,6 +114,59 @@ public class MqttTopology {
                         Serdes.String(),
                         AvroSerdes.scaleEvent("http://localhost:9010",
                                 false))
+        );
+
+        // Patient Data kTable enrichments
+        // --------------------------------
+        // Static data
+        KTable<String, JsonNode> rawPatientStaticTable = builder.table(
+                "patient-static-topic",
+                Consumed.with(Serdes.String(), new JsonNodeSerde())
+        );
+        KTable<String, PatientStaticEvent> patientStaticTable = rawPatientStaticTable
+                .mapValues(json -> MAPPER.convertValue(json, PatientStaticEvent.class));
+
+        // Dynamic metrics
+        KTable<String, JsonNode> rawPatientMetricsTable = builder.table(
+                "patient-metrics-topic",
+                Consumed.with(Serdes.String(), new JsonNodeSerde()),
+                Materialized.as("patient-metrics-store")
+        );
+        KTable<String, PatientMetricsEvent> patientMetricsTable = rawPatientMetricsTable
+                .mapValues(json -> MAPPER.convertValue(json, PatientMetricsEvent.class));
+
+        // Join static + metrics → enriched patient
+        KTable<String, EnrichedPatient> patientTable = patientStaticTable
+                .leftJoin(patientMetricsTable, EnrichedPatient::from);
+
+        patientTable.toStream().print(Printed.<String, EnrichedPatient>toSysOut()
+                .withLabel("enriched-patient")
+                .withKeyValueMapper((k, v) -> k + " : " + v));
+
+        // ---- Enrich processed NFC stream and emit Avro enriched events ----
+        KStream<String, EnrichedCheckInEvent> enrichedCheckInEventStream = eventTranslatedNfcStream.leftJoin(
+                patientTable,
+                (nfc, patient) -> {
+                    EnrichedCheckInEvent.Builder enrichedCheckInEventBuilder = EnrichedCheckInEvent.newBuilder()
+                            .setLocation(nfc.getLocation())
+                            .setMessageID(nfc.getMessageID())
+                            .setNfcID(nfc.getNfcID())
+                            .setName(patient != null ? patient.getName() : "")
+                            .setFirstname(patient != null ? patient.getFirstname() : "");
+                    if (patient != null) {
+                        if (patient.getHeight() != null) enrichedCheckInEventBuilder.setHeight(patient.getHeight());
+                        if (patient.getWeight() != null) enrichedCheckInEventBuilder.setWeight(patient.getWeight());
+                        if (patient.getInsulinSensitivityFactor() != null)
+                            enrichedCheckInEventBuilder.setInsulinSensitivityFactor(patient.getInsulinSensitivityFactor());
+                        if (patient.getTimestamp() != null)
+                            enrichedCheckInEventBuilder.setTimestamp(patient.getTimestamp());
+                    }
+                    return enrichedCheckInEventBuilder.build();
+                }
+        );
+        enrichedCheckInEventStream.to(
+                "nfc-events-enriched",
+                Produced.with(Serdes.String(), AvroSerdes.enrichedCheckInEvent("http://localhost:9010", false))
         );
 
         return builder.build();

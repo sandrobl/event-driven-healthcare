@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,109 +16,149 @@ public class PatientRepository {
     @Autowired
     private DataSource dataSource;
 
-
     public List<Patient> getPatientList() {
         List<Patient> patients = new ArrayList<>();
-        String sql = "SELECT * FROM patients";
+        String sql = """
+            SELECT patientID, name, firstname, nfcID,
+                   address, city, plz, dateOfBirth
+              FROM patients
+            """;
+
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
+
             while (rs.next()) {
-                Patient patient = new Patient(
-                        rs.getInt("patientID"),
-                        rs.getString("name"),
-                        rs.getString("firstname"),
-                        rs.getFloat("height"),
-                        rs.getFloat("weight"),
-                        rs.getString("nfcID"),
-                        rs.getFloat("insulinSensitivityFactor")
+                patients.add(Patient.builder()
+                        .patientID(   rs.getInt("patientID") )
+                        .name(        rs.getString("name")    )
+                        .firstname(   rs.getString("firstname"))
+                        .nfcID(       rs.getString("nfcID")   )
+                        .address(     rs.getString("address") )
+                        .city(        rs.getString("city")    )
+                        .plz(         rs.getString("plz")     )
+                        .dateOfBirth( LocalDate.parse(rs.getString("dateOfBirth")) )
+                        .build()
                 );
-                patients.add(patient);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error fetching patients", e);
         }
         return patients;
     }
 
     public Patient addPatient(Patient patient) {
-        String sql = "INSERT INTO patients(patientID, name, firstname, height, weight, nfcID) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = """
+            INSERT INTO patients
+              (patientID, name, firstname, nfcID,
+               address, city, plz, dateOfBirth)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """;
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setInt(1, patient.getPatientID());
             pstmt.setString(2, patient.getName());
             pstmt.setString(3, patient.getFirstname());
-            pstmt.setFloat(4, patient.getHeight());
-            pstmt.setFloat(5, patient.getWeight());
-            pstmt.setString(7, patient.getNfcID());
-            pstmt.setFloat(8, patient.getInsulinSensitivityFactor());
+            pstmt.setString(4, patient.getNfcID());
+            pstmt.setString(5, patient.getAddress());
+            pstmt.setString(6, patient.getCity());
+            pstmt.setString(7, patient.getPlz());
+            pstmt.setString(8, patient.getDateOfBirth().toString());
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error inserting patient", e);
         }
         return patient;
     }
 
     public Patient updatePatient(Patient patient) {
-        String sql = "UPDATE patients SET name = ?, firstname = ?, height = ?, weight = ?,  nfcID = ? WHERE patientID = ?";
+        String sql = """
+            UPDATE patients SET
+                name = ?, firstname = ?, nfcID = ?,
+                address = ?, city = ?, plz = ?, dateOfBirth = ?
+              WHERE patientID = ?
+            """;
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setString(1, patient.getName());
             pstmt.setString(2, patient.getFirstname());
-            pstmt.setFloat(3, patient.getHeight());
-            pstmt.setFloat(4, patient.getWeight());
-            pstmt.setString(6, patient.getNfcID());
-            pstmt.setInt(7, patient.getPatientID());
-            pstmt.setFloat(8, patient.getInsulinSensitivityFactor());
+            pstmt.setString(3, patient.getNfcID());
+            pstmt.setString(4, patient.getAddress());
+            pstmt.setString(5, patient.getCity());
+            pstmt.setString(6, patient.getPlz());
+            pstmt.setString(7, patient.getDateOfBirth().toString());
+            pstmt.setInt(8, patient.getPatientID());
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error updating patient", e);
         }
         return patient;
     }
 
     public Patient getPatientById(int id) {
-        String sql = "SELECT * FROM patients WHERE patientID = ?";
+        String sql = """
+            SELECT patientID, name, firstname, nfcID,
+                   address, city, plz, dateOfBirth
+              FROM patients
+             WHERE patientID = ?
+            """;
+
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return new Patient(
-                        rs.getInt("patientID"),
-                        rs.getString("name"),
-                        rs.getString("firstname"),
-                        rs.getFloat("height"),
-                        rs.getFloat("weight"),
-                        rs.getString("nfcID"),
-                        rs.getFloat("insulinSensitivityFactor")
-                );
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return Patient.builder()
+                            .patientID(   rs.getInt("patientID") )
+                            .name(        rs.getString("name")    )
+                            .firstname(   rs.getString("firstname"))
+                            .nfcID(       rs.getString("nfcID")   )
+                            .address(     rs.getString("address") )
+                            .city(        rs.getString("city")    )
+                            .plz(         rs.getString("plz")     )
+                            .dateOfBirth( LocalDate.parse(rs.getString("dateOfBirth")) )
+                            .build();
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error fetching patient by ID", e);
         }
         return null;
     }
 
     public Patient getPatientByNfcId(String nfcId) {
-        String sql = "SELECT * FROM patients WHERE nfcID = ?";
+        String sql = """
+            SELECT patientID, name, firstname, nfcID,
+                   address, city, plz, dateOfBirth
+              FROM patients
+             WHERE nfcID = ?
+            """;
+
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setString(1, nfcId);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return new Patient(
-                        rs.getInt("patientID"),
-                        rs.getString("name"),
-                        rs.getString("firstname"),
-                        rs.getFloat("height"),
-                        rs.getFloat("weight"),
-                        rs.getString("nfcID"),
-                        rs.getFloat("insulinSensitivityFactor")
-                );
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return Patient.builder()
+                            .patientID(   rs.getInt("patientID") )
+                            .name(        rs.getString("name")    )
+                            .firstname(   rs.getString("firstname"))
+                            .nfcID(       rs.getString("nfcID")   )
+                            .address(     rs.getString("address") )
+                            .city(        rs.getString("city")    )
+                            .plz(         rs.getString("plz")     )
+                            .dateOfBirth( LocalDate.parse(rs.getString("dateOfBirth")) )
+                            .build();
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error fetching patient by NFC ID", e);
         }
         return null;
     }
