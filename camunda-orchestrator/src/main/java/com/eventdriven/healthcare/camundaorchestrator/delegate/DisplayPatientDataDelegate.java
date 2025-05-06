@@ -26,8 +26,8 @@ public class DisplayPatientDataDelegate implements JavaDelegate {
     public void execute(DelegateExecution execution) {
         // Retrieve patient data from process variables
         Integer patientId = (Integer) execution.getVariable("patient_id");
-        String firstName   = (String)  execution.getVariable("patient_firstName");
-        String lastName    = (String)  execution.getVariable("patient_lastName");
+        String firstName   = (String)  execution.getVariable("patient_FirstName");
+        String lastName    = (String)  execution.getVariable("patient_LastName");
         String nfcId       = (String)  execution.getVariable("patient_nfcId");
 
         Float height = execution.getVariable("patient_height") instanceof Number

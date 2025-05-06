@@ -69,12 +69,18 @@ public class MqttTopology {
             return nfcEvent;
         });
 
-        KStream<String, NfcEvent> keyedNfcStream = eventTranslatedNfcStream
-                .selectKey((oldKey, event) -> event.getNfcID().toString());
 
-        keyedNfcStream.print(Printed.<String, NfcEvent>toSysOut().withLabel("nfc-events-keyed"));
+        eventTranslatedNfcStream.print(Printed.<String, NfcEvent>toSysOut().withLabel("nfc-events-keyed"));
 
-        keyedNfcStream.to(
+        eventTranslatedNfcStream
+                .map(
+                        (key, nfc) -> {
+                            // use the NFC ID as the key
+                            String nfcId = nfc.getNfcID().toString();
+                            return KeyValue.pair(nfcId, nfc);
+                        }
+                )
+                .to(
                 "nfc-events",
                 Produced.with(
                         Serdes.String(),
@@ -160,8 +166,14 @@ public class MqttTopology {
                 .withKeyValueMapper((k, v) -> k + " : " + v));
 
         // ---- Enrich processed NFC stream and emit Avro enriched events ----
+        // Join NFC events with patient data
+        KStream<String, NfcEvent> nfcEventStream = builder.stream(
+                "nfc-events",
+                Consumed.with(Serdes.String(), AvroSerdes.nfcEvent("http://localhost:9010", false))
+        );
+
         KStream<String, EnrichedCheckInEvent> enrichedCheckInEventStream =
-                keyedNfcStream
+                nfcEventStream
                         .leftJoin(
                                 patientTable,
                                 (nfc, patient) -> {
@@ -184,6 +196,10 @@ public class MqttTopology {
                                 }
                         )
                         .filter((key, enriched) -> enriched != null);
+
+        enrichedCheckInEventStream.print(Printed.<String, EnrichedCheckInEvent>toSysOut()
+                .withLabel("ENRICHED-CHECKIN-EVENTS")
+                .withKeyValueMapper((k, v) -> k + " : " + v));
 
         enrichedCheckInEventStream.to(
                 "nfc-events-enriched",
