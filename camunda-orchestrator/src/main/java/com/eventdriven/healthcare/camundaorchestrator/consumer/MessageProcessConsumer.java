@@ -1,9 +1,10 @@
 package com.eventdriven.healthcare.camundaorchestrator.consumer;
 
+import com.eventdriven.healthcare.avro.EnrichedCheckInEvent;
 import com.eventdriven.healthcare.avro.MQTTScaleEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.camunda.CamundaMessageDto;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinFormEnteredEvent;
-import com.eventdriven.healthcare.camundaorchestrator.dto.domain.PatientCheckInEvent;
+import com.eventdriven.healthcare.camundaorchestrator.dto.domain.PatientDataEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.ScaleEvent;
 import com.eventdriven.healthcare.avro.NfcEvent;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -34,7 +35,7 @@ public class MessageProcessConsumer {
     private final RuntimeService runtimeService;
 
     private final static String MESSAGE_NFC = "Message_NFCTag";
-    private final static String MESSAGE_PATIENTCHECKEDIN = "Message_PatientCheckedIn";
+    private final static String MESSAGE_PATIENTDATARECIEVED = "Message_PatientDataReceived";
     private final static String MESSAGE_INSULINFORMENTERED = "Message_InsulinFormEntered";
     private final static String MESSAGE_SCALE_RESERVED = "Message_ScaleReserved";
     private final static String MESSAGE_INSULINDOSE_VALIDATED = "Message_InsulinDoseValidated";
@@ -47,7 +48,7 @@ public class MessageProcessConsumer {
             groupId          = "${spring.kafka.consumer.group-id}"
     )
     public void startMessageProcess(
-            @Payload NfcEvent event,
+            @Payload EnrichedCheckInEvent event,
             @Header(KafkaHeaders.RECEIVED_KEY) String correlationKey
     ) {
         String nfcId   = event.getNfcID();
@@ -68,6 +69,11 @@ public class MessageProcessConsumer {
         vars.put("nfc_location",  location);
         vars.put("nfc_messageID", msgId);
         vars.put("patient_nfcId",  nfcId);
+        vars.put("patient_FirstName", event.getFirstname());
+        vars.put("patient_LastName", event.getName());
+        vars.put("patient_height", event.getHeight());
+        vars.put("patient_weight", event.getWeight());
+        vars.put("patient_insulinSensitivityFactor", event.getInsulinSensitivityFactor());
 
         CamundaMessageDto dto = CamundaMessageDto.builder()
                 .correlationId(UUID.randomUUID().toString())
@@ -126,19 +132,20 @@ public class MessageProcessConsumer {
                               @Header("messageType") String messageType,
                               @Header(KafkaHeaders.RECEIVED_KEY) String correlationKey) {
         log.info("Consumed {} {}: {} with key: {}", messageCategory, messageType, payload, correlationKey);
-        if ("EVENT".equals(messageCategory) && "patientCheckedIn".equals(messageType)) {
+        if ("EVENT".equals(messageCategory) && "patientData".equals(messageType)) {
 
             try {
-                PatientCheckInEvent event = new ObjectMapper().treeToValue(payload, PatientCheckInEvent.class);
+                PatientDataEvent event = new ObjectMapper().treeToValue(payload, PatientDataEvent.class);
 
                 Map<String, Object> vars = new HashMap<>();
                 vars.put("patient_found", event.isFound());
                 vars.put("patient_id", event.getPatient().getPatientID());
                 vars.put("patient_FirstName", event.getPatient().getFirstname());
                 vars.put("patient_LastName", event.getPatient().getName());
-                vars.put("patient_height", event.getPatient().getHeight());
-                vars.put("patient_weight", event.getPatient().getWeight());
-                vars.put("patient_insulinSensitivityFactor", event.getPatient().getInsulinSensitivityFactor());
+                vars.put("patient_address", event.getPatient().getAddress());
+                vars.put("patient_plz", event.getPatient().getPlz());
+                vars.put("patient_city", event.getPatient().getCity());
+                vars.put("patient_has_address", event.getPatient().getAddress() != null && event.getPatient().getCity() != null && event.getPatient().getPlz() != null);
 
                 // Build a CamundaMessageDto with the correlationKey as the business key
                 CamundaMessageDto camundaMsg = CamundaMessageDto.builder()
@@ -146,7 +153,7 @@ public class MessageProcessConsumer {
                         .vars(vars)
                         .build();
 
-                messageService.correlateMessage(camundaMsg, MESSAGE_PATIENTCHECKEDIN);
+                messageService.correlateMessage(camundaMsg, MESSAGE_PATIENTDATARECIEVED);
             } catch (Exception e) {
                 log.error("Error deserializing payload to PatientCheckInEvent", e);
             }

@@ -18,6 +18,7 @@ import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.*;
 
+import java.time.Instant;
 import java.util.Map;
 
 public class MqttTopology {
@@ -50,9 +51,9 @@ public class MqttTopology {
 
         KStream<String, ObjectNode> contentFilteredNfcStream = eventFilteredNfcStream.mapValues(node -> {
             ObjectNode out = JsonNodeFactory.instance.objectNode();
-            out.put("location",  node.path("location").asText());
+            out.put("location", node.path("location").asText());
             out.put("messageID", node.path("messageID").asInt());
-            out.put("rawNfcId",  node.path("ID").asText(null));
+            out.put("rawNfcId", node.path("ID").asText(null));
             return out;
         });
         contentFilteredNfcStream.print(Printed.<String, ObjectNode>toSysOut().withLabel("content-filtered-nfc-events"));
@@ -68,8 +69,12 @@ public class MqttTopology {
             return nfcEvent;
         });
 
+        KStream<String, NfcEvent> keyedNfcStream = eventTranslatedNfcStream
+                .selectKey((oldKey, event) -> event.getNfcID().toString());
 
-        eventTranslatedNfcStream.to(
+        keyedNfcStream.print(Printed.<String, NfcEvent>toSysOut().withLabel("nfc-events-keyed"));
+
+        keyedNfcStream.to(
                 "nfc-events",
                 Produced.with(
                         Serdes.String(),
@@ -87,24 +92,24 @@ public class MqttTopology {
 
         KStream<String, ObjectNode> contentFilteredScaleStream =
                 eventFilteredScaleStream.mapValues(node -> {
-            ObjectNode out = JsonNodeFactory.instance.objectNode();
-            out.put("weight",   node.path("weight").asInt());
-            out.put("messageID", node.path("messageID").asInt());
-            return out;
-        });
+                    ObjectNode out = JsonNodeFactory.instance.objectNode();
+                    out.put("weight", node.path("weight").asInt());
+                    out.put("messageID", node.path("messageID").asInt());
+                    return out;
+                });
         contentFilteredScaleStream.print(Printed.<String, ObjectNode>toSysOut().withLabel("content-filtered-scale-events"));
 
         KStream<String, MQTTScaleEvent> eventTranslatedScaleStream =
                 contentFilteredScaleStream.mapValues(node -> {
                     float rawScaleWeight =
-                            (float)node.get("weight").asDouble(0f);
+                            (float) node.get("weight").asDouble(0f);
                     float formattedScaleWeight = ScaleFormatter.format(rawScaleWeight);
 
                     MQTTScaleEvent scaleEvent = new MQTTScaleEvent();
                     scaleEvent.setMessageID(node.get("messageID").asInt());
                     scaleEvent.setWeight(formattedScaleWeight);
                     return scaleEvent;
-        });
+                });
         eventTranslatedScaleStream.print(Printed.<String, MQTTScaleEvent>toSysOut().withLabel("content-transformed-scale-events"));
 
 
@@ -133,37 +138,53 @@ public class MqttTopology {
                 Materialized.as("patient-metrics-store")
         );
         KTable<String, PatientMetricsEvent> patientMetricsTable = rawPatientMetricsTable
-                .mapValues(json -> MAPPER.convertValue(json, PatientMetricsEvent.class));
+                .mapValues(json -> {
+                    PatientMetricsEvent e = new PatientMetricsEvent();
+                    e.setNfcId(json.get("nfcId").asText());
+                    if (!json.get("height").isNull())  e.setHeight(json.get("height").asDouble());
+                    if (!json.get("weight").isNull())  e.setWeight(json.get("weight").asDouble());
+                    if (!json.get("insulinSensitivityFactor").isNull())
+                        e.setInsulinSensitivityFactor(json.get("insulinSensitivityFactor").asDouble());
+                    // parse timestamp as epoch‐seconds (it's a scientific notation number)
+                    long epochSec = (long) json.get("timestamp").asDouble();
+                    e.setTimestamp(Instant.ofEpochSecond(epochSec));
+                    return e;
+                });
 
         // Join static + metrics → enriched patient
         KTable<String, EnrichedPatient> patientTable = patientStaticTable
                 .leftJoin(patientMetricsTable, EnrichedPatient::from);
 
         patientTable.toStream().print(Printed.<String, EnrichedPatient>toSysOut()
-                .withLabel("enriched-patient")
+                .withLabel("ENRICHED-PATIENT-TABLE")
                 .withKeyValueMapper((k, v) -> k + " : " + v));
 
         // ---- Enrich processed NFC stream and emit Avro enriched events ----
-        KStream<String, EnrichedCheckInEvent> enrichedCheckInEventStream = eventTranslatedNfcStream.leftJoin(
-                patientTable,
-                (nfc, patient) -> {
-                    EnrichedCheckInEvent.Builder enrichedCheckInEventBuilder = EnrichedCheckInEvent.newBuilder()
-                            .setLocation(nfc.getLocation())
-                            .setMessageID(nfc.getMessageID())
-                            .setNfcID(nfc.getNfcID())
-                            .setName(patient != null ? patient.getName() : "")
-                            .setFirstname(patient != null ? patient.getFirstname() : "");
-                    if (patient != null) {
-                        if (patient.getHeight() != null) enrichedCheckInEventBuilder.setHeight(patient.getHeight());
-                        if (patient.getWeight() != null) enrichedCheckInEventBuilder.setWeight(patient.getWeight());
-                        if (patient.getInsulinSensitivityFactor() != null)
-                            enrichedCheckInEventBuilder.setInsulinSensitivityFactor(patient.getInsulinSensitivityFactor());
-                        if (patient.getTimestamp() != null)
-                            enrichedCheckInEventBuilder.setTimestamp(patient.getTimestamp());
-                    }
-                    return enrichedCheckInEventBuilder.build();
-                }
-        );
+        KStream<String, EnrichedCheckInEvent> enrichedCheckInEventStream =
+                keyedNfcStream
+                        .leftJoin(
+                                patientTable,
+                                (nfc, patient) -> {
+                                    if (patient == null) {
+                                        // return null so we can filter it out
+                                        return null;
+                                    }
+                                    EnrichedCheckInEvent.Builder builderEnrChInEvt = EnrichedCheckInEvent.newBuilder()
+                                            .setLocation(nfc.getLocation())
+                                            .setMessageID(nfc.getMessageID())
+                                            .setNfcID(nfc.getNfcID())
+                                            .setName(patient.getName())
+                                            .setFirstname(patient.getFirstname());
+                                    if (patient.getHeight() != null) builderEnrChInEvt.setHeight(patient.getHeight());
+                                    if (patient.getWeight() != null) builderEnrChInEvt.setWeight(patient.getWeight());
+                                    if (patient.getInsulinSensitivityFactor() != null)
+                                        builderEnrChInEvt.setInsulinSensitivityFactor(patient.getInsulinSensitivityFactor());
+                                    if (patient.getTimestamp() != null) builderEnrChInEvt.setTimestamp(patient.getTimestamp());
+                                    return builderEnrChInEvt.build();
+                                }
+                        )
+                        .filter((key, enriched) -> enriched != null);
+
         enrichedCheckInEventStream.to(
                 "nfc-events-enriched",
                 Produced.with(Serdes.String(), AvroSerdes.enrichedCheckInEvent("http://localhost:9010", false))

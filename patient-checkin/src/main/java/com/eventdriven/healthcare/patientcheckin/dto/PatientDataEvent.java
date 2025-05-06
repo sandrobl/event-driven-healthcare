@@ -1,5 +1,6 @@
-package com.eventdriven.healthcare.camundaorchestrator.dto.domain;
+package com.eventdriven.healthcare.patientcheckin.dto;
 
+import com.eventdriven.healthcare.patientcheckin.model.Patient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PatientCheckInEvent {
+public class PatientDataEvent {
     private String nfcId;
     private boolean found;        // true if patient was found, false otherwise
     private Patient patient;

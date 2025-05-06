@@ -5,16 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PatientMetricsEvent {
+public class PatientStaticEvent {
     private String nfcId;
-    private Double height;
-    private Double weight;
-    private Double insulinSensitivityFactor;
-    private Instant timestamp;
+    private String name;
+    private String firstname;
 }

@@ -1,18 +1,33 @@
 package com.eventdriven.healthcare.patientguidancewebapp.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Patient {
-    private int patientID;
+@Builder
+public class Patient implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    // Primary / static patient info (from DB)
+    private Integer patientID;
     private String name;
     private String firstname;
-    private float height;
-    private float weight;
     private String nfcID;
-    private float insulinSensitivityFactor;
+    private String address;
+    private String city;
+    private String plz;
+    private LocalDate dateOfBirth;
+
+    // Dynamic vitals (populated from Kafka)
+    // use boxed types so they can be null until set
+    private Float height;
+    private Float weight;
+    private Float insulinSensitivityFactor;
 }
