@@ -7,8 +7,11 @@ import com.eventdriven.healthcare.camundaorchestrator.dto.domain.InsulinFormEnte
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.PatientDataEvent;
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.ScaleEvent;
 import com.eventdriven.healthcare.avro.NfcEvent;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.RuntimeService;
@@ -41,6 +44,7 @@ public class MessageProcessConsumer {
     private final static String MESSAGE_INSULINDOSE_VALIDATED = "Message_InsulinDoseValidated";
     private final static String MESSAGE_SCALE_READING = "Message_ScaleReading";
     private final static String MESSSAGE_INJECTION_CONFIRMED = "Message_InjectionConfirmed";
+
 
     @KafkaListener(
             topics           = "${spring.kafka.nfcEvents-topic}",
@@ -135,7 +139,13 @@ public class MessageProcessConsumer {
         if ("EVENT".equals(messageCategory) && "patientData".equals(messageType)) {
 
             try {
-                PatientDataEvent event = new ObjectMapper().treeToValue(payload, PatientDataEvent.class);
+                ObjectMapper mapper = JsonMapper
+                        .builder()
+                        .addModule(new JavaTimeModule())
+                        .build();
+                mapper.configOverride(java.time.LocalDate.class).setFormat(JsonFormat.Value.forShape(JsonFormat.Shape.ARRAY));
+
+                PatientDataEvent event = mapper.treeToValue(payload, PatientDataEvent.class);
 
                 Map<String, Object> vars = new HashMap<>();
                 vars.put("patient_found", event.isFound());
@@ -155,7 +165,7 @@ public class MessageProcessConsumer {
 
                 messageService.correlateMessage(camundaMsg, MESSAGE_PATIENTDATARECIEVED);
             } catch (Exception e) {
-                log.error("Error deserializing payload to PatientCheckInEvent", e);
+                log.error("Error deserializing payload to PatientDataEvent", e);
             }
         } else if ("EVENT".equals(messageCategory) && "insulinFormEntered".equals(messageType)) {
             try {

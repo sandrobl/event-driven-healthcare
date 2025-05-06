@@ -13,14 +13,14 @@ public class SendBillToPatientDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) {
         // Assume these variables are set earlier in the process
-        String firstName = (String) execution.getVariable("patient_firstName");
-        String lastName  = (String) execution.getVariable("patient_lastName");
+        String firstName = (String) execution.getVariable("patient_FirstName");
+        String lastName  = (String) execution.getVariable("patient_LastName");
         String address   = (String) execution.getVariable("patient_address");
         String city      = (String) execution.getVariable("patient_city");
         String plz       = (String) execution.getVariable("patient_plz");
 
         // Simple console/log output
         log.info(":::BILL::: I will send bill for patient {} {} to address: {}",
-                firstName, lastName, plz + " " + city + ", " + address);
+                firstName, lastName, address + ", " + plz + " " + city);
     }
 }
