@@ -1,0 +1,16 @@
+{
+  "namespace": "com.eventdriven.healthcare.avro",
+  "type": "record",
+  "name": "EnrichedCheckInEvent",
+  "fields": [
+    {"name": "location", "type": "string"},
+    {"name": "messageID", "type": "int"},
+    {"name": "nfcID", "type": "string"},
+    {"name": "name", "type": "string"},
+    {"name": "firstname", "type": "string"},
+    {"name": "height", "type": ["null", "double"], "default": null},
+    {"name": "weight", "type": ["null", "double"], "default": null},
+    {"name": "insulinSensitivityFactor", "type": ["null", "double"], "default": null},
+    {"name": "timestamp", "type": ["null", {"type": "long", "logicalType": "timestamp-millis"}], "default": null}
+  ]
+}

@@ -1,3 +1,4 @@
+// File: src/main/java/com/eventdriven/healthcare/camundaorchestrator/delegate/DisplayPatientDataDelegate.java
 package com.eventdriven.healthcare.camundaorchestrator.delegate;
 
 import com.eventdriven.healthcare.camundaorchestrator.dto.domain.DisplayPatientCommand;
@@ -24,35 +25,37 @@ public class DisplayPatientDataDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) {
         // Retrieve patient data from process variables
-        int patientId = (int) execution.getVariable("patient_id");
-        String patientFirstName = (String) execution.getVariable("patient_FirstName");
-        String patientLastName = (String) execution.getVariable("patient_LastName");
-        String patientNfcId = (String) execution.getVariable("patient_nfcId");
-        Float patientHeight = (Float) execution.getVariable("patient_height");
-        Float patientWeight = (Float) execution.getVariable("patient_weight");
-        Float insulinSensitivityFactor = (Float) execution.getVariable("patient_insulinSensitivityFactor");
+        Integer patientId = (Integer) execution.getVariable("patient_id");
+        String firstName   = (String)  execution.getVariable("patient_FirstName");
+        String lastName    = (String)  execution.getVariable("patient_LastName");
+        String nfcId       = (String)  execution.getVariable("patient_nfcId");
+
+        Float height = execution.getVariable("patient_height") instanceof Number
+                ? ((Number)execution.getVariable("patient_height")).floatValue()
+                : null;
+        Float weight = execution.getVariable("patient_weight") instanceof Number
+                ? ((Number)execution.getVariable("patient_weight")).floatValue()
+                : null;
+        Float isf = execution.getVariable("patient_insulinSensitivityFactor") instanceof Number
+                ? ((Number)execution.getVariable("patient_insulinSensitivityFactor")).floatValue()
+                : null;
+
         String correlationId = execution.getProcessBusinessKey();
 
+        // Build the Patient DTO via Lombok builder
+        Patient patient = Patient.builder()
+                .patientID(patientId)
+                .firstname(firstName)
+                .name(lastName)
+                .nfcID(nfcId)
+                .height(height)
+                .weight(weight)
+                .insulinSensitivityFactor(isf)
+                .build();
 
-        Patient patient = new Patient(
-                patientId,
-                patientLastName,
-                patientFirstName,
-                patientHeight,
-                patientWeight,
-                patientNfcId,
-                insulinSensitivityFactor
-
-        );
-        // Build the command object. The command does not include the "found" flag.
         DisplayPatientCommand command = new DisplayPatientCommand();
         command.setPatient(patient);
-        // You can add additional fields if needed.
 
-        // Build a message with headers:
-        // - messageCategory: "COMMAND" (general)
-        // - messageType: "displayPatientData" (specific type)
-        // - KEY: correlationId
         Message<DisplayPatientCommand> message = MessageBuilder.withPayload(command)
                 .setHeader(KafkaHeaders.TOPIC, patientEventsTopic)
                 .setHeader("messageCategory", "COMMAND")

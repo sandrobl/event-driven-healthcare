@@ -26,8 +26,11 @@ class EventProcessingApp {
             List<NewTopic> desired = List.of(
                     new NewTopic("smart-healthcare-data",  1, (short)1),
                     new NewTopic("nfc-events",             1, (short)1),
-                    new NewTopic("scale-events",           1, (short)1)
-            );
+                    new NewTopic("scale-events",           1, (short)1),
+                    new NewTopic("nfc-events-enriched", 1, (short)1),
+                    new NewTopic("patient-static-topic", 1, (short)1),
+                    new NewTopic("patient-metrics-topic", 1, (short)1)
+                    );
 
             Set<String> existing = admin.listTopics()
                     .names()

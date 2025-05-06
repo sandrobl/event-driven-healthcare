@@ -2,7 +2,7 @@ package com.eventdriven.healthcare.patientcheckin.service;
 
 import com.eventdriven.healthcare.patientcheckin.dto.CheckInCommand;
 import com.eventdriven.healthcare.patientcheckin.model.Patient;
-import com.eventdriven.healthcare.patientcheckin.dto.PatientCheckInEvent;
+import com.eventdriven.healthcare.patientcheckin.dto.PatientDataEvent;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -41,14 +41,14 @@ public class ConsumerService {
                 Patient patient = patientService.getPatientByNfcId(command.getNfcId());
                 boolean found = (patient != null);
 
-                PatientCheckInEvent event = new PatientCheckInEvent();
+                PatientDataEvent event = new PatientDataEvent();
                 event.setNfcId(command.getNfcId());
                 event.setFound(found);
                 if (found) {
                     event.setPatient(patient);
                 }
 
-                producerService.sendPatientCheckInEvent(key, event);
+                producerService.sendPatientDataEvent(key, event);
             } catch (Exception e) {
                 logger.error("Error processing patient data request command: {}", e.getMessage());
             }
@@ -72,14 +72,14 @@ public class ConsumerService {
                 Patient patient = patientService.getPatientByNfcId(command.getNfcId());
                 boolean found = (patient != null);
 
-                PatientCheckInEvent event = new PatientCheckInEvent();
+                PatientDataEvent event = new PatientDataEvent();
                 event.setNfcId(command.getNfcId());
                 event.setFound(found);
                 if (found) {
                     event.setPatient(patient);
                 }
 
-                producerService.sendPatientCheckInEvent(key, event);
+                producerService.sendPatientDataEvent(key, event);
             } catch (Exception e) {
                 logger.error("Error processing patient data request command: {}", e.getMessage());
             }

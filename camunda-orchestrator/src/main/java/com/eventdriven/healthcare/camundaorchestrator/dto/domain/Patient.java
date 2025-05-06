@@ -1,33 +1,29 @@
 package com.eventdriven.healthcare.camundaorchestrator.dto.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import lombok.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@Builder
 public class Patient implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
-    int patientID;
-    String name;
-    String firstname;
-    float height;
-    float weight;
-    String nfcID;
-    float insulinSensitivityFactor; // Insulin Sensitivity Factor (mg/dL
+    // Primary / static patient info (from DB)
+    private Integer patientID;
+    private String name;
+    private String firstname;
+    private String nfcID;
+    private String address;
+    private String city;
+    private String plz;
+    private LocalDate dateOfBirth;
 
-
-    public Patient() {}
-
-    public Patient(int patientID){
-        this.patientID = patientID;
-    }
-
+    // Dynamic vitals (populated from Kafka)
+    // use boxed types so they can be null until set
+    private Float height;
+    private Float weight;
+    private Float insulinSensitivityFactor;
 }
