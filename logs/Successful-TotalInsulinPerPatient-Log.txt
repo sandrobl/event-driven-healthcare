@@ -1,0 +1,203 @@
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=69.02911990244776, insulinSensitivityFactor=0.5627374429985404, timestamp=2025-05-06T20:55:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=70.81766751779219, insulinSensitivityFactor=4.274143118082555, timestamp=2025-05-06T20:55:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=65.3158044223563, insulinSensitivityFactor=1.55880333142255, timestamp=2025-05-06T20:55:48Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=69.43348135594402, insulinSensitivityFactor=0.5624750752289919, timestamp=2025-05-06T20:56:18Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=71.09142919216627, insulinSensitivityFactor=4.371115336849304, timestamp=2025-05-06T20:56:18Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=65.48143111511071, insulinSensitivityFactor=1.5472806918324387, timestamp=2025-05-06T20:56:18Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=69.84906304829904, insulinSensitivityFactor=0.5432965676211318, timestamp=2025-05-06T20:56:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=70.96490337123583, insulinSensitivityFactor=4.310222221139708, timestamp=2025-05-06T20:56:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=65.7460706218509, insulinSensitivityFactor=1.5766122927497206, timestamp=2025-05-06T20:56:48Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=70.29887255137658, insulinSensitivityFactor=0.5368702555287501, timestamp=2025-05-06T20:57:18Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=71.31218615219115, insulinSensitivityFactor=4.3597230535008595, timestamp=2025-05-06T20:57:18Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.21935519321404, insulinSensitivityFactor=1.56754710944456, timestamp=2025-05-06T20:57:18Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=70.45061865155353, insulinSensitivityFactor=0.5164149739736554, timestamp=2025-05-06T20:57:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=71.51318734817464, insulinSensitivityFactor=4.354052321419403, timestamp=2025-05-06T20:57:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=65.74722951827924, insulinSensitivityFactor=1.5692900138850217, timestamp=2025-05-06T20:57:48Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=70.69580991719623, insulinSensitivityFactor=0.5021188651280991, timestamp=2025-05-06T20:58:18Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=71.58523982407107, insulinSensitivityFactor=4.346921327364747, timestamp=2025-05-06T20:58:18Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=65.71915218291312, insulinSensitivityFactor=1.6007210330454564, timestamp=2025-05-06T20:58:18Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.15121711480518, insulinSensitivityFactor=0.5019387897119445, timestamp=2025-05-06T20:58:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=71.97686239441678, insulinSensitivityFactor=4.243921709391113, timestamp=2025-05-06T20:58:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=65.57706587705836, insulinSensitivityFactor=1.58571087418796, timestamp=2025-05-06T20:58:48Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.36701738275245, insulinSensitivityFactor=0.5037011185290323, timestamp=2025-05-06T20:59:18Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=72.23106703176532, insulinSensitivityFactor=4.371755527978555, timestamp=2025-05-06T20:59:18Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=65.7225793901853, insulinSensitivityFactor=1.5285163888348923, timestamp=2025-05-06T20:59:18Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.49062940004569, insulinSensitivityFactor=0.506311454922925, timestamp=2025-05-06T20:59:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=72.62754834834362, insulinSensitivityFactor=4.320404556536407, timestamp=2025-05-06T20:59:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.20761589048162, insulinSensitivityFactor=1.5494468663614702, timestamp=2025-05-06T20:59:48Z)
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[ENRICHED-CHECKIN-EVENTS]: 04DAF28AB45780 : {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780", "name": "Müller", "firstname": "Anna", "height": 159.06662045162744, "weight": 71.49062940004569, "insulinSensitivityFactor": 0.49361006749607955, "timestamp": "2025-05-06T21:00:08Z"}
+[ENRICHED-CHECKIN-EVENTS]: 04DAF28AB45780 : {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780", "name": "Müller", "firstname": "Anna", "height": 159.06662045162744, "weight": 71.49062940004569, "insulinSensitivityFactor": 0.49361006749607955, "timestamp": "2025-05-06T21:00:08Z"}
+[ENRICHED-CHECKIN-EVENTS]: 08DAC28BB44223 : {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223", "name": "Meier", "firstname": "Lukas", "height": 153.19482864633358, "weight": 72.62754834834362, "insulinSensitivityFactor": 4.364983545310182, "timestamp": "2025-05-06T21:00:08Z"}
+[ENRICHED-CHECKIN-EVENTS]: 08DAC28BB44223 : {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223", "name": "Meier", "firstname": "Lukas", "height": 153.19482864633358, "weight": 72.62754834834362, "insulinSensitivityFactor": 4.364983545310182, "timestamp": "2025-05-06T21:00:08Z"}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"patient":{"patientID":null,"name":"Müller","firstname":"Anna","nfcID":"04DAF28AB45780","address":null,"city":null,"plz":null,"dateOfBirth":null,"height":159.06662,"weight":71.49063,"insulinSensitivityFactor":0.49361005}}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"patient":{"patientID":null,"name":"Müller","firstname":"Anna","nfcID":"04DAF28AB45780","address":null,"city":null,"plz":null,"dateOfBirth":null,"height":159.06662,"weight":71.49063,"insulinSensitivityFactor":0.49361005}}
+FOUND PATIENT NODE: 6df8b7e7-01a5-41d9-958f-794840d7ef03, nfcID: 04DAF28AB45780
+[DEBUG - correlationToNfcTable]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, 04DAF28AB45780
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.6087288873647, insulinSensitivityFactor=0.4936169365243662, timestamp=2025-05-06T21:00:18Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=72.23789151848865, insulinSensitivityFactor=4.330553602207528, timestamp=2025-05-06T21:00:18Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.18200886620465, insulinSensitivityFactor=1.502715954067003, timestamp=2025-05-06T21:00:18Z)
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"nextMealCarbohydrates":600.0,"insulinToCarbohydrateRatio":2.0,"targetBloodGlucoseLevel":4.0,"bloodGlucose":60.0,"patientInsulinSensitivityFactor":0.49361005}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"nextMealCarbohydrates":600.0,"insulinToCarbohydrateRatio":2.0,"targetBloodGlucoseLevel":4.0,"bloodGlucose":60.0,"patientInsulinSensitivityFactor":0.49361005}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"insulinDoses":4.134499}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"insulinDoses":4.134499}
+FOUND INSULIN DOSE: 6df8b7e7-01a5-41d9-958f-794840d7ef03, dose: 4.134499
+[DEBUG - insulinDoseStream]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, 4.134499
+[DEBUG - patientDoseMapping]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, KeyValue(04DAF28AB45780, 4.134499)
+[DEBUG - byPatient]: 04DAF28AB45780, 4.134499
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"action":"RESERVE_SCALE","correlationId":"6df8b7e7-01a5-41d9-958f-794840d7ef03","insulinDose":null,"scaleValue":null}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"action":"RESERVE_SCALE","correlationId":"6df8b7e7-01a5-41d9-958f-794840d7ef03","insulinDose":null,"scaleValue":null}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"type":"SCALE_RESERVED","insulinDoseValid":null,"doseDifference":null}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"type":"SCALE_RESERVED","insulinDoseValid":null,"doseDifference":null}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"scaleReserved":true}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"scaleReserved":true}
+[Raw Data]: 23xq, {"type":"load_cell","UID":"23xq","location":"HYGIENE_STATION","messageID":518,"weight":8}
+[scale-events]: 23xq, {"type":"load_cell","UID":"23xq","location":"HYGIENE_STATION","messageID":518,"weight":8}
+[event-filtered-scale-events]: 23xq, {"type":"load_cell","UID":"23xq","location":"HYGIENE_STATION","messageID":518,"weight":8}
+[content-filtered-scale-events]: 23xq, {"weight":8,"messageID":518}
+[content-transformed-scale-events]: 23xq, {"messageID": 518, "weight": 4.0}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"action":"VALIDATE_DOSE","correlationId":"6df8b7e7-01a5-41d9-958f-794840d7ef03","insulinDose":4.134499,"scaleValue":4.0}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"action":"VALIDATE_DOSE","correlationId":"6df8b7e7-01a5-41d9-958f-794840d7ef03","insulinDose":4.134499,"scaleValue":4.0}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"type":"INSULIN_DOSE_VALIDATED","insulinDoseValid":true,"doseDifference":0.0}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"type":"INSULIN_DOSE_VALIDATED","insulinDoseValid":true,"doseDifference":0.0}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"action":"UNRESERVE_SCALE","correlationId":"6df8b7e7-01a5-41d9-958f-794840d7ef03","insulinDose":null,"scaleValue":null}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"action":"UNRESERVE_SCALE","correlationId":"6df8b7e7-01a5-41d9-958f-794840d7ef03","insulinDose":null,"scaleValue":null}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"type":"SCALE_UNRESERVED","insulinDoseValid":null,"doseDifference":null}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"type":"SCALE_UNRESERVED","insulinDoseValid":null,"doseDifference":null}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"message":"Please confirm that you have injected the insulin dose."}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"message":"Please confirm that you have injected the insulin dose."}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"confirmed":true}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"confirmed":true}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"nfcId":"04DAF28AB45780","messageId":null,"location":"LEFT_DONATION","timestamp":1746565236231}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"nfcId":"04DAF28AB45780","messageId":null,"location":"LEFT_DONATION","timestamp":1746565236231}
+[Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"nfcId":"04DAF28AB45780","found":true,"patient":{"patientID":1,"name":"Müller","firstname":"Anna","nfcID":"04DAF28AB45780","address":"Bahnhofstrasse 1","city":"Zürich","plz":"8001","dateOfBirth":[1985,3,15],"height":null,"weight":null,"insulinSensitivityFactor":null}}
+[Patient Stream Raw Data]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, {"nfcId":"04DAF28AB45780","found":true,"patient":{"patientID":1,"name":"Müller","firstname":"Anna","nfcID":"04DAF28AB45780","address":"Bahnhofstrasse 1","city":"Zürich","plz":"8001","dateOfBirth":[1985,3,15],"height":null,"weight":null,"insulinSensitivityFactor":null}}
+FOUND PATIENT NODE: 6df8b7e7-01a5-41d9-958f-794840d7ef03, nfcID: 04DAF28AB45780
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[ENRICHED-CHECKIN-EVENTS]: 04DAF28AB45780 : {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780", "name": "Müller", "firstname": "Anna", "height": 159.06662045162744, "weight": 71.6087288873647, "insulinSensitivityFactor": 0.5025647574670778, "timestamp": "2025-05-06T21:00:38Z"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"patient":{"patientID":null,"name":"Müller","firstname":"Anna","nfcID":"04DAF28AB45780","address":null,"city":null,"plz":null,"dateOfBirth":null,"height":159.06662,"weight":71.60873,"insulinSensitivityFactor":0.5025647}}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"patient":{"patientID":null,"name":"Müller","firstname":"Anna","nfcID":"04DAF28AB45780","address":null,"city":null,"plz":null,"dateOfBirth":null,"height":159.06662,"weight":71.60873,"insulinSensitivityFactor":0.5025647}}
+FOUND PATIENT NODE: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, nfcID: 04DAF28AB45780
+[ENRICHED-CHECKIN-EVENTS]: 04DAF28AB45780 : {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780", "name": "Müller", "firstname": "Anna", "height": 159.06662045162744, "weight": 71.6087288873647, "insulinSensitivityFactor": 0.5025647574670778, "timestamp": "2025-05-06T21:00:38Z"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[ENRICHED-CHECKIN-EVENTS]: 08DAC28BB44223 : {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223", "name": "Meier", "firstname": "Lukas", "height": 153.19482864633358, "weight": 72.23789151848865, "insulinSensitivityFactor": 4.418187734740847, "timestamp": "2025-05-06T21:00:38Z"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[ENRICHED-CHECKIN-EVENTS]: 08DAC28BB44223 : {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223", "name": "Meier", "firstname": "Lukas", "height": 153.19482864633358, "weight": 72.23789151848865, "insulinSensitivityFactor": 4.418187734740847, "timestamp": "2025-05-06T21:00:38Z"}
+[DEBUG - totalInsulinPerPatient]: 04DAF28AB45780, 4.134499
+[DEBUG - correlationToNfcTable]: 6df8b7e7-01a5-41d9-958f-794840d7ef03, 04DAF28AB45780
+[DEBUG - correlationToNfcTable]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, 04DAF28AB45780
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=72.06595299471604, insulinSensitivityFactor=0.492723864668267, timestamp=2025-05-06T21:00:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=72.41933531500469, insulinSensitivityFactor=4.358772570995137, timestamp=2025-05-06T21:00:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.15291722230346, insulinSensitivityFactor=1.4888935219895636, timestamp=2025-05-06T21:00:48Z)
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"nextMealCarbohydrates":900.0,"insulinToCarbohydrateRatio":1.0,"targetBloodGlucoseLevel":4.0,"bloodGlucose":60.0,"patientInsulinSensitivityFactor":0.5025647}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"nextMealCarbohydrates":900.0,"insulinToCarbohydrateRatio":1.0,"targetBloodGlucoseLevel":4.0,"bloodGlucose":60.0,"patientInsulinSensitivityFactor":0.5025647}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"insulinDoses":10.1142845}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"insulinDoses":10.1142845}
+FOUND INSULIN DOSE: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, dose: 10.1142845
+[DEBUG - insulinDoseStream]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, 10.1142845
+[DEBUG - patientDoseMapping]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, KeyValue(04DAF28AB45780, 10.1142845)
+[DEBUG - byPatient]: 04DAF28AB45780, 10.1142845
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"action":"RESERVE_SCALE","correlationId":"25b23683-dc1f-46a0-8ea4-6edc52d2536e","insulinDose":null,"scaleValue":null}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"action":"RESERVE_SCALE","correlationId":"25b23683-dc1f-46a0-8ea4-6edc52d2536e","insulinDose":null,"scaleValue":null}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"type":"SCALE_RESERVED","insulinDoseValid":null,"doseDifference":null}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"type":"SCALE_RESERVED","insulinDoseValid":null,"doseDifference":null}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"scaleReserved":true}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"scaleReserved":true}
+[Raw Data]: 23xq, {"type":"load_cell","UID":"23xq","location":"HYGIENE_STATION","messageID":518,"weight":14}
+[scale-events]: 23xq, {"type":"load_cell","UID":"23xq","location":"HYGIENE_STATION","messageID":518,"weight":14}
+[event-filtered-scale-events]: 23xq, {"type":"load_cell","UID":"23xq","location":"HYGIENE_STATION","messageID":518,"weight":14}
+[content-filtered-scale-events]: 23xq, {"weight":14,"messageID":518}
+[content-transformed-scale-events]: 23xq, {"messageID": 518, "weight": 10.0}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"action":"VALIDATE_DOSE","correlationId":"25b23683-dc1f-46a0-8ea4-6edc52d2536e","insulinDose":10.1142845,"scaleValue":10.0}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"action":"VALIDATE_DOSE","correlationId":"25b23683-dc1f-46a0-8ea4-6edc52d2536e","insulinDose":10.1142845,"scaleValue":10.0}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"type":"INSULIN_DOSE_VALIDATED","insulinDoseValid":true,"doseDifference":0.0}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"type":"INSULIN_DOSE_VALIDATED","insulinDoseValid":true,"doseDifference":0.0}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"action":"UNRESERVE_SCALE","correlationId":"25b23683-dc1f-46a0-8ea4-6edc52d2536e","insulinDose":null,"scaleValue":null}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"action":"UNRESERVE_SCALE","correlationId":"25b23683-dc1f-46a0-8ea4-6edc52d2536e","insulinDose":null,"scaleValue":null}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"message":"Please confirm that you have injected the insulin dose."}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"message":"Please confirm that you have injected the insulin dose."}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"type":"SCALE_UNRESERVED","insulinDoseValid":null,"doseDifference":null}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"type":"SCALE_UNRESERVED","insulinDoseValid":null,"doseDifference":null}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"confirmed":true}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"confirmed":true}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"nfcId":"04DAF28AB45780","messageId":null,"location":"LEFT_DONATION","timestamp":1746565259732}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"nfcId":"04DAF28AB45780","messageId":null,"location":"LEFT_DONATION","timestamp":1746565259732}
+[Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"nfcId":"04DAF28AB45780","found":true,"patient":{"patientID":1,"name":"Müller","firstname":"Anna","nfcID":"04DAF28AB45780","address":"Bahnhofstrasse 1","city":"Zürich","plz":"8001","dateOfBirth":[1985,3,15],"height":null,"weight":null,"insulinSensitivityFactor":null}}
+[Patient Stream Raw Data]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, {"nfcId":"04DAF28AB45780","found":true,"patient":{"patientID":1,"name":"Müller","firstname":"Anna","nfcID":"04DAF28AB45780","address":"Bahnhofstrasse 1","city":"Zürich","plz":"8001","dateOfBirth":[1985,3,15],"height":null,"weight":null,"insulinSensitivityFactor":null}}
+FOUND PATIENT NODE: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, nfcID: 04DAF28AB45780
+[DEBUG - totalInsulinPerPatient]: 04DAF28AB45780, 14.2487835
+[DEBUG - correlationToNfcTable]: 25b23683-dc1f-46a0-8ea4-6edc52d2536e, 04DAF28AB45780
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.83111067631447, insulinSensitivityFactor=0.4829034694718284, timestamp=2025-05-06T21:01:18Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=72.47437860627373, insulinSensitivityFactor=4.378953859866969, timestamp=2025-05-06T21:01:18Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.27923554493411, insulinSensitivityFactor=1.5274653703187338, timestamp=2025-05-06T21:01:18Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.54406340613863, insulinSensitivityFactor=0.49283921137291214, timestamp=2025-05-06T21:01:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=72.85937150221861, insulinSensitivityFactor=4.425216959322613, timestamp=2025-05-06T21:01:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.7731440643196, insulinSensitivityFactor=1.5057991151476733, timestamp=2025-05-06T21:01:48Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.8225771165248, insulinSensitivityFactor=0.487067721876976, timestamp=2025-05-06T21:02:18Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=72.77893785061329, insulinSensitivityFactor=4.364120636172892, timestamp=2025-05-06T21:02:18Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.60432531365055, insulinSensitivityFactor=1.4659687696061987, timestamp=2025-05-06T21:02:18Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.83212179709733, insulinSensitivityFactor=0.4919243829934609, timestamp=2025-05-06T21:02:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=73.09838169041328, insulinSensitivityFactor=4.36297210141601, timestamp=2025-05-06T21:02:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.6939213412291, insulinSensitivityFactor=1.4276830576028035, timestamp=2025-05-06T21:02:48Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=72.116559775548, insulinSensitivityFactor=0.48110336403855486, timestamp=2025-05-06T21:03:18Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=73.08688827890924, insulinSensitivityFactor=4.323838213712354, timestamp=2025-05-06T21:03:18Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.23876567166296, insulinSensitivityFactor=1.3856551760024047, timestamp=2025-05-06T21:03:18Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=72.34766728872415, insulinSensitivityFactor=0.4821736854125476, timestamp=2025-05-06T21:03:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=73.41409008139678, insulinSensitivityFactor=4.481235680186844, timestamp=2025-05-06T21:03:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.3155494112383, insulinSensitivityFactor=1.3742129959862448, timestamp=2025-05-06T21:03:48Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=72.07022688815579, insulinSensitivityFactor=0.4836296233845505, timestamp=2025-05-06T21:04:18Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=73.9051789746861, insulinSensitivityFactor=4.398741513295697, timestamp=2025-05-06T21:04:18Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.07311919010942, insulinSensitivityFactor=1.328853048693846, timestamp=2025-05-06T21:04:18Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.79075967733769, insulinSensitivityFactor=0.4929134130092314, timestamp=2025-05-06T21:04:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=73.65895849453135, insulinSensitivityFactor=4.377895319008848, timestamp=2025-05-06T21:04:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=66.22280815631606, insulinSensitivityFactor=1.3159306492045568, timestamp=2025-05-06T21:04:48Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.9755876037424, insulinSensitivityFactor=0.47952244613012723, timestamp=2025-05-06T21:05:18Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=74.09279460910157, insulinSensitivityFactor=4.275754863766145, timestamp=2025-05-06T21:05:18Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=65.77531741668444, insulinSensitivityFactor=1.3186486030857734, timestamp=2025-05-06T21:05:18Z)
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.06662045162744, weight=71.781575733531, insulinSensitivityFactor=0.47833917340561916, timestamp=2025-05-06T21:05:48Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=153.19482864633358, weight=74.14208857144995, insulinSensitivityFactor=4.204264768380654, timestamp=2025-05-06T21:05:48Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=160.89190479580097, weight=65.64194705892231, insulinSensitivityFactor=1.3477699992797034, timestamp=2025-05-06T21:05:48Z)

@@ -15,8 +15,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.state.KeyValueStore;
 
 import java.time.Instant;
 import java.util.Map;
@@ -39,6 +41,13 @@ public class MqttTopology {
                 .branch((key, node) -> "load_cell".equalsIgnoreCase(node.get(
                         "type").asText()), Branched.as("scale-events"))
                 .noDefaultBranch();
+
+
+        KStream<String, JsonNode> patientStream = builder.stream(
+                "patientEvents-topic",
+                Consumed.with(Serdes.String(), new JsonNodeSerde())
+        );
+        patientStream.print(Printed.<String, JsonNode>toSysOut().withLabel("Raw Data"));       
 
         // Process NFC events
         // -----------------
@@ -126,6 +135,67 @@ public class MqttTopology {
                         AvroSerdes.scaleEvent("http://localhost:9010",
                                 false))
         );
+
+        // Process of Adding all insulin doses per Patient (NFC ID
+        // --------------------------------
+
+        // 1) First build the lookup KTable: correlationId → nfcID
+        KTable<String,String> correlationToNfcTable = patientStream
+        // Filter for any message containing patient info with valid NFC ID
+        .filter((corrId, node) -> 
+                node.has("patient") && 
+                node.get("patient").has("nfcID") && 
+                !node.get("patient").get("nfcID").isNull() &&
+                !node.get("patient").get("nfcID").asText().equals("null"))
+        .peek((key, value) -> System.out.println("FOUND PATIENT NODE: " + key + 
+                ", nfcID: " + value.get("patient").get("nfcID").asText()))
+        .mapValues(node -> node.get("patient").get("nfcID").asText())
+        .toTable(
+                Materialized.<String,String,KeyValueStore<Bytes,byte[]>>as("correlation-nfc-store")
+                        .withKeySerde(Serdes.String())
+                        .withValueSerde(Serdes.String())
+        );
+        correlationToNfcTable.toStream().print(Printed.<String, String>toSysOut().withLabel("DEBUG - correlationToNfcTable"));
+
+        // 2) Extract insulin doses from messages - this stays the same
+        KStream<String,Double> insulinDoseStream = patientStream
+        .filter((corrId, node) -> node.has("insulinDoses"))
+        .peek((key, value) -> System.out.println("FOUND INSULIN DOSE: " + key + 
+                ", dose: " + value.get("insulinDoses").asDouble()))
+        .mapValues(node -> node.get("insulinDoses").asDouble());
+        insulinDoseStream.print(Printed.<String, Double>toSysOut().withLabel("DEBUG - insulinDoseStream"));
+
+        // 3) Join the dose stream to the lookup table to enrich with nfcID
+        KStream<String,KeyValue<String,Double>> patientDoseMapping = insulinDoseStream
+        .join(correlationToNfcTable,
+        (dose, nfcID) -> KeyValue.pair(nfcID, dose),
+        Joined.with(
+                Serdes.String(),  // correlation ID key
+                Serdes.Double(),  // insulin dose value
+                Serdes.String()   // nfcID value from table
+        )
+        );
+        patientDoseMapping.print(Printed.<String, KeyValue<String, Double>>toSysOut().withLabel("DEBUG - patientDoseMapping"));
+
+        // 4) Re-key by patientId and drop the Pair wrapper
+       KStream<String,Double> byPatient = patientDoseMapping
+               .selectKey((corrId, pair) -> pair.key)
+               .mapValues(pair -> pair.value);
+
+       byPatient.print(Printed.<String, Double>toSysOut().withLabel("DEBUG - byPatient"));
+
+
+       // 5) Finally, group by patientId and sum
+       KTable<String,Double> totalInsulinPerPatient = byPatient
+               .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
+               .reduce(
+                       Double::sum,
+                       Materialized.<String,Double,KeyValueStore<Bytes,byte[]>>as("total-insulin-store")
+                               .withKeySerde(Serdes.String())
+                               .withValueSerde(Serdes.Double())
+               );
+       totalInsulinPerPatient.toStream().print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient"));
+
 
         // Patient Data kTable enrichments
         // --------------------------------
