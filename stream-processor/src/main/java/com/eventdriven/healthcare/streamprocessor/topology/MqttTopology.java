@@ -33,7 +33,7 @@ public class MqttTopology {
                 "smart-healthcare-data",
                 Consumed.with(Serdes.String(), new JsonNodeSerde())
         );
-        stream.print(Printed.<String, JsonNode>toSysOut().withLabel("Raw Data"));
+        stream.print(Printed.<String, JsonNode>toSysOut().withLabel("Raw Data (smart-healthcare-data)"));
 
         Map<String, KStream<String, JsonNode>> branches = stream
                 .split(Named.as("branch-"))
@@ -47,7 +47,7 @@ public class MqttTopology {
                 "patientEvents-topic",
                 Consumed.with(Serdes.String(), new JsonNodeSerde())
         );
-        patientStream.print(Printed.<String, JsonNode>toSysOut().withLabel("Raw Data"));       
+        patientStream.print(Printed.<String, JsonNode>toSysOut().withLabel("Raw Data (patientEvents-topic)"));
 
         // Process NFC events
         // -----------------
@@ -79,7 +79,7 @@ public class MqttTopology {
         });
 
 
-        eventTranslatedNfcStream.print(Printed.<String, NfcEvent>toSysOut().withLabel("nfc-events-keyed"));
+        eventTranslatedNfcStream.print(Printed.<String, NfcEvent>toSysOut().withLabel("translated-nfc-events"));
 
         eventTranslatedNfcStream
                 .map(
