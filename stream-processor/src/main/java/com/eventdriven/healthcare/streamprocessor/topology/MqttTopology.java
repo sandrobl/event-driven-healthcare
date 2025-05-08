@@ -19,7 +19,9 @@ import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.*;
 import org.apache.kafka.streams.state.KeyValueStore;
+import org.apache.kafka.streams.state.WindowStore;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Map;
 
@@ -186,16 +188,26 @@ public class MqttTopology {
 
 
        // 5) Finally, group by patientId and sum
-       KTable<String,Double> totalInsulinPerPatient = byPatient
+
+       TimeWindows timeWindows = TimeWindows.ofSizeWithNoGrace(Duration.ofDays(1));
+       // For debugging purposes, we can use a smaller window size
+       //TimeWindows timeWindows = TimeWindows.ofSizeWithNoGrace(Duration.ofSeconds(1));
+
+       KTable<Windowed<String>,Double> totalInsulinPerPatient = byPatient
                .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
+               .windowedBy(timeWindows)
                .reduce(
                        Double::sum,
-                       Materialized.<String,Double,KeyValueStore<Bytes,byte[]>>as("total-insulin-store")
-                               .withKeySerde(Serdes.String())
-                               .withValueSerde(Serdes.Double())
+                       Materialized.<String, Double, WindowStore<Bytes, byte[]>>as("total-insulin-store")
+                           .withKeySerde(Serdes.String())
+                           .withValueSerde(Serdes.Double())
                );
-       totalInsulinPerPatient.toStream().print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient"));
 
+        totalInsulinPerPatient.toStream()
+        .map((windowedKey, value) -> KeyValue.pair(
+            windowedKey.key() + "@" + windowedKey.window().start() + "-" + windowedKey.window().end(),
+            value))
+        .print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient"));
 
         // Patient Data kTable enrichments
         // --------------------------------
