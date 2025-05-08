@@ -80,23 +80,54 @@ public class MqttTopology {
             return nfcEvent;
         });
 
-
         eventTranslatedNfcStream.print(Printed.<String, NfcEvent>toSysOut().withLabel("nfc-events-keyed"));
 
-        eventTranslatedNfcStream
-                .map(
-                        (key, nfc) -> {
-                            // use the NFC ID as the key
-                            String nfcId = nfc.getNfcID().toString();
-                            return KeyValue.pair(nfcId, nfc);
-                        }
-                )
+        // Create keyed stream using NFC ID as key
+        KStream<String, NfcEvent> nfcKeyedStream = eventTranslatedNfcStream
+                .map((key, nfc) -> KeyValue.pair(nfc.getNfcID().toString(), nfc));
+
+        // Apply 5-second session window
+        SessionWindows sessionWindows =
+                SessionWindows.ofInactivityGapWithNoGrace(Duration.ofSeconds(5));
+
+        // Aggregation
+        KTable<Windowed<String>, NfcEvent> nfcSessions = nfcKeyedStream
+                .groupByKey(Grouped.with(Serdes.String(), AvroSerdes.nfcEvent("http://localhost:9010", false)))
+                .windowedBy(sessionWindows)
+                .reduce((oldValue, newValue) -> newValue); // Simply keep the latest value
+
+        // Debug output for the windowed sessions
+        nfcSessions.toStream()
+                .map((windowedKey, value) -> KeyValue.pair(
+                        windowedKey.key() + "@" + windowedKey.window().startTime() + "-" + windowedKey.window().endTime(),
+                        value))
+                .print(Printed.<String, NfcEvent>toSysOut().withLabel("DEBUG - NFC SESSION WINDOWS"));
+
+
+        // Send to topic
+        nfcSessions.toStream()
+                .map((windowedKey, value) -> KeyValue.pair(windowedKey.key(), value))
                 .to(
-                "nfc-events",
-                Produced.with(
-                        Serdes.String(),
-                        AvroSerdes.nfcEvent("http://localhost:9010", false))
-        );
+                        "nfc-events",
+                        Produced.with(
+                                Serdes.String(),
+                                AvroSerdes.nfcEvent("http://localhost:9010", false))
+                );
+
+//        eventTranslatedNfcStream
+//                .map(
+//                        (key, nfc) -> {
+//                            // use the NFC ID as the key
+//                            String nfcId = nfc.getNfcID().toString();
+//                            return KeyValue.pair(nfcId, nfc);
+//                        }
+//                )
+//                .to(
+//                "nfc-events",
+//                Produced.with(
+//                        Serdes.String(),
+//                        AvroSerdes.nfcEvent("http://localhost:9010", false))
+//        );
 
         // Process Scale events
         // -------------------
