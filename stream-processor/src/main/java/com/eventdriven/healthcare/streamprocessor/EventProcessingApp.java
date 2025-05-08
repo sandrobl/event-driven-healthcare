@@ -1,13 +1,14 @@
 package com.eventdriven.healthcare.streamprocessor;
 
+import com.eventdriven.healthcare.streamprocessor.service.MonitorService;
 import com.eventdriven.healthcare.streamprocessor.topology.MqttTopology;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.state.HostInfo;
 
 import java.util.List;
 import java.util.Properties;
@@ -68,6 +69,13 @@ class EventProcessingApp {
             streams.close();
             latch.countDown();
         }));
+
+        streams.setStateListener((newState, oldState) -> {
+            if (newState == KafkaStreams.State.RUNNING) {
+                System.out.println("Start monitoring service…");
+                new MonitorService(new HostInfo("localhost", 7070), streams).start();
+            }
+        });
 
         // ——— 4) Start and block forever ———
         System.out.println("Starting Kafka Streams application…");

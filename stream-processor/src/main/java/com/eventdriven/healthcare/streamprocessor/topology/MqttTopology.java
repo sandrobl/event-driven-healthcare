@@ -12,8 +12,10 @@ import com.eventdriven.healthcare.streamprocessor.util.NfcFormatter;
 import com.eventdriven.healthcare.streamprocessor.util.ScaleFormatter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.*;
@@ -26,7 +28,12 @@ import java.time.Instant;
 import java.util.Map;
 
 public class MqttTopology {
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper MAPPER =
+            new ObjectMapper()
+                    // support Instant, LocalDateTime, etc.
+                    .registerModule(new JavaTimeModule())
+                    // output ISO-strings instead of timestamps
+                    .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
     public static Topology build() {
         StreamsBuilder builder = new StreamsBuilder();
@@ -92,11 +99,11 @@ public class MqttTopology {
                         }
                 )
                 .to(
-                "nfc-events",
-                Produced.with(
-                        Serdes.String(),
-                        AvroSerdes.nfcEvent("http://localhost:9010", false))
-        );
+                        "nfc-events",
+                        Produced.with(
+                                Serdes.String(),
+                                AvroSerdes.nfcEvent("http://localhost:9010", false))
+                );
 
         // Process Scale events
         // -------------------
@@ -138,91 +145,6 @@ public class MqttTopology {
                                 false))
         );
 
-        // Process of Adding all insulin doses per Patient (NFC ID
-        // --------------------------------
-
-        // 1) First build the lookup KTable: correlationId → nfcID
-        KTable<String,String> correlationToNfcTable = patientStream
-        // Filter for any message containing patient info with valid NFC ID
-        .filter((corrId, node) -> 
-                node.has("patient") && 
-                node.get("patient").has("nfcID") && 
-                !node.get("patient").get("nfcID").isNull() &&
-                !node.get("patient").get("nfcID").asText().equals("null"))
-        .peek((key, value) -> System.out.println("FOUND PATIENT NODE: " + key + 
-                ", nfcID: " + value.get("patient").get("nfcID").asText()))
-        .mapValues(node -> node.get("patient").get("nfcID").asText())
-        .toTable(
-                Materialized.<String,String,KeyValueStore<Bytes,byte[]>>as("correlation-nfc-store")
-                        .withKeySerde(Serdes.String())
-                        .withValueSerde(Serdes.String())
-        );
-        correlationToNfcTable.toStream().print(Printed.<String, String>toSysOut().withLabel("DEBUG - correlationToNfcTable"));
-
-        // 2) Extract insulin doses from messages - this stays the same
-        KStream<String,Double> insulinDoseStream = patientStream
-        .filter((corrId, node) -> node.has("insulinDoses"))
-        .peek((key, value) -> System.out.println("FOUND INSULIN DOSE: " + key + 
-                ", dose: " + value.get("insulinDoses").asDouble()))
-        .mapValues(node -> node.get("insulinDoses").asDouble());
-        insulinDoseStream.print(Printed.<String, Double>toSysOut().withLabel("DEBUG - insulinDoseStream"));
-
-        // 3) Join the dose stream to the lookup table to enrich with nfcID
-        KStream<String,KeyValue<String,Double>> patientDoseMapping = insulinDoseStream
-        .join(correlationToNfcTable,
-        (dose, nfcID) -> KeyValue.pair(nfcID, dose),
-        Joined.with(
-                Serdes.String(),  // correlation ID key
-                Serdes.Double(),  // insulin dose value
-                Serdes.String()   // nfcID value from table
-        )
-        );
-        patientDoseMapping.print(Printed.<String, KeyValue<String, Double>>toSysOut().withLabel("DEBUG - patientDoseMapping"));
-
-        // 4) Re-key by patientId and drop the Pair wrapper
-       KStream<String,Double> byPatient = patientDoseMapping
-               .selectKey((corrId, pair) -> pair.key)
-               .mapValues(pair -> pair.value);
-
-       byPatient.print(Printed.<String, Double>toSysOut().withLabel("DEBUG - byPatient"));
-
-
-       // 5) Finally, group by patientId and sum (no Windowing)
-        KTable<String,Double> totalInsulinPerPatient = byPatient
-                .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
-                .reduce(
-                        Double::sum,
-                        Materialized.<String,Double,KeyValueStore<Bytes,byte[]>>as("total-insulin-store")
-                                .withKeySerde(Serdes.String())
-                                .withValueSerde(Serdes.Double())
-                );
-
-        totalInsulinPerPatient.toStream().print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient"));
-
-        // With windowing
-
-       // TimeWindows timeWindows = TimeWindows.ofSizeWithNoGrace(Duration.ofDays(1));
-       // For debugging purposes, we  use a smaller window size
-       TimeWindows timeWindows = TimeWindows.ofSizeWithNoGrace(Duration.ofSeconds(120));
-
-       KTable<Windowed<String>,Double> totalInsulinPerPatientWindowed = byPatient
-               .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
-               .windowedBy(timeWindows)
-               .reduce(
-                       Double::sum,
-                       Materialized.<String, Double, WindowStore<Bytes, byte[]>>as("total-insulin-windowed-store")
-                           .withKeySerde(Serdes.String())
-                           .withValueSerde(Serdes.Double())
-               );
-
-        totalInsulinPerPatientWindowed.toStream()
-        .map((windowedKey, value) -> KeyValue.pair(
-            windowedKey.key() + "@" + windowedKey.window().start() + "-" + windowedKey.window().end(),
-            value))
-        .print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient Windowed"));
-
-
-
         // Patient Data kTable enrichments
         // --------------------------------
         // Static data
@@ -243,8 +165,8 @@ public class MqttTopology {
                 .mapValues(json -> {
                     PatientMetricsEvent e = new PatientMetricsEvent();
                     e.setNfcId(json.get("nfcId").asText());
-                    if (!json.get("height").isNull())  e.setHeight(json.get("height").asDouble());
-                    if (!json.get("weight").isNull())  e.setWeight(json.get("weight").asDouble());
+                    if (!json.get("height").isNull()) e.setHeight(json.get("height").asDouble());
+                    if (!json.get("weight").isNull()) e.setWeight(json.get("weight").asDouble());
                     if (!json.get("insulinSensitivityFactor").isNull())
                         e.setInsulinSensitivityFactor(json.get("insulinSensitivityFactor").asDouble());
                     // parse timestamp as epoch‐seconds (it's a scientific notation number)
@@ -254,12 +176,19 @@ public class MqttTopology {
                 });
 
         // Join static + metrics → enriched patient
-        KTable<String, EnrichedPatient> patientTable = patientStaticTable
-                .leftJoin(patientMetricsTable, EnrichedPatient::from);
+        KTable<String, JsonNode> patientTable = patientStaticTable
+                .leftJoin(patientMetricsTable, EnrichedPatient::from)
+                .mapValues(MAPPER::valueToTree,
+                        Materialized.<String, JsonNode, KeyValueStore<Bytes, byte[]>>as("patient-table-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(new JsonNodeSerde())
+                );
 
-        patientTable.toStream().print(Printed.<String, EnrichedPatient>toSysOut()
+
+        patientTable.toStream().print(Printed.<String, JsonNode>toSysOut()
                 .withLabel("ENRICHED-PATIENT-TABLE")
                 .withKeyValueMapper((k, v) -> k + " : " + v));
+
 
         // ---- Enrich processed NFC stream and emit Avro enriched events ----
         // Join NFC events with patient data
@@ -277,17 +206,19 @@ public class MqttTopology {
                                         // return null so we can filter it out
                                         return null;
                                     }
+                                    // Convert the JsonNode to a Patient object
+                                    EnrichedPatient p = MAPPER.convertValue(patient, EnrichedPatient.class);
                                     EnrichedCheckInEvent.Builder builderEnrChInEvt = EnrichedCheckInEvent.newBuilder()
                                             .setLocation(nfc.getLocation())
                                             .setMessageID(nfc.getMessageID())
                                             .setNfcID(nfc.getNfcID())
-                                            .setName(patient.getName())
-                                            .setFirstname(patient.getFirstname());
-                                    if (patient.getHeight() != null) builderEnrChInEvt.setHeight(patient.getHeight());
-                                    if (patient.getWeight() != null) builderEnrChInEvt.setWeight(patient.getWeight());
-                                    if (patient.getInsulinSensitivityFactor() != null)
-                                        builderEnrChInEvt.setInsulinSensitivityFactor(patient.getInsulinSensitivityFactor());
-                                    if (patient.getTimestamp() != null) builderEnrChInEvt.setTimestamp(patient.getTimestamp());
+                                            .setName(p.getName())
+                                            .setFirstname(p.getFirstname());
+                                    if (p.getHeight() != null) builderEnrChInEvt.setHeight(p.getHeight());
+                                    if (p.getWeight() != null) builderEnrChInEvt.setWeight(p.getWeight());
+                                    if (p.getInsulinSensitivityFactor() != null)
+                                        builderEnrChInEvt.setInsulinSensitivityFactor(p.getInsulinSensitivityFactor());
+                                    if (p.getTimestamp() != null) builderEnrChInEvt.setTimestamp(p.getTimestamp());
                                     return builderEnrChInEvt.build();
                                 }
                         )
@@ -301,6 +232,106 @@ public class MqttTopology {
                 "nfc-events-enriched",
                 Produced.with(Serdes.String(), AvroSerdes.enrichedCheckInEvent("http://localhost:9010", false))
         );
+
+        // Process of Adding all insulin doses per Patient (NFC ID
+        // --------------------------------
+
+        // 1) First build the lookup KTable: correlationId → nfcID
+        KTable<String, String> correlationToNfcTable = patientStream
+                // Filter for any message containing patient info with valid NFC ID
+                .filter((corrId, node) ->
+                        node.has("patient") &&
+                                node.get("patient").has("nfcID") &&
+                                !node.get("patient").get("nfcID").isNull() &&
+                                !node.get("patient").get("nfcID").asText().equals("null"))
+                .peek((key, value) -> System.out.println("FOUND PATIENT NODE: " + key +
+                        ", nfcID: " + value.get("patient").get("nfcID").asText()))
+                .mapValues(node -> node.get("patient").get("nfcID").asText())
+                .toTable(
+                        Materialized.<String, String, KeyValueStore<Bytes, byte[]>>as("correlation-nfc-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(Serdes.String())
+                );
+        correlationToNfcTable.toStream().print(Printed.<String, String>toSysOut().withLabel("DEBUG - correlationToNfcTable"));
+
+        // 2) Extract insulin doses from messages - this stays the same
+        KStream<String, Double> insulinDoseStream = patientStream
+                .filter((corrId, node) -> node.has("insulinDoses"))
+                .peek((key, value) -> System.out.println("FOUND INSULIN DOSE: " + key +
+                        ", dose: " + value.get("insulinDoses").asDouble()))
+                .mapValues(node -> node.get("insulinDoses").asDouble());
+        insulinDoseStream.print(Printed.<String, Double>toSysOut().withLabel("DEBUG - insulinDoseStream"));
+
+        // 3) Join the dose stream to the lookup table to enrich with nfcID
+        KStream<String, KeyValue<String, Double>> patientDoseMapping = insulinDoseStream
+                .join(correlationToNfcTable,
+                        (dose, nfcID) -> KeyValue.pair(nfcID, dose),
+                        Joined.with(
+                                Serdes.String(),  // correlation ID key
+                                Serdes.Double(),  // insulin dose value
+                                Serdes.String()   // nfcID value from table
+                        )
+                );
+        patientDoseMapping.print(Printed.<String, KeyValue<String, Double>>toSysOut().withLabel("DEBUG - patientDoseMapping"));
+
+        // 4) Re-key by patientId and drop the Pair wrapper
+        KStream<String, Double> byPatient = patientDoseMapping
+                .selectKey((corrId, pair) -> pair.key)
+                .mapValues(pair -> pair.value);
+
+        byPatient.print(Printed.<String, Double>toSysOut().withLabel("DEBUG - byPatient"));
+
+
+        // 5) Finally, group by patientId and sum (no Windowing)
+        KTable<String, Double> totalInsulinPerPatient = byPatient
+                .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
+                .reduce(
+                        Double::sum,
+                        Materialized.<String, Double, KeyValueStore<Bytes, byte[]>>as("total-insulin-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(Serdes.Double())
+                );
+
+        totalInsulinPerPatient.toStream().print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient"));
+
+        // With windowing
+
+        // TimeWindows timeWindows = TimeWindows.ofSizeWithNoGrace(Duration.ofDays(1));
+        // For debugging purposes, we  use a smaller window size
+        TimeWindows timeWindows = TimeWindows.ofSizeWithNoGrace(Duration.ofSeconds(120));
+
+        KTable<Windowed<String>, Double> totalInsulinPerPatientWindowed = byPatient
+                .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
+                .windowedBy(timeWindows)
+                .reduce(
+                        Double::sum,
+                        Materialized.<String, Double, WindowStore<Bytes, byte[]>>as("total-insulin-windowed-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(Serdes.Double())
+                );
+
+        totalInsulinPerPatientWindowed.toStream()
+                .map((windowedKey, value) -> KeyValue.pair(
+                        windowedKey.key() + "@" + windowedKey.window().start() + "-" + windowedKey.window().end(),
+                        value))
+                .print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient Windowed"));
+
+        KTable<String, Double> totalInsulinWindowedFlat = totalInsulinPerPatientWindowed
+                .toStream()
+                .map((windowedKey, value) ->
+                        KeyValue.pair(
+                                windowedKey.key() +
+                                        "@" +
+                                        windowedKey.window().start() + "-" +
+                                        windowedKey.window().end(),
+                                value
+                        )
+                )
+                .toTable(
+                        Materialized.<String, Double, KeyValueStore<Bytes, byte[]>>as("total-insulin-windowed-kvstore")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(Serdes.Double())
+                );
 
         return builder.build();
     }

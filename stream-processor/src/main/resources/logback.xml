@@ -1,0 +1,23 @@
+<configuration>
+    <!-- 1) Console appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 2) Root logger at INFO: no more DEBUG anywhere by default -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!-- 3) Kafka Streams at DEBUG so you still see topology / processing details -->
+    <logger name="org.apache.kafka.streams" level="WARN"/>
+
+    <!-- 4) Your application (or Javalin) at DEBUG -->
+    <logger name="com.eventdriven.healthcare" level="DEBUG"/>
+    <logger name="io.javalin" level="DEBUG"/>
+
+    <!-- 5) Quiet Jetty down to WARN (so you won’t see those ManagedSelector DEBUGs) -->
+    <logger name="org.eclipse.jetty" level="WARN"/>
+</configuration>
