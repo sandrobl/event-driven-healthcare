@@ -1,9 +1,15 @@
 package com.eventdriven.healthcare.streamprocessor.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.kafka.streams.KafkaStreams;
@@ -37,6 +43,8 @@ public class MonitorService {
         app.get("/patientTable", this::getPatientTable);
         app.get("/totalInsulinPerPatient", this::getTotalInsulin);
         app.get("/totalInsulinWindowed", this::getTotalInsulinWindowed);
+        app.get("/weightChange", this::getWeightChange);
+
     }
 
     // 1) Enriched patients
@@ -78,6 +86,36 @@ public class MonitorService {
         try (KeyValueIterator<String, Double> iter = store.all()) {
             iter.forEachRemaining(kv -> out.put(kv.key, kv.value));
         }
+        ctx.json(out);
+    }
+
+    void getWeightChange(Context ctx) {
+        // 1) Read the store as Double values
+        ReadOnlyKeyValueStore<String, Double> store =
+                streams.store(
+                        StoreQueryParameters.fromNameAndType(
+                                "avg-weight-change-store",
+                                QueryableStoreTypes.keyValueStore()
+                        )
+                );
+
+        // 2) Pull entries into a list and sort descending by the Double
+        List<Map.Entry<String, Double>> entries = new ArrayList<>();
+        try (KeyValueIterator<String, Double> it = store.all()) {
+            it.forEachRemaining(kv -> entries.add(Map.entry(kv.key, kv.value)));
+        }
+        entries.sort((a, b) -> Double.compare(b.getValue(), a.getValue()));
+
+        // 3) Build a JSON array of { window, avgChange }
+        ArrayNode out = JsonNodeFactory.instance.arrayNode();
+        for (var e : entries) {
+            ObjectNode o = JsonNodeFactory.instance.objectNode();
+            o.put("window",    e.getKey());
+            o.put("avgChange", e.getValue());
+            out.add(o);
+        }
+
+        // 4) Return it
         ctx.json(out);
     }
 }

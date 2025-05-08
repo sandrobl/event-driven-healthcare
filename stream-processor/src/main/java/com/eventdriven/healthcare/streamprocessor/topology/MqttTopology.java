@@ -20,7 +20,9 @@ import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.processor.ProcessorContext;
 import org.apache.kafka.streams.state.KeyValueStore;
+import org.apache.kafka.streams.state.Stores;
 import org.apache.kafka.streams.state.WindowStore;
 
 import java.time.Duration;
@@ -333,6 +335,104 @@ public class MqttTopology {
                                 .withValueSerde(Serdes.Double())
                 );
 
+        // Using Sliding (hopping) window to produce average Weight change
+        // ----------------------------------------------------------------
+        builder.addStateStore(
+                Stores.keyValueStoreBuilder(
+                        Stores.inMemoryKeyValueStore("last-weight-store"),
+                        Serdes.String(),
+                        Serdes.Double()
+                )
+        );
+        // 1) Turn the KTable back into a KStream of (nfcId, weight)
+        KStream<String, Double> weightStream = patientMetricsTable
+                .toStream()
+                .mapValues(metrics -> metrics.getWeight());
+
+        // 2) TransformValues to remember each patient's last weight
+        KStream<String, Double> deltaStream = weightStream.transformValues(
+                        () -> new ValueTransformerWithKey<String,Double,Double>() {
+                            private KeyValueStore<String,Double> lastWeight;
+
+                            @Override
+                            public void init(ProcessorContext ctx) {
+                                lastWeight = ctx.getStateStore("last-weight-store");
+                            }
+
+                            @Override
+                            public Double transform(String key, Double newWeight) {
+                                Double prev = lastWeight.get(key);
+                                lastWeight.put(key, newWeight);
+                                // first event has no delta
+                                if (prev == null) return null;
+                                return newWeight - prev;
+                            }
+
+                            @Override
+                            public void close() { }
+                        },
+                        Named.as("compute-delta"),
+                        "last-weight-store"
+                )
+                .filter((k, delta) -> delta != null);   // drop the very first event per patient
+
+        // 3) Hopping window: size = 24 h, advance = 1 h
+        TimeWindows hop24h = TimeWindows
+                .ofSizeWithNoGrace(Duration.ofHours(24))
+                .advanceBy(Duration.ofHours(1));
+
+        // 5) Materialize the windowed aggregator
+        KTable<Windowed<String>, JsonNode> windowedStats = deltaStream
+                .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
+                .windowedBy(hop24h)
+                .aggregate(
+                        // initializer returns an ObjectNode (a JsonNode subtype)
+                        () -> {
+                            ObjectNode o = JsonNodeFactory.instance.objectNode();
+                            o.put("sum",   0.0);
+                            o.put("count", 0L);
+                            o.put("avg",   0.0);
+                            return o;
+                        },
+                        // adder takes (key, delta, oldJson) where oldJson is declared as JsonNode…
+                        (patientId, delta, oldJson) -> {
+                            // …so cast it back to ObjectNode to mutate:
+                            ObjectNode o = (ObjectNode) oldJson;
+                            double sum   = o.get("sum").asDouble() + delta;
+                            long   count = o.get("count").asLong()   + 1;
+                            o.put("sum",   sum);
+                            o.put("count", count);
+                            o.put("avg",   sum / count);
+                            return o;
+                        },
+                        // still materialize as JsonNode so your existing JsonNodeSerde works
+                        Materialized.<String, JsonNode, WindowStore<Bytes, byte[]>>as("weight-delta-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(new JsonNodeSerde())
+                );
+        // 6) Map to average and flatten into a regular KV store for querying
+        KTable<String, Double> avgDeltaFlat = windowedStats
+                .toStream()
+                .map((windowedKey, json) -> {
+                    // build the new key
+                    String flatKey = windowedKey.key()
+                            + "@"
+                            + windowedKey.window().start()
+                            + "-"
+                            + windowedKey.window().end();
+
+                    // pull out the avg field from the JsonNode
+                    double avg = json.has("avg")
+                            ? json.get("avg").asDouble()
+                            : 0.0;
+
+                    return KeyValue.pair(flatKey, avg);
+                })
+                .toTable(
+                        Materialized.<String, Double, KeyValueStore<Bytes, byte[]>>as("avg-weight-change-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(Serdes.Double())
+                );
         return builder.build();
     }
 }

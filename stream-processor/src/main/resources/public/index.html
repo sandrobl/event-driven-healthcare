@@ -38,6 +38,9 @@
         <li class="nav-item"><a href="#patientTableDiv"         class="nav-link" data-toggle="tab">Patients</a></li>
         <li class="nav-item"><a href="#totalInsulinDiv"         class="nav-link" data-toggle="tab">Total Insulin</a></li>
         <li class="nav-item"><a href="#windowedInsulinDiv"      class="nav-link" data-toggle="tab">Windowed Insulin</a></li>
+        <li class="nav-item">
+            <a href="#weightChangeDiv" class="nav-link" data-toggle="tab">Avg Weight Δ</a>
+        </li>
     </ul>
 
     <div class="tab-content">
@@ -70,6 +73,14 @@
                 <tbody></tbody>
             </table>
         </div>
+        <div class="tab-pane" id="weightChangeDiv">
+            <table id="weightChangeTable">
+                <thead>
+                <tr><th>Window</th><th>Avg Δ (kg)</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -91,23 +102,61 @@
             return ul;
         }
 
+        function parseWindowKey(rawKey) {
+            const [patientId, times] = rawKey.split('@');
+            const [startMs, endMs] = times.split('-').map(Number);
+            const startDate = new Date(startMs).toLocaleString();
+            const endDate = new Date(endMs).toLocaleString();
+            return { patientId, windowStr: `${patientId}@${startDate} → ${endDate}` };
+        }
+
         function fetchData(endpoint, tableId) {
             $.getJSON(endpoint)
                 .done(data => {
-                    let body = $(`#${tableId} tbody`).empty();
-                    $.each(data, (key, value) => {
-                        let row = $('<tr>');
-                        row.append($('<td>').text(key));
-                        let cell = $('<td>');
-                        // Patients and fixationClick need nested JSON
-                        if (tableId === 'patientTable' || tableId === 'fixationMonitorTable' || tableId === 'fixationClickMonitorTable') {
-                            cell.append(jsonToUl(value));
+                    const $body = $(`#${tableId} tbody`).empty();
+
+                    // --- Weight Change: array of {window, avgChange} ---
+                    if (tableId === 'weightChangeTable' || tableId === 'windowedInsulinTable') {
+                        let rows;
+                        if (tableId === 'weightChangeTable') {
+                            rows = data.map(item => ({
+                                rawKey: item.window,
+                                val: item.avgChange.toFixed(3)
+                            }));
                         } else {
-                            cell.text(value);
+                            rows = Object.entries(data).map(([rawKey, sum]) => ({
+                                rawKey,
+                                val: sum
+                            }));
                         }
-                        row.append(cell);
-                        body.append(row);
+                        rows.forEach(({rawKey, val}) => {
+                            const { windowStr } = parseWindowKey(rawKey);
+                            $body.append(
+                                $('<tr>')
+                                    .append($('<td>').text(windowStr))
+                                    .append($('<td>').text(val))
+                            );
+                        });
+                        return;
+                    }
+
+                    // --- Patient Table & Total Insulin: key→value maps ---
+                    $.each(data, (key, value) => {
+                        const $row = $('<tr>').append($('<td>').text(key));
+                        const $cell = $('<td>');
+
+                        if (tableId === 'patientTable') {
+                            // nested JSON for enriched patient
+                            $cell.append(jsonToUl(value));
+                        } else {
+                            // simple numeric or string
+                            $cell.text(value);
+                        }
+
+                        $row.append($cell);
+                        $body.append($row);
                     });
+
                 })
                 .fail(err => console.error('Error fetching', endpoint, err));
         }
@@ -116,6 +165,7 @@
             fetchData('/patientTable',         'patientTable');
             fetchData('/totalInsulinPerPatient','totalInsulinTable');
             fetchData('/totalInsulinWindowed', 'windowedInsulinTable');
+            fetchData('/weightChange','weightChangeTable');
         }
 
         setInterval(refreshData, 2000);

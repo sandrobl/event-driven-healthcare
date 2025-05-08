@@ -70,16 +70,12 @@ class EventProcessingApp {
             latch.countDown();
         }));
 
-        streams.setStateListener((newState, oldState) -> {
-            if (newState == KafkaStreams.State.RUNNING) {
-                System.out.println("Start monitoring service…");
-                new MonitorService(new HostInfo("localhost", 7070), streams).start();
-            }
-        });
-
         // ——— 4) Start and block forever ———
         System.out.println("Starting Kafka Streams application…");
         streams.start();
+
+        System.out.println("Start monitoring service…");
+        new MonitorService(new HostInfo("localhost", 7070), streams).start();
 
         // now main() will wait here until someone hits Ctrl-C
         latch.await();
