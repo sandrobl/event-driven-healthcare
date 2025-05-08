@@ -187,27 +187,41 @@ public class MqttTopology {
        byPatient.print(Printed.<String, Double>toSysOut().withLabel("DEBUG - byPatient"));
 
 
-       // 5) Finally, group by patientId and sum
+       // 5) Finally, group by patientId and sum (no Windowing)
+        KTable<String,Double> totalInsulinPerPatient = byPatient
+                .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
+                .reduce(
+                        Double::sum,
+                        Materialized.<String,Double,KeyValueStore<Bytes,byte[]>>as("total-insulin-store")
+                                .withKeySerde(Serdes.String())
+                                .withValueSerde(Serdes.Double())
+                );
 
-       TimeWindows timeWindows = TimeWindows.ofSizeWithNoGrace(Duration.ofDays(1));
-       // For debugging purposes, we can use a smaller window size
-       //TimeWindows timeWindows = TimeWindows.ofSizeWithNoGrace(Duration.ofSeconds(1));
+        totalInsulinPerPatient.toStream().print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient"));
 
-       KTable<Windowed<String>,Double> totalInsulinPerPatient = byPatient
+        // With windowing
+
+       // TimeWindows timeWindows = TimeWindows.ofSizeWithNoGrace(Duration.ofDays(1));
+       // For debugging purposes, we  use a smaller window size
+       TimeWindows timeWindows = TimeWindows.ofSizeWithNoGrace(Duration.ofSeconds(120));
+
+       KTable<Windowed<String>,Double> totalInsulinPerPatientWindowed = byPatient
                .groupByKey(Grouped.with(Serdes.String(), Serdes.Double()))
                .windowedBy(timeWindows)
                .reduce(
                        Double::sum,
-                       Materialized.<String, Double, WindowStore<Bytes, byte[]>>as("total-insulin-store")
+                       Materialized.<String, Double, WindowStore<Bytes, byte[]>>as("total-insulin-windowed-store")
                            .withKeySerde(Serdes.String())
                            .withValueSerde(Serdes.Double())
                );
 
-        totalInsulinPerPatient.toStream()
+        totalInsulinPerPatientWindowed.toStream()
         .map((windowedKey, value) -> KeyValue.pair(
             windowedKey.key() + "@" + windowedKey.window().start() + "-" + windowedKey.window().end(),
             value))
-        .print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient"));
+        .print(Printed.<String, Double>toSysOut().withLabel("DEBUG - totalInsulinPerPatient Windowed"));
+
+
 
         // Patient Data kTable enrichments
         // --------------------------------
