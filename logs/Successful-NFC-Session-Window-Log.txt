@@ -1,0 +1,279 @@
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"LEFT_DONATION","messageID":184,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"LEFT_DONATION","messageID":182,"ID":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"LEFT_DONATION","messageID":182,"rawNfcId":"ID 0x04 0xDA 0xF2 0x8A 0xB4 0x57 0x80"}
+[nfc-events-keyed]: 22P4, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[Raw Data]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[branch-nfc-events]: 22Pa, {"type":"nfc","UID":"22Pa","location":"RIGHT_DONATION","messageID":194,"readingID":0}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[Raw Data]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[branch-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[event-filtered-nfc-events]: 22P4, {"type":"nfc","UID":"22P4","location":"RIGHT_DONATION","messageID":192,"ID":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23","readingID":1}
+[content-filtered-nfc-events]: 22P4, {"location":"RIGHT_DONATION","messageID":192,"rawNfcId":"ID 0x08 0xDA 0xC2 0x8B 0xB4 0x42 0x23"}
+[nfc-events-keyed]: 22P4, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[ENRICHED-PATIENT-TABLE]: 04DAF28AB45780 : EnrichedPatient(nfcId=04DAF28AB45780, name=Müller, firstname=Anna, height=159.05019254343333, weight=60.358280086992835, insulinSensitivityFactor=2.525923635337262, timestamp=2025-05-08T14:20:30Z)
+[ENRICHED-PATIENT-TABLE]: 08DAC28BB44223 : EnrichedPatient(nfcId=08DAC28BB44223, name=Meier, firstname=Lukas, height=152.98309753191836, weight=61.068696380822665, insulinSensitivityFactor=3.7257699642185917, timestamp=2025-05-08T14:20:30Z)
+[ENRICHED-PATIENT-TABLE]: 06DCE18BA42067 : EnrichedPatient(nfcId=06DCE18BA42067, name=Dubois, firstname=Sophie, height=164.73431477807745, weight=57.338696323125994, insulinSensitivityFactor=2.857217346198464, timestamp=2025-05-08T14:20:30Z)
+[DEBUG - NFC SESSION WINDOWS]: 04DAF28AB45780@2025-05-08T14:19:49.688Z-2025-05-08T14:19:49.693Z, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[DEBUG - NFC SESSION WINDOWS]: 08DAC28BB44223@2025-05-08T14:19:49.697Z-2025-05-08T14:19:49.700Z, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[DEBUG - NFC SESSION WINDOWS]: 04DAF28AB45780@2025-05-08T14:20:16.096Z-2025-05-08T14:20:30.018Z, {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780"}
+[DEBUG - NFC SESSION WINDOWS]: 08DAC28BB44223@2025-05-08T14:20:16.852Z-2025-05-08T14:20:30.770Z, {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223"}
+[ENRICHED-CHECKIN-EVENTS]: 04DAF28AB45780 : {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780", "name": "Müller", "firstname": "Anna", "height": 159.05019254343333, "weight": 60.358280086992835, "insulinSensitivityFactor": 2.525923635337262, "timestamp": "2025-05-08T14:20:30Z"}
+[ENRICHED-CHECKIN-EVENTS]: 08DAC28BB44223 : {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223", "name": "Meier", "firstname": "Lukas", "height": 152.98309753191836, "weight": 61.068696380822665, "insulinSensitivityFactor": 3.7257699642185917, "timestamp": "2025-05-08T14:20:30Z"}
+[ENRICHED-CHECKIN-EVENTS]: 04DAF28AB45780 : {"location": "LEFT_DONATION", "messageID": 182, "nfcID": "04DAF28AB45780", "name": "Müller", "firstname": "Anna", "height": 159.05019254343333, "weight": 60.358280086992835, "insulinSensitivityFactor": 2.525923635337262, "timestamp": "2025-05-08T14:20:30Z"}
+[ENRICHED-CHECKIN-EVENTS]: 08DAC28BB44223 : {"location": "RIGHT_DONATION", "messageID": 192, "nfcID": "08DAC28BB44223", "name": "Meier", "firstname": "Lukas", "height": 152.98309753191836, "weight": 61.068696380822665, "insulinSensitivityFactor": 3.7257699642185917, "timestamp": "2025-05-08T14:20:30Z"}
+[Raw Data]: abe9f079-733a-4b51-a2e3-66f35f44c55a, {"patient":{"patientID":null,"name":"Müller","firstname":"Anna","nfcID":"04DAF28AB45780","address":null,"city":null,"plz":null,"dateOfBirth":null,"height":159.05019,"weight":60.35828,"insulinSensitivityFactor":2.5259237}}
+FOUND PATIENT NODE: abe9f079-733a-4b51-a2e3-66f35f44c55a, nfcID: 04DAF28AB45780
+[Raw Data]: 8847f493-e5db-43b5-84a8-50baac80b5e2, {"patient":{"patientID":null,"name":"Meier","firstname":"Lukas","nfcID":"08DAC28BB44223","address":null,"city":null,"plz":null,"dateOfBirth":null,"height":152.9831,"weight":61.068695,"insulinSensitivityFactor":3.72577}}
+FOUND PATIENT NODE: 8847f493-e5db-43b5-84a8-50baac80b5e2, nfcID: 08DAC28BB44223
