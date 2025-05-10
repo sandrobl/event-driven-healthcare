@@ -10,7 +10,7 @@ services:
       - 2888:2888
       - 3888:3888
   kafka:
-    image: bitnami/kafka:latest
+    image: bitnami/kafka:3.3.2
     links:
       - zookeeper
     ports:
