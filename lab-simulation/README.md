@@ -13,13 +13,13 @@ pip install paho-mqtt
 
 ## Usage
 Run the script with the following command:
-```bash
-python3 simulate-lab.py \
+```python
+python3 simulate-lab.py
     --broker ftsim.weber.ics.unisg.ch \
     --port 1883 \
     --username ftsim \
     --password unisg \
-    --file logs/healthcare_log_20250227-142710.txt
+    --file logs/only_nfc_events.txt
 ```
 
 For adding new patients change the file to **logs/only_nfc_events.txt**.

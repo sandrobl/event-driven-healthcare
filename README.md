@@ -13,6 +13,7 @@ There are 7 services that work in tandem to achieve a solution from detection if
 | mqtt kafka bridge       | [MQTT Kafka Bridge README](/mqtt-kafka-bridge/README.md)          |
 | patient checkin      | [Patient Checkin README](/patient-checkin/README.md)        |
 | patient guidance webapp           | [Patient Guidance WebApp README](/patient-guidance-webapp/README.md)                 |
+| stream processor        | [Stream Processor README](/stream-processor/README.md)                 |
 
 It is possible to set the Insulin Calculator REST into slow mode, so it will be unreachable. To do that start the service and then enter S into the console so "slow" mode will be activated.
 
@@ -21,6 +22,18 @@ It is possible to set the Insulin Calculator REST into slow mode, so it will be 
 https://github.com/user-attachments/assets/2d91a661-d545-40ba-b4ba-7c038b523e57
 
 
+## Accessible WEB Frontends / HTTP Endpoints
+- *Monitor Dashboard* (http://localhost:7070): A real-time dashboard for the Kafka Streams processor. Browse live views of the enriched patient table, total insulin per patient, windowed insulin sums, and average weight changes over time.
+
+- *Patient Guidance Web App* (http://localhost:8080): The clinician‐facing UI that displays patient data and guide trough the inuslin process. Provides forms for manual data entry.
+
+- *Camunda Orchestrator* (http://localhost:8090): The Camunda BPM cockpit and tasklist. Allows workflow monitoring, user-task management, and process instance inspection for all patient-related business processes. Login: demo/demo
+
+- *Insulin Calculator API* (http://localhost:8095)  
+  A REST service endpoint for computing recommended insulin doses. Accepts patient metrics and returns personalized dose suggestions back to the process. Could also simulate a slow mode for testing the process with an slow responding API.
+
+- *Kafdrop* (http://localhost:9000)
+  A third party GUI to inspect Kafka Topics and its messages.
 
 ## Scenarios 
 
@@ -29,7 +42,8 @@ Need to be done before any scenario.
 
 1) Run the only docker compose file 
 2) Start all service in intelij or verify that the services are running. 
-3) Run the lab-simulation 
+3) Run the stream-processor service (with the main function being in the class EventProcessingApp)
+4) Run the lab-simulation 
     ```bash
     python3 simulate-lab.py
         --broker ftsim.weber.ics.unisg.ch \
@@ -38,7 +52,7 @@ Need to be done before any scenario.
         --password unisg \
         --file logs/only_nfc_events.txt
     ```
-4) Access the patient guidance webapp via http://localhost:8080 you now should see new patients registred.
+5) Access the patient guidance webapp via http://localhost:8080 you now should see new patients registred.
 
 ### No insulin required
 
