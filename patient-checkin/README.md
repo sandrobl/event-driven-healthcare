@@ -15,46 +15,53 @@ This Spring Boot application handles the patient check-in process in the healthc
 - Maven 
 - Message broker (Kafka)
 
-
 ### Installation
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/patient-checkin.git
 
 # Navigate to the project directory
 cd patient-checkin
 
 # Build the project
 ./mvnw clean install
-```
 
 ### Configuration
 Configure the application using `application.yml`:
 
 ### Database Setup
-This service uses an embedded H2 database for development and testing purposes, configured through the `schema.sql` and `data.sql` files.
+This service uses an SQLite database, configured through the `DataSourceConfig` class with the database file `patients.db`.
+
+#### Database Configuration
+The application is configured to use SQLite with the following setup in `DataSourceConfig.java`:
+
+```java
+@Bean
+public DataSource dataSource() {
+    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    dataSource.setDriverClassName("org.sqlite.JDBC");
+    dataSource.setUrl("jdbc:sqlite:patients.db");
+    return dataSource;
+}
+```
+
 
 #### Schema and Data Initialization
-The application includes two important SQL files that automatically run during startup:
+The application uses SQLite for persistent storage:
 
-1. **schema.sql**
-   - Creates the database tables and structure
-   - Defines the schema for patient records, check-in history, and other relevant entities
-   - Establishes relationships and constraints between tables
-   - Automatically executed by Spring Boot when the application starts
+1. **Database File**
+   - The SQLite database is stored in the file `patients.db`
+   - Contains tables for patient records, check-in history, and other relevant entities
+   - Persists data between application restarts
 
-2. **data.sql**
-   - Populates the database with initial seed data
-   - Contains predefined patient records for testing and demonstration
-   - Includes sample check-in history and reference data
-   - Useful for development, testing, and demonstration environments
+2. **Schema and Data Management**
+   - Database schema is managed through your application code or migration scripts
+   - Initial data can be loaded programmatically or through SQL scripts
+   - Changes to the database structure should follow proper migration practices
 
-These files ensure that:
-- The application has a consistent database structure across environments
-- Developers can quickly start with pre-populated test data
-- The service can be demonstrated without manual data entry
-- Integration tests have predictable data to work with
+This configuration ensures that:
+- The application has consistent data storage across restarts
+- Data persists between sessions
+- The service can be deployed with minimal external dependencies
+- Integration tests can use the same database technology as production
 
-To modify the initial data or schema:
-1. Edit the respective SQL file
-2. Restart the application to apply changes automatically
+To modify the database configuration:
+1. Edit the `DataSourceConfig.java` file
+2. Restart the application to apply changes
