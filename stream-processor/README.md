@@ -48,3 +48,7 @@ The application consists of these key components:
 ```bash
 mvn clean package
 ```
+
+### Running the Application
+
+Run the main function of the class "EventProcessingApp"
